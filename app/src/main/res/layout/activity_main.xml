@@ -11,7 +11,78 @@
     tools:context="com.example.karanraj.chauhan.courseplanner.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/center_reference_text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/app_title_text_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginBottom="48dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:padding="8dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="48sp" />
+
+    <Button
+        android:id="@+id/sober_up_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_title_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/main_activity_button_margin"
+        android:layout_marginRight="@dimen/main_activity_button_margin"
+        android:layout_marginTop="@dimen/main_activity_button_margin"
+        android:padding="32dp"
+        android:text="@string/sober_up_button_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    <Button
+        android:id="@+id/pacer_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sober_up_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/main_activity_button_margin"
+        android:layout_marginLeft="@dimen/main_activity_button_margin"
+        android:layout_marginRight="@dimen/main_activity_button_margin"
+        android:padding="32dp"
+        android:text="@string/pacer_button_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    <Button
+        android:id="@+id/resources_button"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_alignLeft="@id/pacer_button"
+        android:layout_below="@id/pacer_button"
+        android:layout_toLeftOf="@id/center_reference_text_view"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/resources_button_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <Button
+        android:id="@+id/about_us_button"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_alignRight="@id/pacer_button"
+        android:layout_below="@id/pacer_button"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/center_reference_text_view"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/about_us_button_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <TextView
+        android:id="@+id/disclaimer_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/disclaimer_text_view_text"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
 </RelativeLayout>

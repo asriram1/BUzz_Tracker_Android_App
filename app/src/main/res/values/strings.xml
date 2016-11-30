@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Course Planner</string>
+    <string name="app_name">BAC Calculator</string>
+    <string name="sober_up_button_text">SOBER UP!</string>
+    <string name="pacer_button_text">PACER</string>
+    <string name="resources_button_text">Resources</string>
+    <string name="about_us_button_text">About Us</string>
+    <string name="disclaimer_text_view_text">DISCLAIMER: orem ipsum dolor sit amet, venenatis tortor diam elit ligula, wisi ullamcorper, libero nibh ut cursus maecenas, pharetra nulla velit.</string>
 </resources>
