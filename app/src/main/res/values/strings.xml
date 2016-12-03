@@ -5,4 +5,7 @@
     <string name="resources_button_text">Resources</string>
     <string name="about_us_button_text">About Us</string>
     <string name="disclaimer_text_view_text">DISCLAIMER: orem ipsum dolor sit amet, venenatis tortor diam elit ligula, wisi ullamcorper, libero nibh ut cursus maecenas, pharetra nulla velit.</string>
+
+    <string name="instructions_text_view">Select Sober Up! to estimate time from now to sobering up. Select Pacer to pace your drinking</string>
+
 </resources>

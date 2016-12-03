@@ -20,13 +20,11 @@
         android:id="@+id/app_title_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:padding="8dp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textSize="48sp" />
+        android:text="@string/instructions_text_view"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Button
         android:id="@+id/sober_up_button"
@@ -37,7 +35,7 @@
         android:layout_marginLeft="@dimen/main_activity_button_margin"
         android:layout_marginRight="@dimen/main_activity_button_margin"
         android:layout_marginTop="@dimen/main_activity_button_margin"
-        android:padding="32dp"
+        android:padding="24dp"
         android:text="@string/sober_up_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
@@ -47,10 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/sober_up_button"
         android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/main_activity_button_margin"
         android:layout_marginLeft="@dimen/main_activity_button_margin"
         android:layout_marginRight="@dimen/main_activity_button_margin"
-        android:padding="32dp"
+        android:padding="24dp"
         android:text="@string/pacer_button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
@@ -83,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="@string/disclaimer_text_view_text"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textStyle="italic"/>
 
 </RelativeLayout>
