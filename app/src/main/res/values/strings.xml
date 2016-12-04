@@ -7,5 +7,10 @@
     <string name="disclaimer_text_view_text">DISCLAIMER: orem ipsum dolor sit amet, venenatis tortor diam elit ligula, wisi ullamcorper, libero nibh ut cursus maecenas, pharetra nulla velit.</string>
 
     <string name="instructions_text_view">Select Sober Up! to estimate time from now to sobering up. Select Pacer to pace your drinking</string>
-
+    <string name="page_name_1">Sober Up!</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="FK">Fuck Karan</string>
+    <string name="weight">Enter your Weight</string>
+    <string name="Gender">Select your gender:</string>
 </resources>
