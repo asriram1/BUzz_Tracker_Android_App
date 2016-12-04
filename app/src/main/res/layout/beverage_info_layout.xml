@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp" >
+
+    <Spinner
+        android:id="@+id/beverage_options_spinner"
+        style="@style/RowItemStyle"
+        android:layout_alignParentLeft="true"
+        android:spinnerMode="dropdown" />
+
+    <EditText
+        android:id="@+id/quantity_field"
+        style="@style/RowItemStyle"
+        android:layout_toRightOf="@id/beverage_options_spinner"
+        android:hint="Dept"
+        android:maxLength="2"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/time_field"
+        style="@style/RowItemStyle"
+        android:layout_toRightOf="@id/quantity_field"
+        android:hint="Course"
+        android:maxLength="3"
+        android:maxLines="1" />
+
+</RelativeLayout>
