@@ -66,98 +66,32 @@
             android:text="WEIGHT :"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <TextView
-            android:id="@+id/hundred_text_view"
+        <NumberPicker
+            android:id="@+id/pacer_weight_hundreds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/weight_text_view"
             android:layout_marginLeft="8dp"
-            android:padding="24dp"
-            android:text="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
-        <TextView
-            android:id="@+id/ten_text_view"
+        <NumberPicker
+            android:id="@+id/pacer_weight_tens"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/hundred_text_view"
-            android:padding="24dp"
-            android:text="2"
+            android:layout_toRightOf="@id/pacer_weight_hundreds"
+            android:layout_marginLeft="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
-
-        <TextView
-            android:id="@+id/one_text_view"
+        <NumberPicker
+            android:id="@+id/pacer_weight_ones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/ten_text_view"
-            android:padding="24dp"
-            android:text="0"
+            android:layout_toRightOf="@id/pacer_weight_tens"
+            android:layout_marginLeft="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-        <ImageButton
-            android:id="@+id/hundred_up_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/hundred_text_view"
-            android:layout_alignRight="@id/hundred_text_view"
-            android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
-
-        <ImageButton
-            android:id="@+id/ten_up_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/ten_text_view"
-            android:layout_alignRight="@id/ten_text_view"
-            android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
-
-        <ImageButton
-            android:id="@+id/one_up_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/one_text_view"
-            android:layout_alignRight="@id/one_text_view"
-            android:src="@drawable/ic_keyboard_arrow_up_black_24dp"/>
-
-        <ImageButton
-            android:id="@+id/hundred_down_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/hundred_text_view"
-            android:layout_alignRight="@id/hundred_text_view"
-            android:layout_below="@id/hundred_text_view"
-            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
-
-        <ImageButton
-            android:id="@+id/ten_down_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/ten_text_view"
-            android:layout_alignRight="@id/ten_text_view"
-            android:layout_below="@id/ten_text_view"
-            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
-
-        <ImageButton
-            android:id="@+id/one_down_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/one_text_view"
-            android:layout_alignRight="@id/one_text_view"
-            android:layout_below="@id/one_text_view"
-            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
-
-        <TextView
-            android:id="@+id/weight_units_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:text="lb"
-            android:layout_toRightOf="@id/one_text_view"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </RelativeLayout>
 
