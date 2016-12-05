@@ -17,6 +17,7 @@
         </activity>
 
         <activity android:name=".PacerActivity"/>
+        <activity android:name=".SoberUpActivity"/>
 
     </application>
 
