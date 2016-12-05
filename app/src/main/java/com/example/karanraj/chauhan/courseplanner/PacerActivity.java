@@ -32,7 +32,7 @@ public class PacerActivity extends AppCompatActivity {
         NumberPicker weightHundredsNumberPicker = (NumberPicker) findViewById(R.id.pacer_weight_hundreds);
 
         // Specify the maximum and minimum digit for NumberPicker
-        weightHundredsNumberPicker.setMaxValue(9);
+        weightHundredsNumberPicker.setMaxValue(3);
         weightHundredsNumberPicker.setMinValue(0);
 
         // Set whether the selector wheel wraps on reaching the min/max value.
