@@ -27,6 +27,7 @@ public class PacerActivity extends AppCompatActivity {
         int weightHundreds = 0, weightTens = 0, weightOnes = 0;
         final int[] weightDigits = {weightHundreds, weightTens, weightOnes};
 
+
         // NumberPicker for hundreds value of weight
         NumberPicker weightHundredsNumberPicker = (NumberPicker) findViewById(R.id.pacer_weight_hundreds);
 
@@ -91,6 +92,10 @@ public class PacerActivity extends AppCompatActivity {
             }
 
         });
+
+
+
+
 
     }
 
