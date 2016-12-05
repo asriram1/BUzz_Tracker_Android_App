@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/textView"
-            android:textAppearance="@android:style/TextAppearance.Large.Inverse.NumberPickerInputText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:layout_alignBaseline="@+id/weightText"
             android:layout_alignBottom="@+id/weightText"
             android:layout_alignParentLeft="true"
@@ -38,13 +38,37 @@
             android:layout_marginStart="26dp"
             android:text="Enter Weight" />
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Select a number..."
+        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="182dp"
         android:orientation="horizontal">
 
 
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker1"
+            android:layout_alignBottom="@+id/numberPicker2"
+            android:layout_alignRight="@+id/radioButton2"
+            android:layout_alignEnd="@+id/radioButton2"
+            android:layout_marginBottom="8dp" />
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker2"
+            android:layout_alignBottom="@+id/numberPicker2"
+            android:layout_alignRight="@+id/radioButton2"
+            android:layout_alignEnd="@+id/radioButton2"
+            android:layout_marginBottom="8dp"
+            />
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,23 +80,7 @@
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numberPicker3"
-            android:layout_alignBottom="@+id/numberPicker2"
-            android:layout_alignRight="@+id/radioButton2"
-            android:layout_alignEnd="@+id/radioButton2"
-            android:layout_marginBottom="8dp" />
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/numberPicker3"
-            android:layout_alignBottom="@+id/numberPicker2"
-            android:layout_alignRight="@+id/radioButton2"
-            android:layout_alignEnd="@+id/radioButton2"
-            android:layout_marginBottom="8dp" />
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/numberPicker3"
+            android:id="@+id/numberPicker4"
             android:layout_alignBottom="@+id/numberPicker2"
             android:layout_alignRight="@+id/radioButton2"
             android:layout_alignEnd="@+id/radioButton2"
@@ -84,19 +92,36 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <RadioButton
-            android:text="Female"
+        <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButton3"
-            android:layout_weight="1" />
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/sex_text_view"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:text="Male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton4"
-            android:layout_weight="1" />
+            <RadioButton
+                android:id="@+id/radio_button_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="Male"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
+
+            <RadioButton
+                android:id="@+id/radio_button_female"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="Female"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+        </RadioGroup>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

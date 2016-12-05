@@ -22,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button soberupButton = (Button) findViewById(R.id.sober_up_button);
-        pacerButton.setOnClickListener(new View.OnClickListener() {
+        soberupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SoberUpActivity.class);
                 startActivity(intent);
-
+            }
+        });
     }
-}
+    }
+
