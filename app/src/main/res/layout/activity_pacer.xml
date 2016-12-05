@@ -161,5 +161,9 @@
 
     </RelativeLayout>
 
+    <com.example.karanraj.chauhan.courseplanner.BeverageInfoLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/beverage_1_info_layout" />
 
 </LinearLayout>
