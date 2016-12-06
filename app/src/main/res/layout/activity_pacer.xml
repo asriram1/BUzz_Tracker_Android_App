@@ -1,174 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/sex_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:gravity="fill_vertical"
-            android:padding="16dp"
-            android:text="SEX :"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/sex_text_view"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radio_button_male"
+            <TextView
+                android:id="@+id/sex_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:onClick="onRadioButtonClicked"
-                android:text="Male"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
+                android:layout_alignParentLeft="true"
+                android:gravity="fill_vertical"
+                android:padding="16dp"
+                android:text="SEX :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <RadioButton
-                android:id="@+id/radio_button_female"
+            <RadioGroup
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/sex_text_view"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_button_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Male"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
+
+                <RadioButton
+                    android:id="@+id/radio_button_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Female"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            </RadioGroup>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/weight_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="16dp"
+                android:text="WEIGHT :"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <NumberPicker
+                android:id="@+id/pacer_weight_hundreds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:onClick="onRadioButtonClicked"
-                android:text="Female"
+                android:layout_toRightOf="@id/weight_text_view"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-        </RadioGroup>
 
+            <NumberPicker
+                android:id="@+id/pacer_weight_tens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/pacer_weight_hundreds"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
-    </RelativeLayout>
+            <NumberPicker
+                android:id="@+id/pacer_weight_ones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/pacer_weight_tens"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/weight_text_view"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:padding="8dp"
-            android:text="WEIGHT :"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
 
-        <NumberPicker
-            android:id="@+id/pacer_weight_hundreds"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/label_beverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="4dp"
+                android:paddingTop="8dp"
+                android:text="Beverage (%ABV, Serving Size)"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/label_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/label_beverage"
+                android:paddingBottom="8dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="8dp"
+                android:text="Quantity"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/label_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:paddingBottom="8dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
+                android:text="Time"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/beverage_options_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/label_beverage"
+                android:layout_alignRight="@id/label_beverage"
+                android:layout_below="@id/label_beverage"
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/quantity_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/label_quantity"
+                android:layout_alignRight="@id/label_quantity"
+                android:layout_below="@id/label_quantity"
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/time_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/label_time"
+                android:layout_alignRight="@id/label_time"
+                android:layout_below="@id/label_time"
+                android:spinnerMode="dropdown" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/weight_text_view"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:layout_margin="16dp"
+            android:text="Add"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
-        <NumberPicker
-            android:id="@+id/pacer_weight_tens"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/pacer_weight_hundreds"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+    </LinearLayout>
 
-        <NumberPicker
-            android:id="@+id/pacer_weight_ones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/pacer_weight_tens"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/label_beverage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="4dp"
-            android:paddingTop="8dp"
-            android:text="Beverage (%ABV, Serving Size)"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/label_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/label_beverage"
-            android:paddingBottom="8dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="8dp"
-            android:text="Quantity"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/label_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="8dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:text="Time"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/beverage_options_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/label_beverage"
-            android:layout_alignLeft="@id/label_beverage"
-            android:layout_alignRight="@id/label_beverage"
-            android:spinnerMode="dropdown" />
-
-        <Spinner
-            android:id="@+id/quantity_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/label_quantity"
-            android:layout_alignLeft="@id/label_quantity"
-            android:layout_alignRight="@id/label_quantity"
-            android:spinnerMode="dropdown"/>
-
-        <Spinner
-            android:id="@+id/time_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/label_time"
-            android:layout_alignLeft="@id/label_time"
-            android:layout_alignRight="@id/label_time"
-            android:spinnerMode="dropdown"/>
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+</ScrollView>
