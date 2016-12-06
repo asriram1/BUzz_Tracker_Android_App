@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -30,9 +31,9 @@ public class PacerActivity extends AppCompatActivity {
 
     private int numberOfBeverages = 1;
 
-    private List<String> beverageNamesSelected = new ArrayList<>(15);
-    private List<Integer> quantitiesSelected = new ArrayList<>(15);
-    private List<String> timesSelected = new ArrayList<>(15);
+    private List<String> beverageNamesSelected = new ArrayList<>(10);
+    private List<Integer> quantitiesSelected = new ArrayList<>(10);
+    private List<String> timesSelected = new ArrayList<>(10);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +89,16 @@ public class PacerActivity extends AppCompatActivity {
         });
 
         setUpSpinnersInActivity();
+
+//        beverageNamesSelected.add("demo1");
+//        beverageNamesSelected.add("demo2");
+//        beverageNamesSelected.add("demo3");
+//        beverageNamesSelected.add("demo4");
+//        beverageNamesSelected.add("demo5");
+//
+//        ArrayAdapter<String> beveragesSelectedAdapter = new ArrayAdapter<String>(PacerActivity.this, R.layout.beverages_list_item, beverageNamesSelected);
+//        ListView beveragesSelectedListView = (ListView) findViewById(R.id.beverages_list_view);
+//        beveragesSelectedListView.setAdapter(beveragesSelectedAdapter);
 
 //        Log.d(TAG, "collected info: "+weightHundreds+weightTens+weightOnes+" "+beverageNamesSelected.get(0)+" "+quantitiesSelected.get(0)+" "+timesSelected.get(0));
 
