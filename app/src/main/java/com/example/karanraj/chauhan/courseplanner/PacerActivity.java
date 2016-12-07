@@ -1,5 +1,6 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,10 @@ public class PacerActivity extends AppCompatActivity {
 
     private final static String TAG = "PacerActivity";
 
+    // Constant value used in BAC calculation. Its value is 0.73 for males, 0.66 for females
+    private double mGenderConstant;
+
+    // Stores weight of the user according to inputs from NumberPickers
     private int mUserWeight = 0;
 
     // Spinners for beverage options & info, quantity, time of consumption
@@ -103,33 +110,74 @@ public class PacerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 beverageIntakes.add(new BeverageIntake(mBeverageOptionsSpinner.getSelectedItem().toString(),
                         (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString() ));
-                mUserWeight = +100*mWeightHundredsNumberPicker.getValue()+10*mWeightTensNumberPicker.getValue()+mWeightOnesNumberPicker.getValue();
-                Log.d(TAG, "onClick: weight is "+mUserWeight);
                 BeverageIntake first = beverageIntakes.get(0);
                 Log.d(TAG, "onClick: beverage is "+first.getName()+" "+first.getQuantity()+" "+first.getTime());
             }
         });
+
+        Button nextButton = (Button) findViewById(R.id.next_button);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int checkedRadioButtonId = ((RadioGroup)findViewById(R.id.sex_radio_group)).getCheckedRadioButtonId();
+                switch (checkedRadioButtonId) {
+                    case -1:
+                        Toast.makeText(PacerActivity.this, "Please select a gender", Toast.LENGTH_LONG).show();
+                        return;
+                    case 0:
+                        Log.d(TAG, "onClick: sex is male");
+                        mGenderConstant = 0.73;
+                        break;
+                    case 1:
+                        Log.d(TAG, "onClick: sex is female");
+                        mGenderConstant = 0.66;
+                        break;
+                    default: return;
+                }
+
+                mUserWeight = +100*mWeightHundredsNumberPicker.getValue()+10*mWeightTensNumberPicker.getValue()
+                        +mWeightOnesNumberPicker.getValue();
+                Log.d(TAG, "onClick: weight is "+mUserWeight);
+
+                if (mUserWeight == 0) {
+                    Toast.makeText(PacerActivity.this, "Please indicate your weight in lbs", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (beverageIntakes.size() == 0) {
+                    Toast.makeText(PacerActivity.this, "Please add at least one beverage", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent intentToResultsActivity = new Intent(PacerActivity.this, ResultsActivity.class);
+                // TODO: 12/7/16 add extras here 
+                startActivity(intentToResultsActivity);
+
+            }
+        });
+
     }
 
-    public void onRadioButtonClicked(View view) {
-
-        double genderConstant;
-
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radio_button_male:
-                if (checked)
-                    genderConstant = 0.73;  // standard value for males
-                break;
-            case R.id.radio_button_female:
-                if (checked)
-                    genderConstant = 0.66;  // standard value for females
-                break;
-        }
-    }
+//    public void onRadioButtonClicked(View view) {
+//
+//
+//
+//        // Is the button now checked?
+//        boolean checked = ((RadioButton) view).isChecked();
+//
+//        // Check which radio button was clicked
+//        switch(view.getId()) {
+//            case R.id.radio_button_male:
+//                if (checked)
+//                    genderConstant = 0.73;  // standard value for males
+//                break;
+//            case R.id.radio_button_female:
+//                if (checked)
+//                    genderConstant = 0.66;  // standard value for females
+//                break;
+//        }
+//    }
 
 
 }
