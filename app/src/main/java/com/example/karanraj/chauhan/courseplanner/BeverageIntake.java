@@ -1,7 +1,7 @@
 package com.example.karanraj.chauhan.courseplanner;
 
 /**
- * Created by karanraj on 12/7/16.
+ * Created by karanraj
  */
 
 public class BeverageIntake {

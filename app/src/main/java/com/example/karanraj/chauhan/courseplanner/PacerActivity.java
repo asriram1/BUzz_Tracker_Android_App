@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by karanraj on 12/3/16
+ * Created by karanraj
  * Pacer functionality of app gives the user an estimate of their BAC at regular intervals of time
  * based on alcohol consumption history
  */

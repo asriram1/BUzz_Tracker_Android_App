@@ -29,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button resourcesButton = (Button) findViewById(R.id.resources_button);
+        resourcesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ResourcesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-    }
+}
 
