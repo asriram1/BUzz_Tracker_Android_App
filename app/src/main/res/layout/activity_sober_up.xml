@@ -95,6 +95,7 @@
 
             <NumberPicker
                 android:id="@+id/sober_weight_hundreds"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="84dp"
@@ -127,114 +128,67 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Select a number..."
-        />
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"/>
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"/>
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"/>
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="182dp"
         android:orientation="horizontal">
+        <NumberPicker
+            android:id="@+id/beer_one_up"
+            android:theme="@android:style/Theme.Dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_marginStart="9dp"/>
+        <NumberPicker
+            android:id="@+id/wine_one_up"
+            android:theme="@android:style/Theme.Dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_marginStart="9dp"/>
+        <NumberPicker
+            android:id="@+id/vodka_one_up"
+            android:theme="@android:style/Theme.Dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_marginStart="9dp"/>
+        <NumberPicker
+            android:id="@+id/liquor_one_up"
+            android:theme="@android:style/Theme.Dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_marginStart="9dp"/>
 
 
 
-
-        <RelativeLayout
-            android:layout_margin="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-
-            <TextView
-                android:id="@+id/hundred_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/weight_text_view"
-                android:layout_marginLeft="8dp"
-                android:padding="24dp"
-                android:text="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-            <TextView
-                android:id="@+id/ten_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/hundred_text_view"
-                android:padding="24dp"
-                android:text="2"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-
-            <TextView
-                android:id="@+id/one_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/ten_text_view"
-                android:padding="24dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-            <ImageButton
-                android:id="@+id/hundred_up_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/hundred_text_view"
-                android:layout_alignRight="@id/hundred_text_view"
-                android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
-
-            <ImageButton
-                android:id="@+id/ten_up_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/ten_text_view"
-                android:layout_alignRight="@id/ten_text_view"
-                android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
-
-            <ImageButton
-                android:id="@+id/one_up_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/one_text_view"
-                android:layout_alignRight="@id/one_text_view"
-                android:src="@drawable/ic_keyboard_arrow_up_black_24dp"/>
-
-            <ImageButton
-                android:id="@+id/hundred_down_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/hundred_text_view"
-                android:layout_alignRight="@id/hundred_text_view"
-                android:layout_below="@id/hundred_text_view"
-                android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
-
-            <ImageButton
-                android:id="@+id/ten_down_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/ten_text_view"
-                android:layout_alignRight="@id/ten_text_view"
-                android:layout_below="@id/ten_text_view"
-                android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
-
-            <ImageButton
-                android:id="@+id/one_down_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/one_text_view"
-                android:layout_alignRight="@id/one_text_view"
-                android:layout_below="@id/one_text_view"
-                android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
-
-
-
-        </RelativeLayout>
 
     </LinearLayout>
 
@@ -242,6 +196,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/go_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goButtonPressed"
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
 
     </LinearLayout>
