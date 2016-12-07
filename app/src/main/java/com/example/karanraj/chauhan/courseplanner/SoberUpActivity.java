@@ -2,10 +2,13 @@ package com.example.karanraj.chauhan.courseplanner;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Scroller;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.graphics.Color;
@@ -15,10 +18,14 @@ import android.graphics.Color;
  */
 
 public class SoberUpActivity extends AppCompatActivity {
+    private final static String TAG = "SoberActivity";
     private int weightHundreds = 0, weightTens = 0, weightOnes = 0;
+    private int beerBottles = 0, wineGlass = 0, vodkaShots = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_sober_up);
         //New code
         NumberPicker weightHundredsNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_hundreds);
@@ -42,34 +49,11 @@ public class SoberUpActivity extends AppCompatActivity {
         weightTensNumberPicker.setWrapSelectorWheel(set_wrap);
         weightOnesNumberPicker.setWrapSelectorWheel(set_wrap);
 
-        // Set value change listeners for NumberPickers
-        weightHundredsNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                //Display the newly selected number from picker
-                weightHundreds = picker.getValue();
-            }
 
-        });
-        weightTensNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                //Display the newly selected number from picker
-                weightTens = picker.getValue();
-            }
 
-        });
-        weightOnesNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                //Display the newly selected number from picker
-                weightOnes = picker.getValue();
-            }
-
-        });
         //Old Code
         //Get the widgets reference from XML layout
-        final TextView tv = (TextView) findViewById(R.id.tv);
+
         // NumberPicker np = (NumberPicker) findViewById(R.id.numberPicker1);
 
         ////Set TextView text color
@@ -89,12 +73,22 @@ public class SoberUpActivity extends AppCompatActivity {
         //@Override
         //  public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
         //Display the newly selected number from picker
-        tv.setText("Selected Number : " + weightHundredsNumberPicker.getValue());
+
         // }
 
         // });
     }
 
+
+
+
+    public void goButtonPressed(View view){
+        NumberPicker weightHundredsNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_hundreds);
+        NumberPicker weightTensNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_tens);
+        NumberPicker weightOnesNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_ones);
+        Log.d(TAG, "onValueChange: weightHundreds "+ (100*weightHundredsNumberPicker.getValue()+10*weightTensNumberPicker.getValue()+weightOnesNumberPicker.getValue()));
+
+    }
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
