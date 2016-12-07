@@ -23,7 +23,8 @@ import java.util.List;
  * based on alcohol consumption history
  */
 
-// TODO: 12/6/16 notify when gender is not selected/set default gender
+// TODO: 12/7/16 numberpicker disable softkey input
+
 
 public class PacerActivity extends AppCompatActivity {
 
@@ -111,6 +112,7 @@ public class PacerActivity extends AppCompatActivity {
                 beverageIntakes.add(new BeverageIntake(mBeverageOptionsSpinner.getSelectedItem().toString(),
                         (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString() ));
                 BeverageIntake first = beverageIntakes.get(0);
+                Toast.makeText(PacerActivity.this, "Added!", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: beverage is "+first.getName()+" "+first.getQuantity()+" "+first.getTime());
             }
         });
@@ -125,11 +127,11 @@ public class PacerActivity extends AppCompatActivity {
                     case -1:
                         Toast.makeText(PacerActivity.this, "Please select a gender", Toast.LENGTH_LONG).show();
                         return;
-                    case 0:
+                    case R.id.radio_button_male:
                         Log.d(TAG, "onClick: sex is male");
                         mGenderConstant = 0.73;
                         break;
-                    case 1:
+                    case R.id.radio_button_female:
                         Log.d(TAG, "onClick: sex is female");
                         mGenderConstant = 0.66;
                         break;
@@ -151,7 +153,7 @@ public class PacerActivity extends AppCompatActivity {
                 }
 
                 Intent intentToResultsActivity = new Intent(PacerActivity.this, ResultsActivity.class);
-                // TODO: 12/7/16 add extras here 
+                intentToResultsActivity.putExtra("beverageIntakes", beverageIntakes.toArray());
                 startActivity(intentToResultsActivity);
 
             }

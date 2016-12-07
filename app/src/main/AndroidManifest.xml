@@ -19,6 +19,7 @@
         <activity android:name=".PacerActivity"/>
         <activity android:name=".SoberUpActivity"/>
         <activity android:name=".ResourcesActivity"/>
+        <activity android:name=".ResultsActivity"/>
 
     </application>
 

@@ -45,7 +45,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:onClick="onRadioButtonClicked"
                         android:text="Male"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
@@ -54,7 +53,6 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="6"
-                        android:onClick="onRadioButtonClicked"
                         android:text="Female"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </RadioGroup>
@@ -72,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:padding="16dp"
-                    android:text="WEIGHT (in lbs) :"
+                    android:text="WEIGHT\n(in lbs) :"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <NumberPicker
