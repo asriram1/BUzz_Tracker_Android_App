@@ -3,6 +3,7 @@ package com.example.karanraj.chauhan.courseplanner;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Scroller;
 import android.widget.NumberPicker;
@@ -14,55 +15,107 @@ import android.graphics.Color;
  */
 
 public class SoberUpActivity extends AppCompatActivity {
+    private int weightHundreds = 0, weightTens = 0, weightOnes = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sober_up);
+        //New code
+        NumberPicker weightHundredsNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_hundreds);
 
-        //Get the widgets reference from XML layout
-        final TextView tv = (TextView) findViewById(R.id.tv);
-        NumberPicker np = (NumberPicker) findViewById(R.id.numberPicker1);
+        // NumberPicker for tens value of weight
+        NumberPicker weightTensNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_tens);
 
-        //Set TextView text color
-        tv.setTextColor(Color.parseColor("#ffd32b3b"));
+        // NumberPicker for ones value of weight
+        NumberPicker weightOnesNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_ones);
 
-        //Populate NumberPicker values from minimum and maximum value range
-        //Set the minimum value of NumberPicker
-        np.setMinValue(80);
-        //Specify the maximum value/number of NumberPicker
-        np.setMaxValue(250);
+        // Specify the maximum and minimum digit for all NumberPickers
+        weightHundredsNumberPicker.setMaxValue(3);
+        weightHundredsNumberPicker.setMinValue(0);
+        weightTensNumberPicker.setMaxValue(9);
+        weightTensNumberPicker.setMinValue(0);
+        weightOnesNumberPicker.setMaxValue(9);
+        weightOnesNumberPicker.setMinValue(0);
+        boolean set_wrap = false;
+        // Set whether the selector wheel wraps on reaching the min/max value.
+        weightHundredsNumberPicker.setWrapSelectorWheel(set_wrap);
+        weightTensNumberPicker.setWrapSelectorWheel(set_wrap);
+        weightOnesNumberPicker.setWrapSelectorWheel(set_wrap);
 
-        //Gets whether the selector wheel wraps when reaching the min/max value.
-        np.setWrapSelectorWheel(true);
-
-        //Set a value change listener for NumberPicker
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        // Set value change listeners for NumberPickers
+        weightHundredsNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 //Display the newly selected number from picker
-                tv.setText("Selected Number : " + newVal);
+                weightHundreds = picker.getValue();
             }
 
         });
+        weightTensNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                //Display the newly selected number from picker
+                weightTens = picker.getValue();
+            }
+
+        });
+        weightOnesNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                //Display the newly selected number from picker
+                weightOnes = picker.getValue();
+            }
+
+        });
+        //Old Code
+        //Get the widgets reference from XML layout
+        final TextView tv = (TextView) findViewById(R.id.tv);
+        // NumberPicker np = (NumberPicker) findViewById(R.id.numberPicker1);
+
+        ////Set TextView text color
+        // tv.setTextColor(Color.parseColor("#ffd32b3b"));
+
+        //Populate NumberPicker values from minimum and maximum value range
+        //Set the minimum value of NumberPicker
+        // np.setMinValue(0);
+        // //Specify the maximum value/number of NumberPicker
+        //np.setMaxValue(9);
+
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        //np.setWrapSelectorWheel(false);
+
+        //Set a value change listener for NumberPicker
+        //np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        //@Override
+        //  public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+        //Display the newly selected number from picker
+        tv.setText("Selected Number : " + weightHundredsNumberPicker.getValue());
+        // }
+
+        // });
     }
+
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
+        double genderConstant;
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.radio_button_male:
-                if (checked)
-                    // Pirates are the best
-                    break;
+                if (checked) {
+                    genderConstant = 0.73;
+                }// gender constant r for males
+                break;
             case R.id.radio_button_female:
-                if (checked)
-                    // Ninjas rule
-                    break;
+                if (checked) {
+                    genderConstant = 0.66;
+                }// gender constant r for females
+                break;
         }
     }
 
 
-    }
+}
 
