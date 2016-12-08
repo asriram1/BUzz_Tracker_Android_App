@@ -30,7 +30,7 @@ public class ResultsActivity extends AppCompatActivity {
             intakeQuantities[i] = receivedBeverageIntakes.get(i).getQuantity();
         }
 
-        TextView testtv = (TextView) findViewById(R.id.test_tv);
-        testtv.setText(receivedBeverageIntakes.get(0).getName()+receivedBeverageIntakes.get(0).getTime()+receivedBeverageIntakes.get(0).getQuantity());
+        //TextView testtv = (TextView) findViewById(R.id.test_tv);
+        //testtv.setText(receivedBeverageIntakes.get(0).getName()+receivedBeverageIntakes.get(0).getTime()+receivedBeverageIntakes.get(0).getQuantity());
     }
 }
