@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ public class ResultsActivity extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         String previousActivityTag = data.getString("TAG");
 
-        Log.d(TAG, "onCreate: tag is "+previousActivityTag);
+        Log.d(TAG, "onCreate: tag is " + previousActivityTag);
 
         if (previousActivityTag.equals("PacerActivity")) {
             Log.d(TAG, "onCreate: pacer");
@@ -39,7 +42,24 @@ public class ResultsActivity extends AppCompatActivity {
                 intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
                 intakeQuantities[i] = receivedBeverageIntakes.get(i).getQuantity();
             }
-        } else if (previousActivityTag.equals("SoberUpActivity")){
+
+            TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
+
+
+            for (int i = 0; i <receivedBeverageIntakes.size(); i++) {
+
+                TableRow row= new TableRow(this);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                row.setLayoutParams(lp);
+                TextView tv = new TextView(this);
+                TextView qty = new TextView(this);
+                qty.setText("10");
+                row.addView(qty);
+                row.addView(tv);
+                ll.addView(row,i);
+            }
+
+        } else if (previousActivityTag.equals("SoberUpActivity")) {
             // do stuff
             Log.d(TAG, "onCreate: sobering up now");
             int beerBottlesNum = data.getInt("beerBottleNum");
@@ -49,9 +69,11 @@ public class ResultsActivity extends AppCompatActivity {
             int userWeightInput = data.getInt("userWeightVal");
             double userGenderConstant = data.getDouble("genderConstantVal");
 
-            Toast.makeText(ResultsActivity.this,"number of beer bottles"+ data.getInt("beerBottleNum"), Toast.LENGTH_LONG).show();
+            Toast.makeText(ResultsActivity.this, "number of beer bottles" + data.getInt("beerBottleNum"), Toast.LENGTH_LONG).show();
         }
+
 
         Log.d(TAG, "onCreate: nothing obtained");
     }
 }
+
