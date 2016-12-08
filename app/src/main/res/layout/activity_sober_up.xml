@@ -23,7 +23,7 @@
                 android:layout_alignParentLeft="true"
                 android:gravity="fill_vertical"
                 android:padding="16dp"
-                android:text="       SEX :  "
+                android:text="  SEX : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <RadioGroup
