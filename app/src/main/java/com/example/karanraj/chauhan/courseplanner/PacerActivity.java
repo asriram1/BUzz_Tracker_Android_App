@@ -3,6 +3,7 @@ package com.example.karanraj.chauhan.courseplanner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +51,8 @@ public class PacerActivity extends AppCompatActivity {
 
     // ArrayList that will contain all user inputs about beverages consumption, i.e., name, quantity and time
     private ArrayList<BeverageIntake> beverageIntakes = new ArrayList<>(5);
+
+    private TableLayout mBeverageIntakesTable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,16 +109,37 @@ public class PacerActivity extends AppCompatActivity {
         mQuantitySpinner.setAdapter(quantitySpinnerAdapter);
         mTimeSpinner.setAdapter(timeSpinnerAdapter);
 
+        mBeverageIntakesTable = (TableLayout) findViewById(R.id.beverage_intakes_table_layout);
+
+        if (mBeverageIntakesTable.getChildCount() != 0) {
+            mBeverageIntakesTable.removeAllViews();
+        }
+
+        final float sourceTextSize = ((TextView) findViewById(R.id.label_quantity)).getTextSize();
+
         // When add button is clicked, the current selections in Spinners are added to the appropriate AraryLists
         Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                beverageIntakes.add(new BeverageIntake(mBeverageOptionsSpinner.getSelectedItem().toString(),
-                        (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString() ));
-                BeverageIntake first = beverageIntakes.get(0);
+                BeverageIntake current = new BeverageIntake(mBeverageOptionsSpinner.getSelectedItem().toString(),
+                        (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString());
+                beverageIntakes.add(current);
+
                 Toast.makeText(PacerActivity.this, "Added!", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onClick: beverage is "+first.getName()+" "+first.getQuantity()+" "+first.getTime());
+
+                TableRow tr = new TableRow(PacerActivity.this);
+                tr.setLayoutParams(new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+                TextView tv = new TextView(PacerActivity.this);
+                tv.setPadding(8,8,8,8);
+                tv.setText(current.getQuantity() + "x " + current.getName() + " at " + current.getTime());
+                // FIXME: 12/8/16 no display when appearance is set to medium
+//                tv.setTextSize(android.R.attr.textAppearanceMedium);
+                tv.setTextSize(sourceTextSize / getResources().getDisplayMetrics().density);
+                tr.addView(tv);
+
+                mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
             }
         });
 
