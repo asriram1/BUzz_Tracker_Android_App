@@ -2,6 +2,7 @@ package com.example.karanraj.chauhan.courseplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.id.list;
 
 /**
  * Created by karanraj
@@ -47,7 +50,7 @@ public class PacerActivity extends AppCompatActivity {
     private NumberPicker mWeightOnesNumberPicker;
 
     // ArrayList that will contain all user inputs about beverages consumption, i.e., name, quantity and time
-    private List<BeverageIntake> beverageIntakes = new ArrayList<>(5);
+    private ArrayList<BeverageIntake> beverageIntakes = new ArrayList<>(5);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -153,9 +156,8 @@ public class PacerActivity extends AppCompatActivity {
                 }
 
                 Intent intentToResultsActivity = new Intent(PacerActivity.this, ResultsActivity.class);
-                intentToResultsActivity.putExtra("beverageIntakes", beverageIntakes.toArray());
+                intentToResultsActivity.putParcelableArrayListExtra("beverageIntakesArrayList", beverageIntakes);
                 startActivity(intentToResultsActivity);
-
             }
         });
 
