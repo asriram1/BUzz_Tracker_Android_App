@@ -27,6 +27,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <RadioGroup
+                android:id="@+id/sex_radio_group_sober"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -34,24 +35,24 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radio_button_male"
+                    android:id="@+id/radio_button_male_sober"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
-                    android:onClick="onRadioButtonClicked"
+                    android:onClick="onRadioButtonClicked_sober"
                     android:text="Male"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
 
                 <RadioButton
-                    android:id="@+id/radio_button_female"
+                    android:id="@+id/radio_button_female_sober"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:onClick="onRadioButtonClicked"
+                    android:onClick="onRadioButtonClicked_sober"
                     android:text="Female"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
             </RadioGroup>

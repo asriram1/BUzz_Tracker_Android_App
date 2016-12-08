@@ -34,7 +34,6 @@ public class ResultsActivity extends AppCompatActivity {
             }
         } else if (previousActivityTag.equals("SoberUpActivity")){
             // do stuff
-
         }
     }
 }
