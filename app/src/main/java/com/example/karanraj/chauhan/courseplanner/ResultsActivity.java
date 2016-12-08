@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -13,16 +15,21 @@ import java.util.ArrayList;
  */
 
 public class ResultsActivity extends AppCompatActivity {
+    private static final String TAG = "ResultsActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: started");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
         Bundle data = getIntent().getExtras();
         String previousActivityTag = data.getString("TAG");
 
+        Log.d(TAG, "onCreate: tag is "+previousActivityTag);
+
         if (previousActivityTag.equals("PacerActivity")) {
+            Log.d(TAG, "onCreate: pacer");
             ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
 
             String[] intakeTimes = new String[receivedBeverageIntakes.size()];
@@ -34,6 +41,17 @@ public class ResultsActivity extends AppCompatActivity {
             }
         } else if (previousActivityTag.equals("SoberUpActivity")){
             // do stuff
+            Log.d(TAG, "onCreate: sobering up now");
+            int beerBottlesNum = data.getInt("beerBottleNum");
+            int vodkaShotsNum = data.getInt("vodkaShotNum");
+            int liquorGlassNum = data.getInt("liquorGlassNum");
+            int wineGlassNum = data.getInt("wineGlassNum");
+            int userWeightInput = data.getInt("userWeightVal");
+            double userGenderConstant = data.getDouble("genderConstantVal");
+
+            Toast.makeText(ResultsActivity.this,"number of beer bottles"+ data.getInt("beerBottleNum"), Toast.LENGTH_LONG).show();
         }
+
+        Log.d(TAG, "onCreate: nothing obtained");
     }
 }
