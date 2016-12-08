@@ -15,7 +15,7 @@ import android.widget.Toast;
  */
 
 public class SoberUpActivity extends AppCompatActivity {
-    private final static String TAG = "SoberActivity";
+    private final static String TAG = "SoberUpActivity";
     private int weightHundreds = 0, weightTens = 0, weightOnes = 0;
     private int beerBottles = 0, wineGlass = 0, vodkaShots = 0, liquorGlass = 0;
     double genderConstant;
