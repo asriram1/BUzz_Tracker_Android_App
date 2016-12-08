@@ -157,6 +157,7 @@ public class PacerActivity extends AppCompatActivity {
 
                 Intent intentToResultsActivity = new Intent(PacerActivity.this, ResultsActivity.class);
                 intentToResultsActivity.putParcelableArrayListExtra("beverageIntakesArrayList", beverageIntakes);
+                intentToResultsActivity.putExtra("TAG", TAG);
                 startActivity(intentToResultsActivity);
             }
         });

@@ -20,17 +20,21 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         Bundle data = getIntent().getExtras();
-        ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
+        String previousActivityTag = data.getString("TAG");
 
-        String[] intakeTimes = new String[receivedBeverageIntakes.size()];
-        int[] intakeQuantities = new int[receivedBeverageIntakes.size()];
+        if (previousActivityTag.equals("PacerActivity")) {
+            ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
 
-        for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
-            intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
-            intakeQuantities[i] = receivedBeverageIntakes.get(i).getQuantity();
+            String[] intakeTimes = new String[receivedBeverageIntakes.size()];
+            int[] intakeQuantities = new int[receivedBeverageIntakes.size()];
+
+            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
+                intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
+                intakeQuantities[i] = receivedBeverageIntakes.get(i).getQuantity();
+            }
+        } else if (previousActivityTag.equals("SoberUpActivity")){
+            // do stuff
+
         }
-
-        TextView testtv = (TextView) findViewById(R.id.test_tv);
-        testtv.setText(receivedBeverageIntakes.get(0).getName()+receivedBeverageIntakes.get(0).getTime()+receivedBeverageIntakes.get(0).getQuantity());
     }
 }

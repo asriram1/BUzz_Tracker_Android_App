@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -193,30 +193,14 @@
                 android:text="SELECTED BEVERAGES:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <TextView
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/seleceted_beverages_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="test test"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="test test:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="test test:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
     <RelativeLayout
         android:layout_alignParentBottom="true"
