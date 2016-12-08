@@ -2,7 +2,6 @@ package com.example.karanraj.chauhan.courseplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,15 +9,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.R.id.list;
 
 /**
  * Created by karanraj
@@ -27,6 +23,7 @@ import static android.R.id.list;
  */
 
 // TODO: 12/7/16 numberpicker disable softkey input
+// TODO: 12/8/16 textview ripples when clicked
 
 
 public class PacerActivity extends AppCompatActivity {
@@ -120,8 +117,16 @@ public class PacerActivity extends AppCompatActivity {
             }
         });
 
-        Button nextButton = (Button) findViewById(R.id.next_button);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        TextView previousTextView = (TextView) findViewById(R.id.previous_text_view);
+        previousTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(PacerActivity.this, MainActivity.class));
+            }
+        });
+
+        TextView nextTextView = (TextView) findViewById(R.id.next_text_view);
+        nextTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -163,26 +168,4 @@ public class PacerActivity extends AppCompatActivity {
         });
 
     }
-
-//    public void onRadioButtonClicked(View view) {
-//
-//
-//
-//        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-//
-//        // Check which radio button was clicked
-//        switch(view.getId()) {
-//            case R.id.radio_button_male:
-//                if (checked)
-//                    genderConstant = 0.73;  // standard value for males
-//                break;
-//            case R.id.radio_button_female:
-//                if (checked)
-//                    genderConstant = 0.66;  // standard value for females
-//                break;
-//        }
-//    }
-
-
 }

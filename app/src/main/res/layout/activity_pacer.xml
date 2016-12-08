@@ -193,8 +193,65 @@
                 android:text="SELECTED BEVERAGES:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="SELECTED BEVERAGES:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/seleceted_beverages_recycler_view"
+                android:padding="8dp"
+                android:id="@+id/selected_beverages_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -203,28 +260,53 @@
     </android.support.v4.widget.NestedScrollView>
 
     <RelativeLayout
+        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <Button
-            android:id="@+id/previos_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:padding="8dp"
-            android:text="Previous" />
-
-        <Button
-            android:id="@+id/next_button"
+            android:id="@+id/previous_arrow_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:id="@+id/previous_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/previous_arrow_image_view"
             android:layout_centerVertical="true"
             android:padding="8dp"
-            android:text="Next" />
+            android:text="PREVIOUS" />
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/next_arrow_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:id="@+id/next_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/next_arrow_image_view"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:text="NEXT" />
+
+
     </RelativeLayout>
 
 </RelativeLayout>
