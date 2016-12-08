@@ -1,17 +1,14 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Scroller;
-import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.NumberPicker;
-import android.widget.TextView;
-import android.graphics.Color;
+import android.widget.Toast;
 
 /**
  * Created by anand
@@ -20,7 +17,10 @@ import android.graphics.Color;
 public class SoberUpActivity extends AppCompatActivity {
     private final static String TAG = "SoberActivity";
     private int weightHundreds = 0, weightTens = 0, weightOnes = 0;
-    private int beerBottles = 0, wineGlass = 0, vodkaShots = 0;
+    private int beerBottles = 0, wineGlass = 0, vodkaShots = 0, liquorGlass = 0;
+    double genderConstant;
+    int userWeight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,40 +43,40 @@ public class SoberUpActivity extends AppCompatActivity {
         weightTensNumberPicker.setMinValue(0);
         weightOnesNumberPicker.setMaxValue(9);
         weightOnesNumberPicker.setMinValue(0);
-        boolean set_wrap = false;
+
         // Set whether the selector wheel wraps on reaching the min/max value.
+        boolean set_wrap = false;
         weightHundredsNumberPicker.setWrapSelectorWheel(set_wrap);
         weightTensNumberPicker.setWrapSelectorWheel(set_wrap);
         weightOnesNumberPicker.setWrapSelectorWheel(set_wrap);
 
+        //Alcohol quantity number pickers
+        NumberPicker beerNumberPicker = (NumberPicker) findViewById(R.id.beer_one_up);
+        NumberPicker vodkaNumberPicker = (NumberPicker) findViewById(R.id.vodka_one_up);
+        NumberPicker wineNumberPicker = (NumberPicker) findViewById(R.id.wine_one_up);
+        NumberPicker liquorNumberPicker = (NumberPicker) findViewById(R.id.liquor_one_up);
 
 
-        //Old Code
-        //Get the widgets reference from XML layout
 
-        // NumberPicker np = (NumberPicker) findViewById(R.id.numberPicker1);
+        //Max and min digits for alcohol num pickers
+        int maxAlcoholValue = 15;
+        int minAlcoholValue = 0;
+        beerNumberPicker.setMaxValue(maxAlcoholValue);
+        vodkaNumberPicker.setMaxValue(maxAlcoholValue);
+        wineNumberPicker.setMaxValue(maxAlcoholValue);
+        liquorNumberPicker.setMaxValue(maxAlcoholValue);
+        beerNumberPicker.setMinValue(minAlcoholValue);
+        vodkaNumberPicker.setMinValue(minAlcoholValue);
+        wineNumberPicker.setMinValue(minAlcoholValue);
+        liquorNumberPicker.setMinValue(minAlcoholValue);
 
-        ////Set TextView text color
-        // tv.setTextColor(Color.parseColor("#ffd32b3b"));
+        //loop (wrap) selection for alcohol num pickers
+        beerNumberPicker.setWrapSelectorWheel(set_wrap);
+        vodkaNumberPicker.setWrapSelectorWheel(set_wrap);
+        wineNumberPicker.setWrapSelectorWheel(set_wrap);
+        liquorNumberPicker.setWrapSelectorWheel(set_wrap);
 
-        //Populate NumberPicker values from minimum and maximum value range
-        //Set the minimum value of NumberPicker
-        // np.setMinValue(0);
-        // //Specify the maximum value/number of NumberPicker
-        //np.setMaxValue(9);
 
-        //Gets whether the selector wheel wraps when reaching the min/max value.
-        //np.setWrapSelectorWheel(false);
-
-        //Set a value change listener for NumberPicker
-        //np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-        //@Override
-        //  public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-        //Display the newly selected number from picker
-
-        // }
-
-        // });
     }
 
 
@@ -86,23 +86,74 @@ public class SoberUpActivity extends AppCompatActivity {
         NumberPicker weightHundredsNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_hundreds);
         NumberPicker weightTensNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_tens);
         NumberPicker weightOnesNumberPicker = (NumberPicker) findViewById(R.id.sober_weight_ones);
-        Log.d(TAG, "onValueChange: weightHundreds "+ (100*weightHundredsNumberPicker.getValue()+10*weightTensNumberPicker.getValue()+weightOnesNumberPicker.getValue()));
+        userWeight=(100*weightHundredsNumberPicker.getValue()+10*weightTensNumberPicker.getValue()+weightOnesNumberPicker.getValue());
+
+        //Alcohol quantity number pickers
+        NumberPicker beerNumberPicker = (NumberPicker) findViewById(R.id.beer_one_up);
+        NumberPicker vodkaNumberPicker = (NumberPicker) findViewById(R.id.vodka_one_up);
+        NumberPicker wineNumberPicker = (NumberPicker) findViewById(R.id.wine_one_up);
+        NumberPicker liquorNumberPicker = (NumberPicker) findViewById(R.id.liquor_one_up);
+
+        beerBottles = beerNumberPicker.getValue();
+        vodkaShots = vodkaNumberPicker.getValue();
+        wineGlass = wineNumberPicker.getValue();
+        liquorGlass = liquorNumberPicker.getValue();
+
+
+        //Log.d(TAG, "onValueChange: weightHundreds "+ userWeight );
+        RadioGroup sexRadioButton = (RadioGroup) findViewById(R.id.sex_radio_group_sober);
+        //Log.d(TAG, "onValueChange: gender value "+ sexRadioButton.getCheckedRadioButtonId());
+        if(sexRadioButton.getCheckedRadioButtonId()==-1){
+            Toast.makeText(SoberUpActivity.this,"Please select a gender", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(sexRadioButton.getCheckedRadioButtonId()==2131492972){
+            genderConstant=0.66; //Female gender constant
+            Log.d(TAG, "onValueChange: Gender is female ");
+
+        }
+        if(sexRadioButton.getCheckedRadioButtonId()==2131492971){
+            genderConstant=0.73; //Male gender constant
+            Log.d(TAG, "onValueChange: Gender is male ");
+        }
+        if(userWeight==0){
+            Toast.makeText(SoberUpActivity.this,"Please enter your weight", Toast.LENGTH_LONG).show();
+            return;
+        }else {
+            Log.d(TAG, "onValueChange: User Weight is "+ userWeight);
+        }
+        if(liquorGlass +vodkaShots+wineGlass+beerBottles==0){
+            Toast.makeText(SoberUpActivity.this,"Please add some drinks", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Intent intentToResultsActivity = new Intent(SoberUpActivity.this, ResultsActivity.class);
+        intentToResultsActivity.putExtra("beerBottleNum", beerBottles);
+        intentToResultsActivity.putExtra("vodkaShotNum", vodkaShots);
+        intentToResultsActivity.putExtra("liquorGlassNum", liquorGlass);
+        intentToResultsActivity.putExtra("wineGlassNum", wineGlass);
+        intentToResultsActivity.putExtra("userWeightVal", userWeight);
+        intentToResultsActivity.putExtra("genderConstantVal", genderConstant);
+        intentToResultsActivity.putExtra("TAG", TAG);
+
+        startActivity(intentToResultsActivity);
+
 
     }
 
-    public void onRadioButtonClicked(View view) {
+    public void onRadioButtonClicked_sober(View view) {
         // Is the button now checked?
-        double genderConstant;
+
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
         switch (view.getId()) {
-            case R.id.radio_button_male:
+            case R.id.radio_button_male_sober:
                 if (checked) {
                     genderConstant = 0.73;
                 }// gender constant r for males
                 break;
-            case R.id.radio_button_female:
+            case R.id.radio_button_female_sober:
                 if (checked) {
                     genderConstant = 0.66;
                 }// gender constant r for females
