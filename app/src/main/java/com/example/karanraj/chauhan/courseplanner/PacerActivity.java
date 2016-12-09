@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -25,9 +26,6 @@ import static android.R.attr.x;
  * Pacer functionality of app gives the user an estimate of their BAC at regular intervals of time
  * based on alcohol consumption history
  */
-
-// TODO: 12/7/16 numberpicker disable softkey input
-// TODO: 12/8/16 textview ripples when clicked
 
 
 public class PacerActivity extends AppCompatActivity {
@@ -183,7 +181,7 @@ public class PacerActivity extends AppCompatActivity {
 
                 mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
-//                ((ScrollView) findViewById(R.id.pacer_scroll_view)).scrollTo(tr.);
+                ((ScrollView) findViewById(R.id.pacer_scroll_view)).fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
 
