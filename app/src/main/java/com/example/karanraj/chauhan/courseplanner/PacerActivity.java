@@ -33,7 +33,7 @@ public class PacerActivity extends AppCompatActivity {
     private final static String TAG = "PacerActivity";
 
     // Constant value used in BAC calculation. Its value is 0.73 for males, 0.66 for females
-    private double mGenderConstant;
+    private double mGenderConstant = 0;
 
     // Stores weight of the user according to inputs from NumberPickers
     private int mUserWeight = 0;
@@ -122,42 +122,53 @@ public class PacerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int checkedRadioButtonId = ((RadioGroup)findViewById(R.id.sex_radio_group)).getCheckedRadioButtonId();
-                switch (checkedRadioButtonId) {
-                    case -1:
-                        Toast.makeText(PacerActivity.this, "Please select a gender", Toast.LENGTH_LONG).show();
-                        return;
-                    case R.id.radio_button_male:
-                        Log.d(TAG, "onClick: sex is male");
-                        mGenderConstant = 0.73;
-                        break;
-                    case R.id.radio_button_female:
-                        Log.d(TAG, "onClick: sex is female");
-                        mGenderConstant = 0.66;
-                        break;
-                    default: return;
+                // If the gender constant has not already been defined then define it
+                if (mGenderConstant == 0) {
+                    int checkedRadioButtonId = ((RadioGroup)findViewById(R.id.sex_radio_group)).getCheckedRadioButtonId();
+                    // If gender is not selected then radio button id is -1. In this case, prompt the user to select gender
+                    // Set value of gender constant according to user's input
+                    switch (checkedRadioButtonId) {
+                        case -1:
+                            Toast.makeText(PacerActivity.this, "Please select a gender", Toast.LENGTH_LONG).show();
+                            return;
+                        case R.id.radio_button_male:
+                            Log.d(TAG, "onClick: sex is male");
+                            mGenderConstant = 0.73;
+                            break;
+                        case R.id.radio_button_female:
+                            Log.d(TAG, "onClick: sex is female");
+                            mGenderConstant = 0.66;
+                            break;
+                        default: return;
+                    }
                 }
+
 
                 mUserWeight = +100*mWeightHundredsNumberPicker.getValue()+10*mWeightTensNumberPicker.getValue()
                         +mWeightOnesNumberPicker.getValue();
                 Log.d(TAG, "onClick: weight is "+mUserWeight);
 
+                // If the weight is 0, i.e., user did not input weight, then prompt the user for weight
                 if (mUserWeight == 0) {
                     Toast.makeText(PacerActivity.this, "Please indicate your weight in lbs", Toast.LENGTH_LONG).show();
                     return;
                 }
 
+                // Properties of current alcohol intake
                 String name = mBeverageOptionsSpinner.getSelectedItem().toString();
                 int quantity = (int) mQuantitySpinner.getSelectedItem();
                 String time = mTimeSpinner.getSelectedItem().toString();
                 double bac = BACCalculatorFunctions.pacerAlcoholCalculator(mGenderConstant, mUserWeight, quantity, name);
+
                 BeverageIntake current = new BeverageIntake(name, quantity, time, bac);
                 beverageIntakes.add(current);
 
                 Toast.makeText(PacerActivity.this, "Added!", Toast.LENGTH_SHORT).show();
 
+                // Update the table layout to show the last added beverage intake information
                 TableRow tr = new TableRow(PacerActivity.this);
-                tr.setLayoutParams(new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.setLayoutParams(new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
 
                 TextView tv = new TextView(PacerActivity.this);
                 tv.setPadding(8,8,8,8);
@@ -168,11 +179,13 @@ public class PacerActivity extends AppCompatActivity {
                 tr.addView(tv);
                 // TODO: 12/8/16 fix scrolling
 
-                mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+                mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                        TableLayout.LayoutParams.WRAP_CONTENT));
 //                ((ScrollView) findViewById(R.id.pacer_scroll_view)).scrollTo(tr.);
             }
         });
 
+        // Text view that will navigate to the previous activity
         TextView previousTextView = (TextView) findViewById(R.id.previous_text_view);
         previousTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,16 +194,21 @@ public class PacerActivity extends AppCompatActivity {
             }
         });
 
+        // Text view that will navigate to the next activity
         TextView nextTextView = (TextView) findViewById(R.id.next_text_view);
         nextTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                // Next activity will not be started until all the required user input is received
                 if (beverageIntakes.size() == 0) {
-                    Toast.makeText(PacerActivity.this, "Please add at least one beverage to proceed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PacerActivity.this, "Please add at least one beverage to proceed",
+                            Toast.LENGTH_LONG).show();
                     return;
                 }
 
+                // Add the array list of BeverageIntake objects and current activity identifier (TAG) and
+                // start the next activity
                 Intent intentToResultsActivity = new Intent(PacerActivity.this, ResultsActivity.class);
                 intentToResultsActivity.putParcelableArrayListExtra("beverageIntakesArrayList", beverageIntakes);
                 intentToResultsActivity.putExtra("TAG", TAG);

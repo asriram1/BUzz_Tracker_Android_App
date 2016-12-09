@@ -3,8 +3,6 @@ package com.example.karanraj.chauhan.courseplanner;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import static android.R.attr.name;
-
 /**
  * Created by karanraj
  */
@@ -14,20 +12,20 @@ public class BeverageIntake implements Parcelable {
     private String mName;
     private int mQuantity;
     private String mTime;
-    private double mBac;
+    private double mBacAdded;
 
-    public BeverageIntake(String name, int quantity, String time,  double bac) {
+    public BeverageIntake(String name, int quantity, String time,  double bacAdded) {
         mName = name;
         mQuantity = quantity;
         mTime = time;
-        mBac = bac;
+        mBacAdded = bacAdded;
     }
 
     public BeverageIntake(Parcel in) {
         mName = in.readString();
         mQuantity = in.readInt();
         mTime = in.readString();
-        mBac = in.readDouble();
+        mBacAdded = in.readDouble();
     }
 
     public String getName() {
@@ -42,8 +40,8 @@ public class BeverageIntake implements Parcelable {
         return mTime;
     }
 
-    public double getBac() {
-        return mBac;
+    public double getBacAdded() {
+        return mBacAdded;
     }
 
     @Override
@@ -56,7 +54,7 @@ public class BeverageIntake implements Parcelable {
         dest.writeString(mName);
         dest.writeInt(mQuantity);
         dest.writeString(mTime);
-        dest.writeDouble(mBac);
+        dest.writeDouble(mBacAdded);
     }
 
     public static final Parcelable.Creator<BeverageIntake> CREATOR = new Parcelable.Creator<BeverageIntake>() {
