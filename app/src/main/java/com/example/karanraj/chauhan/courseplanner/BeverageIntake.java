@@ -1,9 +1,6 @@
 package com.example.karanraj.chauhan.courseplanner;
 import android.os.Parcel;
-import java.util.Comparator;
 import android.os.Parcelable;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by karanraj
@@ -13,7 +10,7 @@ public class BeverageIntake implements Parcelable {
 
     private String mName;
     private int mQuantity;
-    private Integer mTime;
+    private int mTime;
     private double mBacAdded;
 
     public BeverageIntake(String name, int quantity, String time,  double bacAdded) {
@@ -70,23 +67,3 @@ public class BeverageIntake implements Parcelable {
     };
 
 }
-
-public class BeverageComparator implements Comparator<BeverageIntake>
-
-
-{
-
-    public int compare(BeverageIntake self, BeverageIntake other)
-
-    {
-
-
-        return self.getTime().compareTo(other.getTime());
-    }
-
-
-}
-
-
-//call Collections.sort(ArrayList, new BeverageComparator()) to sort your array list;
-
