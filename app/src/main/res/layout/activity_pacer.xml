@@ -55,6 +55,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/pacer_scroll_view"
         android:layout_above="@id/navigation_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

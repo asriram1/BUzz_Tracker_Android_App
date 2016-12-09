@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -122,8 +123,9 @@ public class PacerActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: 12/8/16 update current for bac level
                 BeverageIntake current = new BeverageIntake(mBeverageOptionsSpinner.getSelectedItem().toString(),
-                        (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString());
+                        (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString(), 0.00);
                 beverageIntakes.add(current);
 
                 Toast.makeText(PacerActivity.this, "Added!", Toast.LENGTH_SHORT).show();
@@ -138,8 +140,10 @@ public class PacerActivity extends AppCompatActivity {
 //                tv.setTextSize(android.R.attr.textAppearanceMedium);
                 tv.setTextSize(sourceTextSize / getResources().getDisplayMetrics().density);
                 tr.addView(tv);
+                // TODO: 12/8/16 fix scrolling
 
                 mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+//                ((ScrollView) findViewById(R.id.pacer_scroll_view)).scrollTo(tr.);
             }
         });
 

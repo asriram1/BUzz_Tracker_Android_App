@@ -14,17 +14,20 @@ public class BeverageIntake implements Parcelable {
     private String mName;
     private int mQuantity;
     private String mTime;
+    private double mBac;
 
-    public BeverageIntake(String name, int quantity, String time) {
+    public BeverageIntake(String name, int quantity, String time,  double bac) {
         mName = name;
         mQuantity = quantity;
         mTime = time;
+        mBac = bac;
     }
 
     public BeverageIntake(Parcel in) {
         mName = in.readString();
         mQuantity = in.readInt();
         mTime = in.readString();
+        mBac = in.readDouble();
     }
 
     public String getName() {
@@ -39,6 +42,10 @@ public class BeverageIntake implements Parcelable {
         return mTime;
     }
 
+    public double getBac() {
+        return mBac;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -49,6 +56,7 @@ public class BeverageIntake implements Parcelable {
         dest.writeString(mName);
         dest.writeInt(mQuantity);
         dest.writeString(mTime);
+        dest.writeDouble(mBac);
     }
 
     public static final Parcelable.Creator<BeverageIntake> CREATOR = new Parcelable.Creator<BeverageIntake>() {
@@ -60,6 +68,5 @@ public class BeverageIntake implements Parcelable {
             return new BeverageIntake[size];
         }
     };
-
 
 }
