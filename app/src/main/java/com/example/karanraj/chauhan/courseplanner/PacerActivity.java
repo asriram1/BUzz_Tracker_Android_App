@@ -3,7 +3,6 @@ package com.example.karanraj.chauhan.courseplanner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -123,9 +121,37 @@ public class PacerActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 12/8/16 update current for bac level
-                BeverageIntake current = new BeverageIntake(mBeverageOptionsSpinner.getSelectedItem().toString(),
-                        (int) mQuantitySpinner.getSelectedItem(), mTimeSpinner.getSelectedItem().toString(), 0.00);
+
+                int checkedRadioButtonId = ((RadioGroup)findViewById(R.id.sex_radio_group)).getCheckedRadioButtonId();
+                switch (checkedRadioButtonId) {
+                    case -1:
+                        Toast.makeText(PacerActivity.this, "Please select a gender", Toast.LENGTH_LONG).show();
+                        return;
+                    case R.id.radio_button_male:
+                        Log.d(TAG, "onClick: sex is male");
+                        mGenderConstant = 0.73;
+                        break;
+                    case R.id.radio_button_female:
+                        Log.d(TAG, "onClick: sex is female");
+                        mGenderConstant = 0.66;
+                        break;
+                    default: return;
+                }
+
+                mUserWeight = +100*mWeightHundredsNumberPicker.getValue()+10*mWeightTensNumberPicker.getValue()
+                        +mWeightOnesNumberPicker.getValue();
+                Log.d(TAG, "onClick: weight is "+mUserWeight);
+
+                if (mUserWeight == 0) {
+                    Toast.makeText(PacerActivity.this, "Please indicate your weight in lbs", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                String name = mBeverageOptionsSpinner.getSelectedItem().toString();
+                int quantity = (int) mQuantitySpinner.getSelectedItem();
+                String time = mTimeSpinner.getSelectedItem().toString();
+                double bac = BACCalculatorFunctions.pacerAlcoholCalculator(mGenderConstant, mUserWeight, quantity, name);
+                BeverageIntake current = new BeverageIntake(name, quantity, time, bac);
                 beverageIntakes.add(current);
 
                 Toast.makeText(PacerActivity.this, "Added!", Toast.LENGTH_SHORT).show();
@@ -160,33 +186,8 @@ public class PacerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int checkedRadioButtonId = ((RadioGroup)findViewById(R.id.sex_radio_group)).getCheckedRadioButtonId();
-                switch (checkedRadioButtonId) {
-                    case -1:
-                        Toast.makeText(PacerActivity.this, "Please select a gender", Toast.LENGTH_LONG).show();
-                        return;
-                    case R.id.radio_button_male:
-                        Log.d(TAG, "onClick: sex is male");
-                        mGenderConstant = 0.73;
-                        break;
-                    case R.id.radio_button_female:
-                        Log.d(TAG, "onClick: sex is female");
-                        mGenderConstant = 0.66;
-                        break;
-                    default: return;
-                }
-
-                mUserWeight = +100*mWeightHundredsNumberPicker.getValue()+10*mWeightTensNumberPicker.getValue()
-                        +mWeightOnesNumberPicker.getValue();
-                Log.d(TAG, "onClick: weight is "+mUserWeight);
-
-                if (mUserWeight == 0) {
-                    Toast.makeText(PacerActivity.this, "Please indicate your weight in lbs", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
                 if (beverageIntakes.size() == 0) {
-                    Toast.makeText(PacerActivity.this, "Please add at least one beverage", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PacerActivity.this, "Please add at least one beverage to proceed", Toast.LENGTH_LONG).show();
                     return;
                 }
 

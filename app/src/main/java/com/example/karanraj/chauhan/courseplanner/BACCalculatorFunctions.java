@@ -10,7 +10,7 @@ public class BACCalculatorFunctions {
 
     final static double multiconstant = 5.14;
 
-    public double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
+    public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
 
     {
         double baclevel;
@@ -28,7 +28,7 @@ public class BACCalculatorFunctions {
 
     }
 
-    public double paceralcoholcalculator(double genderConstant, double weight, int amount, String type )
+    public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type )
 
     {
         double baclevel;
@@ -75,7 +75,7 @@ public class BACCalculatorFunctions {
     }
 
 
-    public int[] time(double baclevel)
+    public static int[] time(double baclevel)
 
     {
 
@@ -96,7 +96,7 @@ public class BACCalculatorFunctions {
     }
 
 
-    public double[] level(double baclevel)
+    public static double[] level(double baclevel)
 
 
     {
