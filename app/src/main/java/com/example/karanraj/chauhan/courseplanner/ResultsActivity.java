@@ -61,6 +61,7 @@ public class ResultsActivity extends AppCompatActivity {
             int numevents = receivedBeverageIntakes.size();
             int startTime = intakeTimes[0];
             int endTime = intakeTimes[numevents - 1];//Check casting
+            /// TODO: 12/9/16 should this be end-start+1 ? app crashes when end = start 
             int[] timeArray = new int[endTime - startTime];
             double[] BACArray = new double[endTime - startTime];
             BACArray[0] = 0;
