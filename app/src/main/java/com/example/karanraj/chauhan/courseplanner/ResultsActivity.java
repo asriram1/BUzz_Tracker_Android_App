@@ -117,7 +117,7 @@ public class ResultsActivity extends AppCompatActivity {
 
             Toast.makeText(ResultsActivity.this, "number of beer bottles" + data.getInt("beerBottleNum"), Toast.LENGTH_LONG).show();
         }
-        
+
     Log.d(TAG,"onCreate: nothing obtained");
     }
 }
