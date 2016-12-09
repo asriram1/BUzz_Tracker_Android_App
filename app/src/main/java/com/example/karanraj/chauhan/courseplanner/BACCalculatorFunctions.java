@@ -28,6 +28,52 @@ public class BACCalculatorFunctions {
 
     }
 
+    public double paceralcoholcalculator(double genderConstant, double weight, int amount, String type )
+
+    {
+        double baclevel;
+        double total = 0.0;
+
+
+
+        switch (type){
+            case  "Regular Beer (5%, 12oz)":
+                            total = amount * 0.60;
+                            break;
+            case  "Light Beer (4%, 12oz)":
+                            total = amount *0.48;
+                            break;
+            case  "Table Wine (12%, 5oz)":
+                            total = amount*0.60;
+                            break;
+            case  "Wine Cooler (5%, 12oz)":
+                            total = amount *0.60;
+                            break;
+            case  "Vodka (40%, 1.25oz)":
+                            total = amount *0.50;
+                            break;
+            case  "Gin (40%, 1.25oz)":
+                            total = amount *0.50;
+                            break;
+            case  "Rum (40%, 1.25oz)":
+                            total = amount* 0.50;
+                            break;
+            case  "Tequila (40%, 1.25oz)":
+                            total = amount* 0.5;
+                            break;
+            case   "Bourbon (40%, 1.25oz)":
+                            total = amount*0.5;
+                            break;
+            case  "Scotch (40%, 1.25oz)":
+                            total = amount * 0.5;
+                            break;
+        }
+
+        baclevel = (total * multiconstant) / (weight * genderConstant);
+        return baclevel;
+
+    }
+
 
     public int[] time(double baclevel)
 
