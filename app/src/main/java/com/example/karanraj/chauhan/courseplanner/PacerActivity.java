@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.R.attr.x;
+
 /**
  * Created by karanraj
  * Pacer functionality of app gives the user an estimate of their BAC at regular intervals of time
@@ -172,7 +174,7 @@ public class PacerActivity extends AppCompatActivity {
 
                 TextView tv = new TextView(PacerActivity.this);
                 tv.setPadding(8,8,8,8);
-                tv.setText(current.getQuantity() + "x " + current.getName() + " at " + current.getTime());
+                tv.setText("Consumed" + current.getQuantity() + "x " + current.getName() + " at " + current.getTime());
                 // FIXME: 12/8/16 no display when appearance is set to medium
 //                tv.setTextSize(android.R.attr.textAppearanceMedium);
                 tv.setTextSize(sourceTextSize / getResources().getDisplayMetrics().density);

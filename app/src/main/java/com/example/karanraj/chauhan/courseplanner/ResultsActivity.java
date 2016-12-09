@@ -35,7 +35,7 @@ public class ResultsActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: pacer");
             ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
 
-            String[] intakeTimes = new String[receivedBeverageIntakes.size()];
+            int[] intakeTimes = new int[receivedBeverageIntakes.size()];
             int[] intakeQuantities = new int[receivedBeverageIntakes.size()];
 
             for (int i = 0; i < receivedBeverageIntakes.size(); i++) {

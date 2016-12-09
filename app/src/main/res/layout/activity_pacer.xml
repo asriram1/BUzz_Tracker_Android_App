@@ -24,6 +24,7 @@
         <TextView
             android:textColor="#FFFFFF"
             android:id="@+id/previous_text_view"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/previous_arrow_image_view"
@@ -42,6 +43,7 @@
             android:scaleType="fitCenter"/>
 
         <TextView
+            android:clickable="true"
             android:textColor="#FFFFFF"
             android:id="@+id/next_text_view"
             android:layout_width="wrap_content"
