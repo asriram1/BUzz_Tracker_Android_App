@@ -35,12 +35,63 @@ public class ResultsActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: pacer");
             ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
 
+// TIME NEEDS TO BE CONVERTED FROM STRING TO DOUBLE
+            String[] intakeTimes = new String[receivedBeverageIntakes.size()];
+            double[] intakeBAC = new double[receivedBeverageIntakes.size()];
+
             int[] intakeTimes = new int[receivedBeverageIntakes.size()];
             double[] intakeBAC = new double[receivedBeverageIntakes.size()];
 //            int[] intakeQuantities = new int[receivedBeverageIntakes.size()];
 
+
             for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
                 intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
+
+                intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
+            }
+
+            //Algo goes here
+
+            int rowcheck=0;
+            int numevents = receivedBeverageIntakes.size();
+            int startTime= intakeTimes[0];
+            int endTime= intakeTimes[numevents-1];//Check casting
+            int [] timeArray = new int[endTime- startTime];
+            double [] BACArray = new double [endTime- startTime];
+            BACArray[0] =0;
+            int counter = 0;
+
+            for (int t = startTime; t <= endTime; t++) //iterate from first given time to last given time in array
+            {
+                timeArray[counter] = t;
+                if (counter != 0)
+                {
+                    BACArray[counter] = BACArray[counter-1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+                    if (BACArray[counter]<0){
+                        BACArray[counter]= 0;
+                    }
+
+                }
+
+                for (int r = rowcheck; r < numevents; r++)
+                {
+                    if (intakeTimes[r] > t)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+                        rowcheck++;
+                    }
+                }
+
+                counter++;
+            }
+
+
+
+
 //                intakeQuantities[i] = receivedBeverageIntakes.get(i).getQuantity();
                 intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
             }
@@ -81,6 +132,7 @@ public class ResultsActivity extends AppCompatActivity {
 
                 counter++;
             }
+
 
 
             TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
