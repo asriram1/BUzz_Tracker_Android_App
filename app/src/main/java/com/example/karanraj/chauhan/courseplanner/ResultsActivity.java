@@ -34,9 +34,14 @@ public class ResultsActivity extends AppCompatActivity {
         if (previousActivityTag.equals("PacerActivity")) {
             Log.d(TAG, "onCreate: pacer");
             ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
+
 // TIME NEEDS TO BE CONVERTED FROM STRING TO DOUBLE
             String[] intakeTimes = new String[receivedBeverageIntakes.size()];
             double[] intakeBAC = new double[receivedBeverageIntakes.size()];
+
+            int[] intakeTimes = new int[receivedBeverageIntakes.size()];
+            int[] intakeQuantities = new int[receivedBeverageIntakes.size()];
+
 
             for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
                 intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
@@ -49,7 +54,7 @@ public class ResultsActivity extends AppCompatActivity {
             int numevents = receivedBeverageIntakes.size();
             int startTime= intakeTimes[0];
             int endTime= intakeTimes[numevents-1];//Check casting
-            double [] timeArray = new double[endTime- startTime];
+            int [] timeArray = new int[endTime- startTime];
             double [] BACArray = new double [endTime- startTime];
             BACArray[0] =0;
             int counter = 0;

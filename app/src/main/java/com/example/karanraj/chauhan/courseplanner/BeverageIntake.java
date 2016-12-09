@@ -1,7 +1,9 @@
 package com.example.karanraj.chauhan.courseplanner;
-
 import android.os.Parcel;
+import java.util.Comparator;
 import android.os.Parcelable;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by karanraj
@@ -11,20 +13,20 @@ public class BeverageIntake implements Parcelable {
 
     private String mName;
     private int mQuantity;
-    private String mTime;
+    private Integer mTime;
     private double mBacAdded;
 
     public BeverageIntake(String name, int quantity, String time,  double bacAdded) {
         mName = name;
         mQuantity = quantity;
-        mTime = time;
+        mTime = Integer.parseInt(time.substring(0,2)+time.substring(3,4));
         mBacAdded = bacAdded;
     }
 
     public BeverageIntake(Parcel in) {
         mName = in.readString();
         mQuantity = in.readInt();
-        mTime = in.readString();
+        mTime = in.readInt();
         mBacAdded = in.readDouble();
     }
 
@@ -36,7 +38,7 @@ public class BeverageIntake implements Parcelable {
         return mQuantity;
     }
 
-    public String getTime() {
+    public Integer getTime() {
         return mTime;
     }
 
@@ -53,7 +55,7 @@ public class BeverageIntake implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mName);
         dest.writeInt(mQuantity);
-        dest.writeString(mTime);
+        dest.writeInt(mTime);
         dest.writeDouble(mBacAdded);
     }
 
@@ -68,3 +70,23 @@ public class BeverageIntake implements Parcelable {
     };
 
 }
+
+public class BeverageComparator implements Comparator<BeverageIntake>
+
+
+{
+
+    public int compare(BeverageIntake self, BeverageIntake other)
+
+    {
+
+
+        return self.getTime().compareTo(other.getTime());
+    }
+
+
+}
+
+
+//call Collections.sort(ArrayList, new BeverageComparator()) to sort your array list;
+
