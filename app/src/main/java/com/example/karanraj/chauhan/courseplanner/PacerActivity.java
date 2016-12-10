@@ -173,11 +173,8 @@ public class PacerActivity extends AppCompatActivity {
                 TextView tv = new TextView(PacerActivity.this);
                 tv.setPadding(8,8,8,8);
                 tv.setText("Consumed" + current.getQuantity() + "x " + current.getName() + " at " + current.getTime());
-                // FIXME: 12/8/16 no display when appearance is set to medium
-//                tv.setTextSize(android.R.attr.textAppearanceMedium);
                 tv.setTextSize(sourceTextSize / getResources().getDisplayMetrics().density);
                 tr.addView(tv);
-                // TODO: 12/8/16 fix scrolling
 
                 mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));

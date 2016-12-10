@@ -90,6 +90,11 @@ public class ResultsActivity extends AppCompatActivity {
                 counter++;
             }
 
+            for (int i = 0; i < BACArray.length; i++) {
+                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
+            }
+
+
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
             TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
