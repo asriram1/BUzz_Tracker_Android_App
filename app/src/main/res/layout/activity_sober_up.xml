@@ -249,36 +249,62 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/navigation_layout_sober"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="8dp">
 
-        android:background="@color/colorPrimary"
-
-        android:layout_alignParentBottom="true"
-        >
-
-        <TextView
-            android:id="@+id/prev_text_button"
-            android:layout_width="wrap_content"
-            android:clickable="true"
-            android:textColor="#FFFFFF"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+        <ImageView
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:layout_alignParentLeft="true"
-            android:text="  Prev"
-            android:onClick="onPrevButtonClick"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-        <TextView
+            android:id="@+id/previous_arrow_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:onClick="onPrevButtonClick"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/previous_text_view"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/previous_arrow_image_view"
+            android:layout_centerVertical="true"
+            android:onClick="onPrevButtonClick"
+            android:padding="8dp"
+            android:text="PREV" />
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/next_arrow_image_view"
+            android:clickable="true"
+            android:onClick="goButtonPressed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:scaleType="fitCenter"/>
+
+        <TextView
             android:clickable="true"
             android:textColor="#FFFFFF"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_alignParentRight="true"
-            android:text="Next  "
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/next_text_view"
+            android:layout_width="wrap_content"
             android:onClick="goButtonPressed"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/next_arrow_image_view"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:text="NEXT" />
 
 
     </RelativeLayout>
