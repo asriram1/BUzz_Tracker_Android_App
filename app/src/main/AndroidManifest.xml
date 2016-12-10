@@ -30,8 +30,8 @@
         <activity
             android:name=".ResultsActivity"
             android:label="Results"/>
-        <activity android:name=".AboutUsActivity"
-            android:label="About Us"
+        <!--<activity android:name=".AboutUsActivity"-->
+            <!--android:label="About Us"-->
 
     </application>
 
