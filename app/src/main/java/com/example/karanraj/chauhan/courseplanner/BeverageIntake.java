@@ -16,7 +16,7 @@ public class BeverageIntake implements Parcelable {
     public BeverageIntake(String name, int quantity, String time,  double bacAdded) {
         mName = name;
         mQuantity = quantity;
-        mTime = Integer.parseInt(time.substring(0,2)+time.substring(3,4));
+        mTime = Integer.parseInt(time.substring(0,2)+time.substring(3,5));
         mBacAdded = bacAdded;
     }
 
