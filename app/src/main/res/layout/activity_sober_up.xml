@@ -181,6 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/center_dot"
+            android:id="@+id/wine_layout"
             android:orientation="vertical">
 
             <ImageView
@@ -203,7 +204,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/wine_content_button"
+            android:layout_toLeftOf="@id/wine_layout"
             android:orientation="vertical">
 
             <ImageView
