@@ -1,6 +1,9 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static com.example.karanraj.chauhan.courseplanner.R.string.weight;
 
@@ -11,14 +14,15 @@ import static com.example.karanraj.chauhan.courseplanner.R.string.weight;
 
 public class BACCalculatorFunctions {
 
-
+    private static final String TAG = "askc";
     final static double multiconstant = 5.14;
 
     public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
+
     {
 
         ArrayList<Double> BAClevelsArray = new ArrayList<>();
-        double baclevel;
+        double baclevel=1;
         double total;
 
         double lightbeeramount = lightbeer * 0.48; //in ounces
@@ -28,11 +32,23 @@ public class BACCalculatorFunctions {
 
         total = lightbeeramount + vodkashotamount + wineamount + liquoramount;
 
-        baclevel = (total * multiconstant) / (weight * genderConstant);
+        int hour = 0;
+        while (true){
 
-//        while (baclevel>=0.08){
-//
-//        }
+            baclevel = (total * multiconstant) / (weight * genderConstant) - 0.15*hour;
+            if(baclevel<=0.08){
+                break;
+            }
+            Log.d(TAG, "soberalcoholcalculator: "+ baclevel );
+            BAClevelsArray.add(baclevel);
+            hour++;
+
+
+        }
+
+
+
+
         return BAClevelsArray;
     }
 

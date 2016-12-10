@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -110,12 +111,12 @@ public class SoberUpActivity extends AppCompatActivity {
             Toast.makeText(SoberUpActivity.this,"Please select a gender", Toast.LENGTH_LONG).show();
             return;
         }
-        if(sexRadioButton.getCheckedRadioButtonId()==2131492972){
+        if(sexRadioButton.getCheckedRadioButtonId()==R.id.radio_button_female_sober){
             genderConstant=0.66; //Female gender constant
             Log.d(TAG, "onValueChange: Gender is female ");
 
         }
-        if(sexRadioButton.getCheckedRadioButtonId()==2131492971){
+        if(sexRadioButton.getCheckedRadioButtonId()==R.id.radio_button_male_sober){
             genderConstant=0.73; //Male gender constant
             Log.d(TAG, "onValueChange: Gender is male ");
         }
@@ -129,14 +130,15 @@ public class SoberUpActivity extends AppCompatActivity {
             Toast.makeText(SoberUpActivity.this,"Please add some drinks", Toast.LENGTH_LONG).show();
             return;
         }
-
+        ArrayList<Double> BACArrayList_final = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,userWeight,beerBottles,vodkaShots,wineGlass,liquorGlass);
         Intent intentToResultsActivity = new Intent(SoberUpActivity.this, ResultsActivity.class);
-        intentToResultsActivity.putExtra("beerBottleNum", beerBottles);
-        intentToResultsActivity.putExtra("vodkaShotNum", vodkaShots);
-        intentToResultsActivity.putExtra("liquorGlassNum", liquorGlass);
-        intentToResultsActivity.putExtra("wineGlassNum", wineGlass);
-        intentToResultsActivity.putExtra("userWeightVal", userWeight);
-        intentToResultsActivity.putExtra("genderConstantVal", genderConstant);
+//        intentToResultsActivity.putExtra("beerBottleNum", beerBottles);
+//        intentToResultsActivity.putExtra("vodkaShotNum", vodkaShots);
+//        intentToResultsActivity.putExtra("liquorGlassNum", liquorGlass);
+//        intentToResultsActivity.putExtra("wineGlassNum", wineGlass);
+//        intentToResultsActivity.putExtra("userWeightVal", userWeight);
+//        intentToResultsActivity.putExtra("genderConstantVal", genderConstant);
+        intentToResultsActivity.putExtra("bacArrayList",BACArrayList_final.toArray());
         intentToResultsActivity.putExtra("TAG", TAG);
 
         startActivity(intentToResultsActivity);
@@ -149,11 +151,9 @@ public class SoberUpActivity extends AppCompatActivity {
 
     }
     public void onBeerButtonClick(View view){
+        ArrayList<Double> BACList = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,200.0,2,2,1,1);
 
-        Calendar c = Calendar.getInstance();
-        int hours = c.getTime().getMinutes();
-
-        Toast.makeText(SoberUpActivity.this,"Beer "+ hours, Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"Beer "+ BACList.get(0), Toast.LENGTH_LONG).show();
 
 
     }
