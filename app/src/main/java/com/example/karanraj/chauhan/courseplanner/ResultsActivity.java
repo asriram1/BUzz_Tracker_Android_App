@@ -11,6 +11,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -56,66 +58,82 @@ public class ResultsActivity extends AppCompatActivity {
                 intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
             }
 
-            // Calculate BAC level at regular intervals
-            int rowcheck = 0;
-            int numevents = receivedBeverageIntakes.size();
-            int startTime = intakeTimes[0];
-            int endTime = intakeTimes[numevents - 1];//Check casting
+//            // Calculate BAC level at regular intervals
+//            int rowcheck = 0;
+//            int numevents = receivedBeverageIntakes.size();
+//            int startTime = intakeTimes[0];
+//            int endTime = intakeTimes[numevents - 1];//Check casting
+//
+//            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            BACArray[0] = 0;
+//            int counter = 0;
 
-            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-            BACArray[0] = 0;
-            int counter = 0;
+            double [] BACArray = {1.2, 2.2, 3.2, 0.2, 4.2};
+            String [] timeArray = {"01:00", "02:00", "03:00", "04:00"};
 
-            Log.d(TAG, "onCreate: start time is "  + startTime + " end time "+endTime);
+//            Log.d(TAG, "onCreate: start time is "  + startTime + " end time "+endTime);
+//
+//            Log.d(TAG, "onCreate: bac array length is " + BACArray.length);
 
-            Log.d(TAG, "onCreate: bac array length is " + BACArray.length);
+//            // FIXME: 12/9/16 array out of bounds error for loop
+//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
+//            {
+//                timeArray[counter] = t;
+//                if (counter != 0) {
+//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+//                    if (BACArray[counter] < 0) {
+//                        BACArray[counter] = 0;
+//                    }
+//
+//                }
+//
+//                for (int r = rowcheck; r < numevents; r++) {
+//                    if (intakeTimes[r] > t) {
+//                        break;
+//                    } else {
+//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+//                        rowcheck++;
+//                    }
+//                }
+//
+//                counter++;
+//            }
+//
+//            for (int i = 0; i < BACArray.length; i++) {
+//                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
+//            }
 
-            // FIXME: 12/9/16 array out of bounds error for loop
-            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-            {
-                timeArray[counter] = t;
-                if (counter != 0) {
-                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-                    if (BACArray[counter] < 0) {
-                        BACArray[counter] = 0;
-                    }
+            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
 
-                }
+            TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
+            TableRow row = new TableRow(this);
+            TextView tv = (TextView) row.getChildAt(0);
+            TextView qty = (TextView) row.getChildAt(1);
+            tv.setText("1");
+            qty.setText("2");
 
-                for (int r = rowcheck; r < numevents; r++) {
-                    if (intakeTimes[r] > t) {
-                        break;
-                    } else {
-                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-                        rowcheck++;
-                    }
-                }
-
-                counter++;
-            }
-
-            for (int i = 0; i < BACArray.length; i++) {
-                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
-            }
-
+            tableLayout.addView(row);
 
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
-            TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
-            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
-                TableRow row = new TableRow(this);
-                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-                row.setLayoutParams(lp);
-
-                TextView tv = new TextView(this);
-                TextView qty = new TextView(this);
-                qty.setText("10");
-
-                row.addView(qty);
-                row.addView(tv);
-                ll.addView(row, i);
-            }
+//            TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
+//            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
+//                TableRow row = new TableRow(this);
+////                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+//                row.setLayoutParams(layoutParams);
+//
+//                TextView tv = (TextView) row.getChildAt(0);
+//                TextView qty = (TextView) row.getChildAt(1);
+//
+////                TextView tv = new TextView(this);
+////                TextView qty = new TextView(this);
+//                qty.setText("10");
+//
+//                row.addView(qty);
+//                row.addView(tv);
+//                ll.addView(row, i);
+//            }
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
             Log.d(TAG, "onCreate: sobering up now");
