@@ -183,7 +183,7 @@ public class PacerActivity extends AppCompatActivity {
         });
 
         // Text view that will navigate to the previous activity
-        TextView previousTextView = (TextView) findViewById(R.id.previous_text_view);
+        TextView previousTextView = (TextView) findViewById(R.id.pacer_previous_text_view);
         previousTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,7 +192,7 @@ public class PacerActivity extends AppCompatActivity {
         });
 
         // Text view that will navigate to the next activity
-        TextView nextTextView = (TextView) findViewById(R.id.next_text_view);
+        TextView nextTextView = (TextView) findViewById(R.id.pacer_next_text_view);
         nextTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

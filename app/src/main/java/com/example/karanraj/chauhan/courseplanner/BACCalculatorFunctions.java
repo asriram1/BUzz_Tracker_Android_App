@@ -2,6 +2,8 @@ package com.example.karanraj.chauhan.courseplanner;
 
 import java.util.ArrayList;
 
+import static com.example.karanraj.chauhan.courseplanner.R.string.weight;
+
 /**
  * Created by rijish on 12/6/16.
  * Functions to be used by app for calculation of BAC at different time intervals
@@ -12,13 +14,7 @@ public class BACCalculatorFunctions {
 
     final static double multiconstant = 5.14;
 
-<<<<<<< HEAD
     public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
-=======
-
-    public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
->>>>>>> 5e91e6ae930b553617a2e6d065ca34b549730320
-
     {
 
         ArrayList<Double> BAClevelsArray = new ArrayList<>();

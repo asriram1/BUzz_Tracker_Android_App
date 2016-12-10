@@ -22,7 +22,9 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -42,10 +44,24 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         Bundle data = getIntent().getExtras();
-        String previousActivityTag = data.getString("TAG");
+        final String previousActivityTag = data.getString("TAG");
 
         // Text view that will navigate to the previous activity
-        TextView previousTextView = (TextView) findViewById(R.id.previous_text_view);
+        TextView previousTextView = (TextView) findViewById(R.id.results_previous_text_view);
+        previousTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: previous clicked");
+                if (previousActivityTag.equals("PacerActivity")) {
+                    startActivity(new Intent(ResultsActivity.this, MainActivity.class));
+                } else if (previousActivityTag.equals("SoberUpActivity")) {
+                    startActivity(new Intent(ResultsActivity.this, MainActivity.class));
+                }
+                Log.d(TAG, "onClick: starting activity");
+            }
+        });
+
+        Log.d(TAG, "onCreate: listener set!!");
 
         if (previousActivityTag.equals("PacerActivity")) {
             ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
@@ -148,69 +164,93 @@ public class ResultsActivity extends AppCompatActivity {
 //                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
 //            }
 
-            TableLayout tableLayout = (TableLayout) findViewById(R.id.BAC_table);
-            tableLayout.setStretchAllColumns(true);
-            tableLayout.setWeightSum(2);
-
-            // width, height, weight
-            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-            // setting margins
-            tableLayoutParams.setMargins(1,1,1,1);
 
 
-
-            for (int i = 0; i < 20; i++) {
-                TableRow tableRow = new TableRow(this);
-
-                tableRow.setGravity(Gravity.CENTER);
-                tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
-                tableRow.setLayoutParams(tableLayoutParams);
-
-                TextView timeTextView = new TextView(this);
-                TextView bacTextView = new TextView(this);
-                TextView separatorTextView = new TextView(this);
-                separatorTextView.setHeight(1);
-
-                timeTextView.setPadding(0,8,0,8);
-                bacTextView.setPadding(0,8,0,8);
-
-                timeTextView.setGravity(Gravity.CENTER);
-                bacTextView.setGravity(Gravity.CENTER);
-
-                timeTextView.setTextSize(20);
-                bacTextView.setTextSize(20);
-
-                timeTextView.setText("1");
-                bacTextView.setText("2");
-
-                tableRow.addView(timeTextView);
-                tableRow.addView(bacTextView);
-
-                tableLayout.addView(tableRow);
-            }
-
-            previousTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
-                }
-            });
+//            previousTextView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
+//                }
+//            });
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
-            int beerBottlesNum = data.getInt("beerBottleNum");
-            int vodkaShotsNum = data.getInt("vodkaShotNum");
-            int liquorGlassNum = data.getInt("liquorGlassNum");
-            int wineGlassNum = data.getInt("wineGlassNum");
-            int userWeightInput = data.getInt("userWeightVal");
-            double userGenderConstant = data.getDouble("genderConstantVal");
+//            int beerBottlesNum = data.getInt("beerBottleNum");
+//            int vodkaShotsNum = data.getInt("vodkaShotNum");
+//            int liquorGlassNum = data.getInt("liquorGlassNum");
+//            int wineGlassNum = data.getInt("wineGlassNum");
+//            int userWeightInput = data.getInt("userWeightVal");
+//            double userGenderConstant = data.getDouble("genderConstantVal");
 
-            previousTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(ResultsActivity.this, SoberUpActivity.class));
-                }
-            });
+            double[] bacValuesArray = data.getDoubleArray("bacArray");
+            
+//            ArrayList<Double> bacValuesArrayList = new ArrayList<>();
+//            bacValuesArrayList.add(1.2);
+//            bacValuesArrayList.add(1.05);
+//            bacValuesArrayList.add(0.9);
+//            bacValuesArrayList.add(0.75);
+//            bacValuesArrayList.add(0.6);
+
+            createResultTable(bacValuesArray);
+
+            Log.d(TAG, "onCreate: table created");
+
+            Log.d(TAG, "onCreate: listener set");
 
         }
     }
+    
+    private void createResultTable(double[] bacValuesArray) {
+        Calendar calendar = Calendar.getInstance();
+        int hours = calendar.getTime().getHours();
+        int minutes = calendar.getTime().getMinutes();
+        DecimalFormat decimalFormat = new DecimalFormat("00");
+
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.BAC_table);
+        tableLayout.setStretchAllColumns(true);
+        tableLayout.setWeightSum(2);
+
+        // width, height, weight
+        TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        // setting margins
+        tableLayoutParams.setMargins(1,1,1,1);
+        
+        for (Double currentBac : bacValuesArray) {
+            TableRow tableRow = new TableRow(this);
+
+            tableRow.setGravity(Gravity.CENTER);
+            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+            tableRow.setLayoutParams(tableLayoutParams);
+
+            TextView timeTextView = new TextView(this);
+            TextView bacTextView = new TextView(this);
+            TextView separatorTextView = new TextView(this);
+            separatorTextView.setHeight(1);
+
+            timeTextView.setPadding(0,8,0,8);
+            bacTextView.setPadding(0,8,0,8);
+
+            timeTextView.setGravity(Gravity.CENTER);
+            bacTextView.setGravity(Gravity.CENTER);
+
+            timeTextView.setTextSize(20);
+            bacTextView.setTextSize(20);
+
+            timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
+            bacTextView.setText(""+currentBac);
+
+            tableRow.addView(timeTextView);
+            tableRow.addView(bacTextView);
+
+            tableLayout.addView(tableRow);
+
+            if (hours<23) {
+                hours++;
+            } else {
+                hours = 0;
+            }
+
+        }
+    }
+    
+    
 }
