@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
+
     <!--<TableLayout-->
         <!--android:id="@+id/BAC_table"-->
         <!--android:layout_width="match_parent"-->
@@ -42,7 +42,7 @@
 
 
     <!--</TableLayout>-->
-=======
+
     <TableLayout
         android:id="@+id/BAC_table"
         android:layout_width="match_parent"
@@ -81,6 +81,6 @@
         </TableRow>
 
     </TableLayout>
->>>>>>> 15f89e8d4e1e639460dc9f7ce5580780f73768c0
+
 
 </ScrollView>

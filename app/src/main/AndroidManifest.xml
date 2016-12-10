@@ -30,7 +30,9 @@
         <activity
             android:name=".ResultsActivity"
             android:label="Results"/>
-        <activity android:name=".AboutUsActivity" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:label="About Us"/>
 
 
 

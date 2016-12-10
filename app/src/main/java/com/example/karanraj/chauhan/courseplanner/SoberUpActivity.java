@@ -10,6 +10,9 @@ import android.widget.RadioGroup;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by anand
  */
@@ -146,7 +149,13 @@ public class SoberUpActivity extends AppCompatActivity {
 
     }
     public void onBeerButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Beer XXXXXXXXXX", Toast.LENGTH_SHORT).show();
+
+        Calendar c = Calendar.getInstance();
+        int hours = c.getTime().getMinutes();
+
+        Toast.makeText(SoberUpActivity.this,"Beer "+ hours, Toast.LENGTH_LONG).show();
+
+
     }
     public void onWineButtonClick(View view){
         Toast.makeText(SoberUpActivity.this,"Wine XXXXXXXXXX", Toast.LENGTH_LONG).show();

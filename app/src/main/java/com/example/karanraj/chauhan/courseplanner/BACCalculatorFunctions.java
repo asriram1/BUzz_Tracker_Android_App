@@ -1,5 +1,7 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import java.util.ArrayList;
+
 /**
  * Created by rijish on 12/6/16.
  * Functions to be used by app for calculation of BAC at different time intervals
@@ -10,22 +12,27 @@ public class BACCalculatorFunctions {
 
     final static double multiconstant = 5.14;
 
-    public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
+    public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
 
     {
+
+        ArrayList<Double> BAClevelsArray = new ArrayList<>();
         double baclevel;
         double total;
 
         double lightbeeramount = lightbeer * 0.48; //in ounces
-        double regbeeramount = regbeer * 0.60;  //in ounces
+        double vodkashotamount = shotOfVodka * 0.60;  //in ounces
         double wineamount = wine * 0.60; //inounces
         double liquoramount = liquor * 0.50; //inounces
 
-        total = lightbeeramount + regbeeramount + wineamount + liquoramount;
+        total = lightbeeramount + vodkashotamount + wineamount + liquoramount;
 
         baclevel = (total * multiconstant) / (weight * genderConstant);
-        return baclevel;
 
+//        while (baclevel>=0.08){
+//
+//        }
+        return BAClevelsArray;
     }
 
     public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type )
