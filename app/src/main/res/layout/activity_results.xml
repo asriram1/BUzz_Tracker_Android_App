@@ -1,86 +1,87 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
-    <!--<TableLayout-->
-        <!--android:id="@+id/BAC_table"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="16dp"-->
-        <!--android:gravity="center"-->
-        <!--android:stretchColumns="0,1,2">-->
-
-        <!--</TableLayout>-->
-
-
-
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_column="0"-->
-                <!--android:layout_margin="1dp"-->
-                <!--android:background="#FFFFFF"-->
-                <!--android:gravity="center"-->
-                <!--android:text="Time"-->
-                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-                <!--android:textStyle="bold" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_column="1"-->
-                <!--android:layout_margin="1dp"-->
-                <!--android:background="#FFFFFF"-->
-                <!--android:gravity="center"-->
-                <!--android:text="BAC Level "-->
-                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-                <!--android:textStyle="bold" />-->
-
-        <!--</TableLayout>-->
-
-
-    <!--</TableLayout>-->
-=======
-    <TableLayout
-        android:id="@+id/BAC_table"
+    <RelativeLayout
+        android:id="@+id/navigation_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="16dp">
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:padding="8dp">
 
-        <TableRow>
+        <ImageView
+            android:id="@+id/previous_arrow_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_column="0"
-                android:layout_margin="1dp"
-                android:padding="8dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="Time"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/previous_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textAlignment="center"
+            android:layout_toRightOf="@id/previous_arrow_image_view"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="16dp"
+            android:text="PREV"
+            android:textColor="#FFFFFF" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:padding="8dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_column="1"
-                android:layout_margin="1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="BAC Level"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold" />
 
-        </TableRow>
+    </RelativeLayout>
 
-    </TableLayout>
->>>>>>> 15f89e8d4e1e639460dc9f7ce5580780f73768c0
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</ScrollView>
+        <TableLayout
+            android:id="@+id/BAC_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Time"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="BAC Level"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

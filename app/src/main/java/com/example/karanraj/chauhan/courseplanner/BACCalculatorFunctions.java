@@ -1,5 +1,7 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import java.util.ArrayList;
+
 /**
  * Created by rijish on 12/6/16.
  * Functions to be used by app for calculation of BAC at different time intervals
@@ -9,6 +11,7 @@ public class BACCalculatorFunctions {
 
 
     final static double multiconstant = 5.14;
+
 
     public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
 
