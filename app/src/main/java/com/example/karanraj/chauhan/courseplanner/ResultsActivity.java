@@ -126,9 +126,9 @@ public class ResultsActivity extends AppCompatActivity {
 
             Log.d(TAG, "onCreate: reached pt 3"); */
 
-            TableLayout prices = (TableLayout)findViewById(R.id.BAC_table);
-            prices.setStretchAllColumns(true);
-            prices.bringToFront();
+            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
+            BAC.setStretchAllColumns(true);
+            BAC.bringToFront();
             for(int i = 0; i < numevents; i++){
                 TableRow tr =  new TableRow(this);
                 TextView c1 = new TextView(this);
@@ -137,7 +137,7 @@ public class ResultsActivity extends AppCompatActivity {
                 c2.setText(String.valueOf(BACArray[i]));
                 tr.addView(c1);
                 tr.addView(c2);
-                prices.addView(tr);
+                BAC.addView(tr);
             }
 
 
