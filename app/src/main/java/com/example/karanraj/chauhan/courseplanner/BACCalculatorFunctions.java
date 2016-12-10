@@ -1,6 +1,9 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by rijish on 12/6/16.
@@ -9,20 +12,16 @@ import java.util.ArrayList;
 
 public class BACCalculatorFunctions {
 
-
+    private static final String TAG = "askc";
     final static double multiconstant = 5.14;
 
-<<<<<<< HEAD
-    public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
-=======
 
-    public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
->>>>>>> 5e91e6ae930b553617a2e6d065ca34b549730320
+    public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
 
     {
 
         ArrayList<Double> BAClevelsArray = new ArrayList<>();
-        double baclevel;
+        double baclevel=1;
         double total;
 
         double lightbeeramount = lightbeer * 0.48; //in ounces
@@ -32,11 +31,23 @@ public class BACCalculatorFunctions {
 
         total = lightbeeramount + vodkashotamount + wineamount + liquoramount;
 
-        baclevel = (total * multiconstant) / (weight * genderConstant);
+        int hour = 0;
+        while (true){
 
-//        while (baclevel>=0.08){
-//
-//        }
+            baclevel = (total * multiconstant) / (weight * genderConstant) - 0.15*hour;
+            if(baclevel<=0.08){
+                break;
+            }
+            Log.d(TAG, "soberalcoholcalculator: "+ baclevel );
+            BAClevelsArray.add(baclevel);
+            hour++;
+
+
+        }
+
+
+
+
         return BAClevelsArray;
     }
 
