@@ -67,7 +67,12 @@ public class ResultsActivity extends AppCompatActivity {
             BACArray[0] = 0;
             int counter = 0;
 
-            for (int t = startTime; t <= endTime; t++) //iterate from first given time to last given time in array
+            Log.d(TAG, "onCreate: start time is "  + startTime + " end time "+endTime);
+
+            Log.d(TAG, "onCreate: bac array length is " + BACArray.length);
+
+            // FIXME: 12/9/16 array out of bounds error for loop
+            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
             {
                 timeArray[counter] = t;
                 if (counter != 0) {

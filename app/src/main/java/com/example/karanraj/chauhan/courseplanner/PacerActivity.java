@@ -172,7 +172,7 @@ public class PacerActivity extends AppCompatActivity {
 
                 TextView tv = new TextView(PacerActivity.this);
                 tv.setPadding(8,8,8,8);
-                tv.setText("Consumed" + current.getQuantity() + "x " + current.getName() + " at " + current.getTime());
+                tv.setText(quantity + "x " + name + " at " + time);
                 tv.setTextSize(sourceTextSize / getResources().getDisplayMetrics().density);
                 tr.addView(tv);
 
