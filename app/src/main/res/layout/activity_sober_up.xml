@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:id="@+id/main_layout"
     android:orientation="vertical"
     android:baselineAligned="false">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/sex_weight_layout"
+        android:paddingLeft="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/sex_selection_layout">
             <TextView
                 android:id="@+id/sex_text_view"
                 android:layout_width="wrap_content"
@@ -60,19 +64,10 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="325dp"
-            android:layout_height="wrap_content"><![CDATA[
-
-
-
-            //android:layout_toEndOf="@id/sober_weight_ones"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-
-
-
-
-            ]]>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weight_selection_layout"
+            android:layout_below="@id/sex_selection_layout">
 
             <TextView
                 android:id="@+id/weight_units_text_view"
@@ -80,8 +75,10 @@
                 android:layout_height="wrap_content"
                 android:text="lb"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:paddingLeft="300dp"/>
+                <!--android:layout_alignParentRight="false"-->
+                <!--&lt;!&ndash;android:layout_toRightOf="@id/sober_weight_hundreds"&ndash;&gt;-->
+                <!--android:layout_alignParentEnd="false" />-->
 
             <TextView
                 android:id="@+id/weight_text_view"
@@ -124,88 +121,258 @@
                 android:layout_marginLeft="9dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:layout_marginStart="9dp"
+
                 android:layout_toRightOf="@+id/sober_weight_tens"
                 android:layout_toEndOf="@+id/sober_weight_tens" />
         </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"/>
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"/>
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"/>
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="182dp"
-        android:orientation="horizontal">
-        <NumberPicker
-            android:id="@+id/beer_one_up"
-            android:theme="@android:style/Theme.Dialog"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/alcohol_selection_layout"
+        android:layout_below="@id/sex_weight_layout">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:layout_marginStart="9dp"/>
-        <NumberPicker
-            android:id="@+id/wine_one_up"
-            android:theme="@android:style/Theme.Dialog"
+            android:layout_centerInParent="true"
+            android:id="@+id/center_dot"/>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:layout_marginStart="9dp"/>
-        <NumberPicker
-            android:id="@+id/vodka_one_up"
-            android:theme="@android:style/Theme.Dialog"
+            android:layout_toRightOf="@id/center_dot"
+            android:orientation="vertical"
+            android:id="@+id/linear_vodka">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:clickable="true"
+                android:onClick="onVodkaButtonClick"
+                android:id="@+id/vodka_content_button"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/ic_vodka_glass"/>
+
+            <NumberPicker
+                android:id="@+id/vodka_one_up"
+                android:theme="@android:style/Theme.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:layout_marginStart="9dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:layout_marginStart="9dp"/>
-        <NumberPicker
-            android:id="@+id/liquor_one_up"
-            android:theme="@android:style/Theme.Dialog"
+            android:layout_toRightOf="@id/linear_vodka"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:clickable="true"
+                android:onClick="onWhiskeyButtonClick"
+                android:id="@+id/whiskey_content_button"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/ic_whiskey_glass"/>
+
+            <NumberPicker
+                android:id="@+id/liquor_one_up"
+                android:theme="@android:style/Theme.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:layout_marginStart="9dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:layout_marginStart="9dp"/>
+            android:layout_toLeftOf="@id/center_dot"
+            android:id="@+id/wine_layout"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:clickable="true"
+                android:id="@+id/wine_content_button"
+                android:onClick="onWineButtonClick"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/ic_wine_glass"/>
 
+            <NumberPicker
+                android:id="@+id/wine_one_up"
+                android:theme="@android:style/Theme.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:layout_marginStart="9dp"/>
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/wine_layout"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:clickable="true"
+                android:scaleType="fitCenter"
+                android:id="@+id/beer_content_button"
+                android:onClick="onBeerButtonClick"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/ic_beer_bottle"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+            <NumberPicker
+                android:id="@+id/beer_one_up"
+                android:theme="@android:style/Theme.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:layout_marginStart="9dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/navigation_layout_sober"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/go_button"
+        android:padding="8dp">
+
+        <ImageView
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/previous_arrow_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:onClick="onPrevButtonClick"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/previous_text_view"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/previous_arrow_image_view"
+            android:layout_centerVertical="true"
+            android:onClick="onPrevButtonClick"
+            android:padding="8dp"
+            android:text="PREV" />
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/next_arrow_image_view"
+            android:clickable="true"
             android:onClick="goButtonPressed"
-            android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:clickable="true"
+            android:textColor="#FFFFFF"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/next_text_view"
+            android:layout_width="wrap_content"
+            android:onClick="goButtonPressed"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/next_arrow_image_view"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:text="NEXT" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<T-->
+        <!--<TextView-->
+            <!--android:clickable="true"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+            <!--android:id="@+id/next_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toLeftOf="@id/next_arrow_image_view"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="8dp"-->
+            <!--android:text="NEXT"-->
+            <!--android:onClick="goButtonPressed"/>-->
+
+        <!--<ImageView-->
+            <!--android:paddingTop="8dp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:id="@+id/previous_arrow_image_view_sober"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:scaleType="fitStart"-->
+            <!--android:src="@drawable/ic_keyboard_arrow_left_white_24dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true" />-->
+
+        <!--<ImageView-->
+            <!--android:paddingTop="8dp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:id="@+id/next_arrow_image_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_keyboard_arrow_right_white_24dp"-->
+            <!--android:scaleType="fitCenter"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentEnd="true" />-->
+
+        <!--<TextView-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+            <!--android:id="@+id/previous_text_view_sober"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:padding="8dp"-->
+            <!--android:text="PREV"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:onClick="onPrevButtonClick"-->
+            <!--android:layout_toRightOf="@id/previous_arrow_image_view_sober"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+             <!--/>-->
+
+    <!--</RelativeLayout>-->
 
 
-</LinearLayout>
+
+
+</RelativeLayout>
+
