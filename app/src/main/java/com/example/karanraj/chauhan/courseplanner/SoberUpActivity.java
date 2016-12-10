@@ -111,12 +111,12 @@ public class SoberUpActivity extends AppCompatActivity {
             Toast.makeText(SoberUpActivity.this,"Please select a gender", Toast.LENGTH_LONG).show();
             return;
         }
-        if(sexRadioButton.getCheckedRadioButtonId()==2131492972){
+        if(sexRadioButton.getCheckedRadioButtonId()==R.id.radio_button_female_sober){
             genderConstant=0.66; //Female gender constant
             Log.d(TAG, "onValueChange: Gender is female ");
 
         }
-        if(sexRadioButton.getCheckedRadioButtonId()==2131492971){
+        if(sexRadioButton.getCheckedRadioButtonId()==R.id.radio_button_male_sober){
             genderConstant=0.73; //Male gender constant
             Log.d(TAG, "onValueChange: Gender is male ");
         }
@@ -130,7 +130,7 @@ public class SoberUpActivity extends AppCompatActivity {
             Toast.makeText(SoberUpActivity.this,"Please add some drinks", Toast.LENGTH_LONG).show();
             return;
         }
-        ArrayList<Double> BACArrayList_final = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,userWeight,beerBottles,vodkaShots,wineGlass,liquorGlass)
+        ArrayList<Double> BACArrayList_final = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,userWeight,beerBottles,vodkaShots,wineGlass,liquorGlass);
         Intent intentToResultsActivity = new Intent(SoberUpActivity.this, ResultsActivity.class);
 //        intentToResultsActivity.putExtra("beerBottleNum", beerBottles);
 //        intentToResultsActivity.putExtra("vodkaShotNum", vodkaShots);
@@ -138,7 +138,7 @@ public class SoberUpActivity extends AppCompatActivity {
 //        intentToResultsActivity.putExtra("wineGlassNum", wineGlass);
 //        intentToResultsActivity.putExtra("userWeightVal", userWeight);
 //        intentToResultsActivity.putExtra("genderConstantVal", genderConstant);
-        intentToResultsActivity.putExtra("bacArrayList",BACArrayList_final);
+        intentToResultsActivity.putExtra("bacArrayList",BACArrayList_final.toArray());
         intentToResultsActivity.putExtra("TAG", TAG);
 
         startActivity(intentToResultsActivity);
