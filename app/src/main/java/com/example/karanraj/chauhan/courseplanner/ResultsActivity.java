@@ -100,6 +100,32 @@ public class ResultsActivity extends AppCompatActivity {
 //
 //                counter++;
 //            }
+//
+//            // TODO: 12/9/16 add values calculated from last step into thte table
+//            // Get results table and add rows as needed
+//            /*TableLayout tableLayout = new TableLayout(getApplicationContext());
+//            TableRow row;
+//            TextView view;
+//
+//            numevents=5;
+//            Log.d(TAG, "onCreate: reached pt 1");
+//            for(int i =0; i<numevents; i++) {
+//                row = new TableRow(getApplicationContext());
+//                for (int j = 0; j < 2; j++) {
+//                    view = new TextView(getApplicationContext());
+//                    view.setText("test");
+//                    view.setPadding(20, 20, 20, 20);
+//                    row.addView(view);
+//                }
+//                tableLayout.addView(row);
+//
+//            }
+//            Log.d(TAG, "onCreate: reached pt 2");
+//
+//            setContentView(tableLayout);
+//
+//            Log.d(TAG, "onCreate: reached pt 3"); */
+//
 
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
