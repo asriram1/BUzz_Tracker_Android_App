@@ -68,38 +68,38 @@ public class ResultsActivity extends AppCompatActivity {
 
 
             // Calculate BAC level at regular intervals
-            int rowcheck = 0;
-            int numevents = receivedBeverageIntakes.size();
-            int startTime = intakeTimes[0];
-            int endTime = intakeTimes[numevents - 1];//Check casting
-
-            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-            BACArray[0] = 0;
-            int counter = 0;
-
-            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-            {
-                timeArray[counter] = t;
-                if (counter != 0) {
-                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-                    if (BACArray[counter] < 0) {
-                        BACArray[counter] = 0;
-                    }
-
-                }
-
-                for (int r = rowcheck; r < numevents; r++) {
-                    if (intakeTimes[r] > t) {
-                        break;
-                    } else {
-                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-                        rowcheck++;
-                    }
-                }
-
-                counter++;
-            }
+//            int rowcheck = 0;
+//            int numevents = receivedBeverageIntakes.size();
+//            int startTime = intakeTimes[0];
+//            int endTime = intakeTimes[numevents - 1];//Check casting
+//
+//            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            BACArray[0] = 0;
+//            int counter = 0;
+//
+//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
+//            {
+//                timeArray[counter] = t;
+//                if (counter != 0) {
+//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+//                    if (BACArray[counter] < 0) {
+//                        BACArray[counter] = 0;
+//                    }
+//
+//                }
+//
+//                for (int r = rowcheck; r < numevents; r++) {
+//                    if (intakeTimes[r] > t) {
+//                        break;
+//                    } else {
+//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+//                        rowcheck++;
+//                    }
+//                }
+//
+//                counter++;
+//            }
 
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
@@ -126,19 +126,21 @@ public class ResultsActivity extends AppCompatActivity {
 
             Log.d(TAG, "onCreate: reached pt 3"); */
 
-            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
-            BAC.setStretchAllColumns(true);
-            BAC.bringToFront();
-            for(int i = 0; i < numevents; i++){
-                TableRow tr =  new TableRow(this);
-                TextView c1 = new TextView(this);
-                c1.setText(timeArray[i]);
-                TextView c2 = new TextView(this);
-                c2.setText(String.valueOf(BACArray[i]));
-                tr.addView(c1);
-                tr.addView(c2);
-                BAC.addView(tr);
-            }
+            // TODO: 12/10/16 anirudhs code. add beautified table here
+
+//            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
+//            BAC.setStretchAllColumns(true);
+//            BAC.bringToFront();
+//            for(int i = 0; i < numevents; i++){
+//                TableRow tr =  new TableRow(this);
+//                TextView c1 = new TextView(this);
+//                c1.setText(timeArray[i]);
+//                TextView c2 = new TextView(this);
+//                c2.setText(String.valueOf(BACArray[i]));
+//                tr.addView(c1);
+//                tr.addView(c2);
+//                BAC.addView(tr);
+//            }
 
 
 //            // Calculate BAC level at regular intervals
@@ -209,37 +211,48 @@ public class ResultsActivity extends AppCompatActivity {
 //                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
 //            }
 
-//            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
-//            tableLayout.setStretchAllColumns(true);
-//            tableLayout.setWeightSum(2);
-//
-////            TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
-//            // width, height, weight
-//            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-//
-//            TableRow tableRow = new TableRow(this);
-////            tableRow.setGravity(Gravity.CENTER);
-//            // setting margins
-//            layoutParams.setMargins(1,1,1,1);
-//            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
-//
-//            // TODO: 12/9/16 format table rows
-//
-//            tableRow.setLayoutParams(layoutParams);
-//
-//
-////            TextView tv = (TextView) tableRow.getChildAt(0);
-////            TextView qty = (TextView) tableRow.getChildAt(1);
-//            TextView tv = new TextView(this);
-//            TextView qty = new TextView(this);
-//            tv.setText("1");
-//            qty.setText("2");
-//
-//            // TODO: 12/9/16 do we need to add these
-//            tableRow.addView(tv);
-//            tableRow.addView(qty);
-//
-//            tableLayout.addView(tableRow);
+            TableLayout tableLayout = (TableLayout) findViewById(R.id.BAC_table);
+            tableLayout.setStretchAllColumns(true);
+            tableLayout.setWeightSum(2);
+
+            // width, height, weight
+            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            // setting margins
+            tableLayoutParams.setMargins(1,1,1,1);
+
+
+
+            for (int i = 0; i < 2; i++) {
+                TableRow tableRow = new TableRow(this);
+
+                tableRow.setGravity(Gravity.CENTER);
+                tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+                tableRow.setLayoutParams(tableLayoutParams);
+
+                TextView timeTextView = new TextView(this);
+                TextView bacTextView = new TextView(this);
+                TextView separatorTextView = new TextView(this);
+                separatorTextView.setHeight(1);
+
+                timeTextView.setPadding(0,8,0,8);
+                bacTextView.setPadding(0,8,0,8);
+
+                timeTextView.setGravity(Gravity.CENTER);
+                bacTextView.setGravity(Gravity.CENTER);
+
+                timeTextView.setTextSize(20);
+                bacTextView.setTextSize(20);
+
+                timeTextView.setText("1");
+                bacTextView.setText("2");
+
+                tableRow.addView(timeTextView);
+                tableRow.addView(bacTextView);
+
+                tableLayout.addView(tableRow);
+            }
+
+
 
 
             //TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
