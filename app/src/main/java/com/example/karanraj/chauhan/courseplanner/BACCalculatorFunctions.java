@@ -22,36 +22,30 @@ public class BACCalculatorFunctions {
 
     {
 
-        ArrayList<Double> BAClevelsArray = new ArrayList<>();
+        ArrayList<Double> BAClevelsArray = new ArrayList<>();       //Create an array list to add multiple BACs
         double baclevel=1;
-        double total;
+        double total;                       //total is the total amount of alcohol consumed
 
         double lightbeeramount = lightbeer * 0.48; //in ounces
         double vodkashotamount = shotOfVodka * 0.60;  //in ounces
         double wineamount = wine * 0.60; //inounces
         double liquoramount = liquor * 0.50; //inounces
 
-        total = lightbeeramount + vodkashotamount + wineamount + liquoramount;
+        total = lightbeeramount + vodkashotamount + wineamount + liquoramount;  //alcohol total
 
         int hour = 0;
         while (true){
 
-            baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.15*hour);
-            baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));
+            baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.15*hour);   //using bac formula to calculate bac levels with different  h (time)
+            baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));    //changing the double to display only two digits after the decimal
             if(baclevel<=0.08){
-                break;
+                break;                          //break condition
             }
             Log.d(TAG, "soberalcoholcalculator: "+ baclevel );
-            BAClevelsArray.add(baclevel);
-            hour++;
-
-
+            BAClevelsArray.add(baclevel);           // add bac value to the array list
+            hour++;                                 // time iterator (hour)
         }
-
-
-
-
-        return BAClevelsArray;
+        return BAClevelsArray;          //returns the array list including all bac levels
     }
 
     public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type )
