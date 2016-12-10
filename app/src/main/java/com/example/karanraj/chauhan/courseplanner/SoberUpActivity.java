@@ -138,7 +138,11 @@ public class SoberUpActivity extends AppCompatActivity {
 //        intentToResultsActivity.putExtra("wineGlassNum", wineGlass);
 //        intentToResultsActivity.putExtra("userWeightVal", userWeight);
 //        intentToResultsActivity.putExtra("genderConstantVal", genderConstant);
-        intentToResultsActivity.putExtra("bacArrayList",BACArrayList_final.toArray());
+        double[] bacArray = new double[BACArrayList_final.size()];
+        for (int i = 0; i < BACArrayList_final.size(); i++) {
+            bacArray[i] = BACArrayList_final.get(i);
+        }
+        intentToResultsActivity.putExtra("bacArray", bacArray);
         intentToResultsActivity.putExtra("TAG", TAG);
 
         startActivity(intentToResultsActivity);

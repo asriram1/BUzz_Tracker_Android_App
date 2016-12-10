@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static android.R.attr.data;
+import static android.R.attr.focusable;
 import static android.R.attr.numberPickerStyle;
 
 /**
@@ -182,6 +183,12 @@ public class ResultsActivity extends AppCompatActivity {
 //            double userGenderConstant = data.getDouble("genderConstantVal");
 
             double[] bacValuesArray = data.getDoubleArray("bacArray");
+
+            Log.d(TAG, "received arra ylist of size"+ bacValuesArray.length);
+
+            for (double d : bacValuesArray) {
+                Log.d(TAG, "onCreate: double is "+d);
+            }
             
 //            ArrayList<Double> bacValuesArrayList = new ArrayList<>();
 //            bacValuesArrayList.add(1.2);
@@ -191,10 +198,6 @@ public class ResultsActivity extends AppCompatActivity {
 //            bacValuesArrayList.add(0.6);
 
             createResultTable(bacValuesArray);
-
-            Log.d(TAG, "onCreate: table created");
-
-            Log.d(TAG, "onCreate: listener set");
 
         }
     }
@@ -214,7 +217,7 @@ public class ResultsActivity extends AppCompatActivity {
         // setting margins
         tableLayoutParams.setMargins(1,1,1,1);
         
-        for (Double currentBac : bacValuesArray) {
+        for (double currentBac : bacValuesArray) {
             TableRow tableRow = new TableRow(this);
 
             tableRow.setGravity(Gravity.CENTER);
@@ -250,7 +253,33 @@ public class ResultsActivity extends AppCompatActivity {
             }
 
         }
+
+        TableRow tableRow = new TableRow(this);
+
+        tableRow.setGravity(Gravity.CENTER);
+        tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+        tableRow.setLayoutParams(tableLayoutParams);
+
+        TextView timeTextView = new TextView(this);
+        TextView bacTextView = new TextView(this);
+        TextView separatorTextView = new TextView(this);
+        separatorTextView.setHeight(1);
+
+        timeTextView.setPadding(0,8,0,8);
+        bacTextView.setPadding(0,8,0,8);
+
+        timeTextView.setGravity(Gravity.CENTER);
+        bacTextView.setGravity(Gravity.CENTER);
+
+        timeTextView.setTextSize(20);
+        bacTextView.setTextSize(20);
+
+        timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
+        bacTextView.setText("0.00");
+
+        tableRow.addView(timeTextView);
+        tableRow.addView(bacTextView);
+
+        tableLayout.addView(tableRow);
     }
-    
-    
 }
