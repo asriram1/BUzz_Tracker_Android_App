@@ -68,77 +68,77 @@ public class ResultsActivity extends AppCompatActivity {
 
 
             // Calculate BAC level at regular intervals
-            int rowcheck = 0;
-            int numevents = receivedBeverageIntakes.size();
-            int startTime = intakeTimes[0];
-            int endTime = intakeTimes[numevents - 1];//Check casting
-
-            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-            BACArray[0] = 0;
-            int counter = 0;
-
-            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-            {
-                timeArray[counter] = t;
-                if (counter != 0) {
-                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-                    if (BACArray[counter] < 0) {
-                        BACArray[counter] = 0;
-                    }
-
-                }
-
-                for (int r = rowcheck; r < numevents; r++) {
-                    if (intakeTimes[r] > t) {
-                        break;
-                    } else {
-                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-                        rowcheck++;
-                    }
-                }
-
-                counter++;
-            }
-
-            // TODO: 12/9/16 add values calculated from last step into thte table
-            // Get results table and add rows as needed
-            /*TableLayout tableLayout = new TableLayout(getApplicationContext());
-            TableRow row;
-            TextView view;
-
-            numevents=5;
-            Log.d(TAG, "onCreate: reached pt 1");
-            for(int i =0; i<numevents; i++) {
-                row = new TableRow(getApplicationContext());
-                for (int j = 0; j < 2; j++) {
-                    view = new TextView(getApplicationContext());
-                    view.setText("test");
-                    view.setPadding(20, 20, 20, 20);
-                    row.addView(view);
-                }
-                tableLayout.addView(row);
-
-            }
-            Log.d(TAG, "onCreate: reached pt 2");
-
-            setContentView(tableLayout);
-
-            Log.d(TAG, "onCreate: reached pt 3"); */
-
-            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
-            BAC.setStretchAllColumns(true);
-            BAC.bringToFront();
-            for(int i = 0; i < numevents; i++){
-                TableRow tr =  new TableRow(this);
-                TextView c1 = new TextView(this);
-                c1.setText(timeArray[i]);
-                TextView c2 = new TextView(this);
-                c2.setText(String.valueOf(BACArray[i]));
-                tr.addView(c1);
-                tr.addView(c2);
-                BAC.addView(tr);
-            }
+//            int rowcheck = 0;
+//            int numevents = receivedBeverageIntakes.size();
+//            int startTime = intakeTimes[0];
+//            int endTime = intakeTimes[numevents - 1];//Check casting
+//
+//            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            BACArray[0] = 0;
+//            int counter = 0;
+//
+//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
+//            {
+//                timeArray[counter] = t;
+//                if (counter != 0) {
+//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+//                    if (BACArray[counter] < 0) {
+//                        BACArray[counter] = 0;
+//                    }
+//
+//                }
+//
+//                for (int r = rowcheck; r < numevents; r++) {
+//                    if (intakeTimes[r] > t) {
+//                        break;
+//                    } else {
+//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+//                        rowcheck++;
+//                    }
+//                }
+//
+//                counter++;
+//            }
+//
+//            // TODO: 12/9/16 add values calculated from last step into thte table
+//            // Get results table and add rows as needed
+//            /*TableLayout tableLayout = new TableLayout(getApplicationContext());
+//            TableRow row;
+//            TextView view;
+//
+//            numevents=5;
+//            Log.d(TAG, "onCreate: reached pt 1");
+//            for(int i =0; i<numevents; i++) {
+//                row = new TableRow(getApplicationContext());
+//                for (int j = 0; j < 2; j++) {
+//                    view = new TextView(getApplicationContext());
+//                    view.setText("test");
+//                    view.setPadding(20, 20, 20, 20);
+//                    row.addView(view);
+//                }
+//                tableLayout.addView(row);
+//
+//            }
+//            Log.d(TAG, "onCreate: reached pt 2");
+//
+//            setContentView(tableLayout);
+//
+//            Log.d(TAG, "onCreate: reached pt 3"); */
+//
+//            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
+//            BAC.setStretchAllColumns(true);
+//            BAC.bringToFront();
+//            for(int i = 0; i < numevents; i++){
+//                TableRow tr =  new TableRow(this);
+//                TextView c1 = new TextView(this);
+//                c1.setText(timeArray[i]);
+//                TextView c2 = new TextView(this);
+//                c2.setText(String.valueOf(BACArray[i]));
+//                tr.addView(c1);
+//                tr.addView(c2);
+//                BAC.addView(tr);
+//            }
 
 
 //            // Calculate BAC level at regular intervals
