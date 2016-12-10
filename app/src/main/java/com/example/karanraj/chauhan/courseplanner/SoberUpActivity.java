@@ -140,6 +140,11 @@ public class SoberUpActivity extends AppCompatActivity {
 
 
     }
+    public void onPrevButtonClick(View view){
+        Intent intentToMainActivity = new Intent(SoberUpActivity.this, MainActivity.class);
+        startActivity(intentToMainActivity);
+
+    }
 
     public void onRadioButtonClicked_sober(View view) {
         // Is the button now checked?
