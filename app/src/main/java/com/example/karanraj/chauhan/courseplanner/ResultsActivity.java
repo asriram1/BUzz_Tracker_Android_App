@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static android.R.attr.data;
+import static android.R.attr.numberPickerStyle;
 
 /**
  * Created by karanraj on 12/7/16.
@@ -68,7 +69,7 @@ public class ResultsActivity extends AppCompatActivity {
             BACArray[0] = 0;
             int counter = 0;
 
-            for (int t = startTime; t <= endTime; t++) //iterate from first given time to last given time in array
+            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
             {
                 timeArray[counter] = t;
                 if (counter != 0) {
@@ -93,51 +94,43 @@ public class ResultsActivity extends AppCompatActivity {
 
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
-            TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
+            /*TableLayout tableLayout = new TableLayout(getApplicationContext());
+            TableRow row;
+            TextView view;
 
-            TextView[] timeColumn = new TextView[2];
-            TableRow[] row = new TableRow[numevents];
-            LinearLayout.LayoutParams timeColumnparams;
-            LinearLayout.LayoutParams rowparams;
+            numevents=5;
+            Log.d(TAG, "onCreate: reached pt 1");
+            for(int i =0; i<numevents; i++) {
+                row = new TableRow(getApplicationContext());
+                for (int j = 0; j < 2; j++) {
+                    view = new TextView(getApplicationContext());
+                    view.setText("test");
+                    view.setPadding(20, 20, 20, 20);
+                    row.addView(view);
+                }
+                tableLayout.addView(row);
 
-            for (int i = 0; i< numevents; i++) {
-
-                /*row[y] = new TableRow(this);
-                row[y].setId(y + 100);
-                row[y].setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
-                rowparams = (LinearLayout.LayoutParams) row[y].getLayoutParams();
-                rowparams.setMargins(0, 8, 0, 5); //substitute parameters for left, top, right, bottom
-                row[y].setLayoutParams(rowparams);
-
-                timeColumn[y] = new TextView(this);
-                timeColumn[y].setText(timeArray[y].get(y).Name);
-                timeColumn[y].setId(y + 200);
-                timeColumn[y].setTextColor(Color.parseColor("#000000"));
-                timeColumn[y].setGravity(Gravity.LEFT);
-                timeColumn[y].setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 34));
-                timeColumnparams = (LinearLayout.LayoutParams) title[y].getLayoutParams();
-                timeColumnparams.setMargins(5, 0, 0, 0); //substitute parameters for left, top, right, bottom
-                timeColumn[y].setLayoutParams(timeColumnparams);
-
-
-                row[y].addView(timeColumn[y]);
-                tl.addView(tr[y], new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-            }*/
-
-
-                TableRow row = new TableRow(this);
-                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-                row.setLayoutParams(lp);
-
-                TextView time = new TextView(this);
-                TextView BAC = new TextView(this);
-                BAC.setText(""+BACArray[i]);
-
-
-                row.addView(BAC);
-                row.addView(time);
-                ll.addView(row, i);
             }
+            Log.d(TAG, "onCreate: reached pt 2");
+
+            setContentView(tableLayout);
+
+            Log.d(TAG, "onCreate: reached pt 3"); */
+
+            TableLayout prices = (TableLayout)findViewById(R.id.BAC_table);
+            prices.setStretchAllColumns(true);
+            prices.bringToFront();
+            for(int i = 0; i < numevents; i++){
+                TableRow tr =  new TableRow(this);
+                TextView c1 = new TextView(this);
+                c1.setText(timeArray[i]);
+                TextView c2 = new TextView(this);
+                c2.setText(String.valueOf(BACArray[i]));
+                tr.addView(c1);
+                tr.addView(c2);
+                prices.addView(tr);
+            }
+
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
             Log.d(TAG, "onCreate: sobering up now");
