@@ -100,6 +100,7 @@ public class ResultsActivity extends AppCompatActivity {
 //
 //                counter++;
 //            }
+<<<<<<< HEAD
 //
 //            // TODO: 12/9/16 add values calculated from last step into thte table
 //            // Get results table and add rows as needed
@@ -126,6 +127,36 @@ public class ResultsActivity extends AppCompatActivity {
 //
 //            Log.d(TAG, "onCreate: reached pt 3"); */
 //
+=======
+
+            // TODO: 12/9/16 add values calculated from last step into thte table
+            // Get results table and add rows as needed
+            /*TableLayout tableLayout = new TableLayout(getApplicationContext());
+            TableRow row;
+            TextView view;
+
+            numevents=5;
+            Log.d(TAG, "onCreate: reached pt 1");
+            for(int i =0; i<numevents; i++) {
+                row = new TableRow(getApplicationContext());
+                for (int j = 0; j < 2; j++) {
+                    view = new TextView(getApplicationContext());
+                    view.setText("test");
+                    view.setPadding(20, 20, 20, 20);
+                    row.addView(view);
+                }
+                tableLayout.addView(row);
+
+            }
+            Log.d(TAG, "onCreate: reached pt 2");
+
+            setContentView(tableLayout);
+
+            Log.d(TAG, "onCreate: reached pt 3"); */
+
+            // TODO: 12/10/16 anirudhs code. add beautified table here
+
+>>>>>>> 15f89e8d4e1e639460dc9f7ce5580780f73768c0
 //            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
 //            BAC.setStretchAllColumns(true);
 //            BAC.bringToFront();
@@ -209,37 +240,48 @@ public class ResultsActivity extends AppCompatActivity {
 //                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
 //            }
 
-//            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
-//            tableLayout.setStretchAllColumns(true);
-//            tableLayout.setWeightSum(2);
-//
-////            TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
-//            // width, height, weight
-//            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-//
-//            TableRow tableRow = new TableRow(this);
-////            tableRow.setGravity(Gravity.CENTER);
-//            // setting margins
-//            layoutParams.setMargins(1,1,1,1);
-//            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
-//
-//            // TODO: 12/9/16 format table rows
-//
-//            tableRow.setLayoutParams(layoutParams);
-//
-//
-////            TextView tv = (TextView) tableRow.getChildAt(0);
-////            TextView qty = (TextView) tableRow.getChildAt(1);
-//            TextView tv = new TextView(this);
-//            TextView qty = new TextView(this);
-//            tv.setText("1");
-//            qty.setText("2");
-//
-//            // TODO: 12/9/16 do we need to add these
-//            tableRow.addView(tv);
-//            tableRow.addView(qty);
-//
-//            tableLayout.addView(tableRow);
+            TableLayout tableLayout = (TableLayout) findViewById(R.id.BAC_table);
+            tableLayout.setStretchAllColumns(true);
+            tableLayout.setWeightSum(2);
+
+            // width, height, weight
+            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            // setting margins
+            tableLayoutParams.setMargins(1,1,1,1);
+
+
+
+            for (int i = 0; i < 2; i++) {
+                TableRow tableRow = new TableRow(this);
+
+                tableRow.setGravity(Gravity.CENTER);
+                tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+                tableRow.setLayoutParams(tableLayoutParams);
+
+                TextView timeTextView = new TextView(this);
+                TextView bacTextView = new TextView(this);
+                TextView separatorTextView = new TextView(this);
+                separatorTextView.setHeight(1);
+
+                timeTextView.setPadding(0,8,0,8);
+                bacTextView.setPadding(0,8,0,8);
+
+                timeTextView.setGravity(Gravity.CENTER);
+                bacTextView.setGravity(Gravity.CENTER);
+
+                timeTextView.setTextSize(20);
+                bacTextView.setTextSize(20);
+
+                timeTextView.setText("1");
+                bacTextView.setText("2");
+
+                tableRow.addView(timeTextView);
+                tableRow.addView(bacTextView);
+
+                tableLayout.addView(tableRow);
+            }
+
+
 
 
             //TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
