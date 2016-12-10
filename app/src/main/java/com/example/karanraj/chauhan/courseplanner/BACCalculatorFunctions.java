@@ -12,7 +12,12 @@ public class BACCalculatorFunctions {
 
     final static double multiconstant = 5.14;
 
+<<<<<<< HEAD
     public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
+=======
+
+    public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
+>>>>>>> 5e91e6ae930b553617a2e6d065ca34b549730320
 
     {
 
