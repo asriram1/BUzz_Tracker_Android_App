@@ -147,7 +147,7 @@ public class SoberUpActivity extends AppCompatActivity {
         //Log.d(TAG, "goButtonPressed: "+ BACArrayList_final.get(0));
 
 
-        intentToResultsActivity.putExtra("bacArray",BACArrayList_final.toArray());
+//        intentToResultsActivity.putExtra("bacArray",BACArrayList_final.toArray());
         intentToResultsActivity.putExtra("TAG", TAG);
 
         startActivity(intentToResultsActivity);

@@ -275,7 +275,7 @@ public class ResultsActivity extends AppCompatActivity {
         bacTextView.setTextSize(20);
 
         timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
-        bacTextView.setText("0.00");
+        bacTextView.setText("Sober Now!");
 
         tableRow.addView(timeTextView);
         tableRow.addView(bacTextView);
