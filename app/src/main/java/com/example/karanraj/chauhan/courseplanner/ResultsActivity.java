@@ -6,6 +6,7 @@ import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -93,17 +94,48 @@ public class ResultsActivity extends AppCompatActivity {
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
             TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
-            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
+
+            TextView[] timeColumn = new TextView[2];
+            TableRow[] row = new TableRow[numevents];
+            LinearLayout.LayoutParams timeColumnparams;
+            LinearLayout.LayoutParams rowparams;
+
+            for (int i = 0; i< numevents; i++) {
+
+                /*row[y] = new TableRow(this);
+                row[y].setId(y + 100);
+                row[y].setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
+                rowparams = (LinearLayout.LayoutParams) row[y].getLayoutParams();
+                rowparams.setMargins(0, 8, 0, 5); //substitute parameters for left, top, right, bottom
+                row[y].setLayoutParams(rowparams);
+
+                timeColumn[y] = new TextView(this);
+                timeColumn[y].setText(timeArray[y].get(y).Name);
+                timeColumn[y].setId(y + 200);
+                timeColumn[y].setTextColor(Color.parseColor("#000000"));
+                timeColumn[y].setGravity(Gravity.LEFT);
+                timeColumn[y].setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 34));
+                timeColumnparams = (LinearLayout.LayoutParams) title[y].getLayoutParams();
+                timeColumnparams.setMargins(5, 0, 0, 0); //substitute parameters for left, top, right, bottom
+                timeColumn[y].setLayoutParams(timeColumnparams);
+
+
+                row[y].addView(timeColumn[y]);
+                tl.addView(tr[y], new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            }*/
+
+
                 TableRow row = new TableRow(this);
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp);
 
-                TextView tv = new TextView(this);
-                TextView qty = new TextView(this);
-                qty.setText("10");
+                TextView time = new TextView(this);
+                TextView BAC = new TextView(this);
+                BAC.setText(""+BACArray[i]);
 
-                row.addView(qty);
-                row.addView(tv);
+
+                row.addView(BAC);
+                row.addView(time);
                 ll.addView(row, i);
             }
 
