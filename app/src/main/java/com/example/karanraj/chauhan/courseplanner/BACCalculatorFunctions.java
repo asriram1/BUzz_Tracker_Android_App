@@ -37,7 +37,7 @@ public class BACCalculatorFunctions {
         while (true){
 
             baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.15*hour);
-            baclevel =Double.parseDouble(new DecimalFormat("##.####").format(baclevel));
+            baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));
             if(baclevel<=0.08){
                 break;
             }
