@@ -30,12 +30,8 @@
         <activity
             android:name=".ResultsActivity"
             android:label="Results"/>
-<<<<<<< HEAD
-        <!--<activity android:name=".AboutUsActivity"-->
-            <!--android:label="About Us"-->
-=======
-        <activity android:name=".AboutUsActivity"/>
->>>>>>> c5389814cb82ba700ba169215064c042ca62528c
+
+
 
     </application>
 

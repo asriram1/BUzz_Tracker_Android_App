@@ -100,7 +100,6 @@ public class ResultsActivity extends AppCompatActivity {
 //
 //                counter++;
 //            }
-<<<<<<< HEAD
 //
 //            // TODO: 12/9/16 add values calculated from last step into thte table
 //            // Get results table and add rows as needed
@@ -127,7 +126,6 @@ public class ResultsActivity extends AppCompatActivity {
 //
 //            Log.d(TAG, "onCreate: reached pt 3"); */
 //
-=======
 
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
@@ -156,7 +154,6 @@ public class ResultsActivity extends AppCompatActivity {
 
             // TODO: 12/10/16 anirudhs code. add beautified table here
 
->>>>>>> 15f89e8d4e1e639460dc9f7ce5580780f73768c0
 //            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
 //            BAC.setStretchAllColumns(true);
 //            BAC.bringToFront();
