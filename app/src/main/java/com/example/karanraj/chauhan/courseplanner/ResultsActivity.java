@@ -6,6 +6,7 @@ import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -71,6 +72,28 @@ public class ResultsActivity extends AppCompatActivity {
 
             double [] BACArray = {1.2, 2.2, 3.2, 0.2, 4.2};
             String [] timeArray = {"01:00", "02:00", "03:00", "04:00"};
+            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
+            for (int i = 0; i <2; i++) {
+
+                TableRow row= new TableRow(this);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                row.setLayoutParams(lp);
+                CheckBox checkBox = new CheckBox(this);
+                TextView tv = new TextView(this);
+                ImageButton addBtn = new ImageButton(this);
+                addBtn.setImageResource(R.drawable.add);
+                ImageButton minusBtn = new ImageButton(this);
+                minusBtn.setImageResource(R.drawable.minus);
+                TextView qty = new TextView(this);
+                checkBox.setText("hello");
+                qty.setText("10");
+                row.addView(checkBox);
+                row.addView(minusBtn);
+                row.addView(qty);
+                row.addView(addBtn);
+                ll.addView(row,i);
+            }
+        }
 
 //            Log.d(TAG, "onCreate: start time is "  + startTime + " end time "+endTime);
 //
@@ -104,16 +127,18 @@ public class ResultsActivity extends AppCompatActivity {
 //                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
 //            }
 
-            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
 
-            TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
-            TableRow row = new TableRow(this);
-            TextView tv = (TextView) row.getChildAt(0);
-            TextView qty = (TextView) row.getChildAt(1);
-            tv.setText("1");
-            qty.setText("2");
 
-            tableLayout.addView(row);
+            //TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
+//            TableRow row = new TableRow(this);
+//            //TableLayout TL = (TableLayout) findViewById(R.id.bac_levels_table_layout)
+//            row.setLayoutParams();
+//            TextView tv = (TextView) row.getChildAt(0);
+//            TextView qty = (TextView) row.getChildAt(1);
+//            tv.setText("1");
+//            qty.setText("2");
+//
+//            tableLayout.addView(row);
 
             // TODO: 12/9/16 add values calculated from last step into thte table
             // Get results table and add rows as needed
