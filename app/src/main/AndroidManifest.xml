@@ -27,6 +27,7 @@
         <activity
             android:name=".ResultsActivity"
             android:label="Results"/>
+        <activity android:name=".AboutUsActivity"/>
 
     </application>
 
