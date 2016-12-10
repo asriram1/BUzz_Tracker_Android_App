@@ -116,6 +116,19 @@ public class PacerActivity extends AppCompatActivity {
 
         final float sourceTextSize = ((TextView) findViewById(R.id.label_quantity)).getTextSize();
 
+        Button deleteButton = (Button) findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (beverageIntakes.size()>0) {
+                    beverageIntakes.remove(beverageIntakes.size() - 1);
+                    mBeverageIntakesTable.removeViewAt(mBeverageIntakesTable.getChildCount()-1);
+                } else {
+                    Toast.makeText(PacerActivity.this, "No beverages added yet", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         // When add button is clicked, the current selections in Spinners are added to the appropriate AraryLists
         Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {

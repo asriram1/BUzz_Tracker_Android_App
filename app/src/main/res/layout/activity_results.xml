@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -25,21 +26,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:textAlignment="center"
             android:layout_toRightOf="@id/results_previous_arrow_image_view"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:paddingLeft="8dp"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
             android:paddingRight="16dp"
+            android:paddingTop="8dp"
             android:text="PREV"
+            android:textAlignment="center"
             android:textColor="#FFFFFF" />
 
 
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/results_scroll_view"
+        android:layout_above="@id/results_navigation_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

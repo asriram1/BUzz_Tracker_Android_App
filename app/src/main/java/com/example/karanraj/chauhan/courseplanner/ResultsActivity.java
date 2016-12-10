@@ -54,9 +54,9 @@ public class ResultsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: previous clicked");
                 if (previousActivityTag.equals("PacerActivity")) {
-                    startActivity(new Intent(ResultsActivity.this, MainActivity.class));
+                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
                 } else if (previousActivityTag.equals("SoberUpActivity")) {
-                    startActivity(new Intent(ResultsActivity.this, MainActivity.class));
+                    startActivity(new Intent(ResultsActivity.this, SoberUpActivity.class));
                 }
                 Log.d(TAG, "onClick: starting activity");
             }
