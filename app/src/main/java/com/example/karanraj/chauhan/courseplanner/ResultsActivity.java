@@ -5,12 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
-<<<<<<< HEAD
+
 import android.widget.LinearLayout;
-=======
+
 import android.widget.ImageButton;
->>>>>>> 391b1a2259895a2e34206c98c505fc255098fc26
+
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -55,16 +57,16 @@ public class ResultsActivity extends AppCompatActivity {
                 }
             });
 
-            // Create arrays that have useful data from array lists
-            int[] intakeTimes = new int[receivedBeverageIntakes.size()];
-            double[] intakeBAC = new double[receivedBeverageIntakes.size()];
+//            // Create arrays that have useful data from array lists
+//            int[] intakeTimes = new int[receivedBeverageIntakes.size()];
+//            double[] intakeBAC = new double[receivedBeverageIntakes.size()];
+//
+//            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
+//                intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
+//                intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
+//            }
 
-            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
-                intakeTimes[i] = receivedBeverageIntakes.get(i).getTime();
-                intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
-            }
 
-<<<<<<< HEAD
             // Calculate BAC level at regular intervals
             int rowcheck = 0;
             int numevents = receivedBeverageIntakes.size();
@@ -138,7 +140,7 @@ public class ResultsActivity extends AppCompatActivity {
                 prices.addView(tr);
             }
 
-=======
+
 //            // Calculate BAC level at regular intervals
 //            int rowcheck = 0;
 //            int numevents = receivedBeverageIntakes.size();
@@ -150,30 +152,30 @@ public class ResultsActivity extends AppCompatActivity {
 //            BACArray[0] = 0;
 //            int counter = 0;
 
-            double [] BACArray = {1.2, 2.2, 3.2, 0.2, 4.2};
-            String [] timeArray = {"01:00", "02:00", "03:00", "04:00"};
-            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
-            for (int i = 0; i <2; i++) {
-
-                TableRow row= new TableRow(this);
-                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-                row.setLayoutParams(lp);
-                CheckBox checkBox = new CheckBox(this);
-                TextView tv = new TextView(this);
-                ImageButton addBtn = new ImageButton(this);
-                addBtn.setImageResource(R.drawable.add);
-                ImageButton minusBtn = new ImageButton(this);
-                minusBtn.setImageResource(R.drawable.minus);
-                TextView qty = new TextView(this);
-                checkBox.setText("hello");
-                qty.setText("10");
-                row.addView(checkBox);
-                row.addView(minusBtn);
-                row.addView(qty);
-                row.addView(addBtn);
-                ll.addView(row,i);
-            }
-        }
+//            double [] BACArray = {1.2, 2.2, 3.2, 0.2, 4.2};
+//            String [] timeArray = {"01:00", "02:00", "03:00", "04:00"};
+//            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
+//            for (int i = 0; i <2; i++) {
+//
+//                TableRow row= new TableRow(this);
+//                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+//                row.setLayoutParams(lp);
+//                CheckBox checkBox = new CheckBox(this);
+//                TextView tv = new TextView(this);
+//                ImageButton addBtn = new ImageButton(this);
+//                addBtn.setImageResource(R.drawable.add);
+//                ImageButton minusBtn = new ImageButton(this);
+//                minusBtn.setImageResource(R.drawable.minus);
+//                TextView qty = new TextView(this);
+//                checkBox.setText("hello");
+//                qty.setText("10");
+//                row.addView(checkBox);
+//                row.addView(minusBtn);
+//                row.addView(qty);
+//                row.addView(addBtn);
+//                ll.addView(row,i);
+//            }
+//        }
 
 //            Log.d(TAG, "onCreate: start time is "  + startTime + " end time "+endTime);
 //
@@ -207,6 +209,37 @@ public class ResultsActivity extends AppCompatActivity {
 //                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
 //            }
 
+//            TableLayout tableLayout = (TableLayout) findViewById(R.id.bac_levels_table_layout);
+//            tableLayout.setStretchAllColumns(true);
+//            tableLayout.setWeightSum(2);
+//
+////            TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
+//            // width, height, weight
+//            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+//
+//            TableRow tableRow = new TableRow(this);
+////            tableRow.setGravity(Gravity.CENTER);
+//            // setting margins
+//            layoutParams.setMargins(1,1,1,1);
+//            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+//
+//            // TODO: 12/9/16 format table rows
+//
+//            tableRow.setLayoutParams(layoutParams);
+//
+//
+////            TextView tv = (TextView) tableRow.getChildAt(0);
+////            TextView qty = (TextView) tableRow.getChildAt(1);
+//            TextView tv = new TextView(this);
+//            TextView qty = new TextView(this);
+//            tv.setText("1");
+//            qty.setText("2");
+//
+//            // TODO: 12/9/16 do we need to add these
+//            tableRow.addView(tv);
+//            tableRow.addView(qty);
+//
+//            tableLayout.addView(tableRow);
 
 
             //TableRow.LayoutParams layoutParams = (TableRow.LayoutParams) (findViewById(R.id.result_table_row)).getLayoutParams();
@@ -239,7 +272,7 @@ public class ResultsActivity extends AppCompatActivity {
 //                row.addView(tv);
 //                ll.addView(row, i);
 //            }
->>>>>>> 391b1a2259895a2e34206c98c505fc255098fc26
+
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
             Log.d(TAG, "onCreate: sobering up now");
