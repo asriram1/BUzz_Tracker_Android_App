@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -143,6 +144,10 @@ public class SoberUpActivity extends AppCompatActivity {
             bacArray[i] = BACArrayList_final.get(i);
         }
         intentToResultsActivity.putExtra("bacArray", bacArray);
+        //Log.d(TAG, "goButtonPressed: "+ BACArrayList_final.get(0));
+
+
+        intentToResultsActivity.putExtra("bacArray",BACArrayList_final.toArray());
         intentToResultsActivity.putExtra("TAG", TAG);
 
         startActivity(intentToResultsActivity);
@@ -155,9 +160,9 @@ public class SoberUpActivity extends AppCompatActivity {
 
     }
     public void onBeerButtonClick(View view){
-        ArrayList<Double> BACList = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,200.0,2,2,1,1);
 
-        Toast.makeText(SoberUpActivity.this,"Beer "+ BACList.get(0), Toast.LENGTH_LONG).show();
+
+        Toast.makeText(SoberUpActivity.this,"Beer ", Toast.LENGTH_LONG).show();
 
 
     }

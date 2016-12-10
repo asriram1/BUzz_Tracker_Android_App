@@ -2,6 +2,7 @@ package com.example.karanraj.chauhan.courseplanner;
 
 import android.util.Log;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -35,7 +36,8 @@ public class BACCalculatorFunctions {
         int hour = 0;
         while (true){
 
-            baclevel = (total * multiconstant) / (weight * genderConstant) - 0.15*hour;
+            baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.15*hour);
+            baclevel =Double.parseDouble(new DecimalFormat("##.####").format(baclevel));
             if(baclevel<=0.08){
                 break;
             }
