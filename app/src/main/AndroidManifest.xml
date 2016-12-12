@@ -25,7 +25,8 @@
         <activity android:name=".SoberUpActivity"
                 android:label="Sober Up!"/>
 
-        <activity android:name=".ResourcesActivity"/>
+        <activity android:name=".ResourcesActivity"
+                  android:label="Resources"/>
 
         <activity
             android:name=".ResultsActivity"
