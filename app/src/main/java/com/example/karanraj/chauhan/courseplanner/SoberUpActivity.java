@@ -162,18 +162,18 @@ public class SoberUpActivity extends AppCompatActivity {
     public void onBeerButtonClick(View view){
 
 
-        Toast.makeText(SoberUpActivity.this,"Beer ", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"12 fl oz - a standard beer bottle", Toast.LENGTH_LONG).show();
 
 
     }
     public void onWineButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Wine XXXXXXXXXX", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"5 fl oz of Table Wine", Toast.LENGTH_LONG).show();
     }
     public void onWhiskeyButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Whiskey XXXXXXXXXX", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"1.5 fl oz of distilled liquor (Whiskey,Rum...)", Toast.LENGTH_LONG).show();
     }
     public void onVodkaButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Vodka XXXXXXXXXX", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"One shot of any 80 proof drink (Vodka, Tequila....)", Toast.LENGTH_LONG).show();
     }
     public void onRadioButtonClicked_sober(View view) {
         // Is the button now checked?
