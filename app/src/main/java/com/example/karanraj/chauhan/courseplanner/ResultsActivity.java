@@ -91,13 +91,13 @@ public class ResultsActivity extends AppCompatActivity {
             int endTime = intakeTimes[numevents - 1];//Check casting
 
             startTime = startTime/100;
-            endTime = endTime/100;
+            endTime = endTime/100 + 1;
             int[] timeArray = new int[(endTime - startTime)+1];
             double[] BACArray = new double[(endTime - startTime)+1];
             BACArray[0] = 0;
             int counter = 0;
 
-            for (int t = startTime*100; t < endTime*100; t = t+100) //iterate from first given time to last given time in array
+            for (int t = startTime*100; t <= endTime*100; t = t+100) //iterate from first given time to last given time in array
             {
                 timeArray[counter] = t;
                 if (counter != 0) {
@@ -105,7 +105,6 @@ public class ResultsActivity extends AppCompatActivity {
                     if (BACArray[counter] < 0) {
                         BACArray[counter] = 0;
                     }
-
                 }
 
                 for (int r = rowcheck; r < numevents; r++) {
@@ -119,12 +118,7 @@ public class ResultsActivity extends AppCompatActivity {
 
                 counter++;
             }
-//
-//            int[] timeArrayTest = {1000,1030,1100,1130,1200,1230,1300};
-//            double[] bacArrayTest = {2.20,2.01,1.02,1.75,1.25,1.00,0.5};
 
-
-            // TODO: 12/10/16 anirudhs code. add beautified table here
 
             TableLayout pacerResultsTableLayout = (TableLayout)findViewById(R.id.BAC_table);
             pacerResultsTableLayout.setStretchAllColumns(true);
