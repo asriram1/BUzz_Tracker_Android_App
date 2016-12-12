@@ -168,7 +168,7 @@ public class ResultsActivity extends AppCompatActivity {
                 pacerResultsTableLayout.addView(tableRow);
             }
 
-            int lastTime = timeArray[timeArray.length-1];
+            int lastTime = (timeArray[timeArray.length-1])/100;
             double lastBac = BACArray[BACArray.length-1];
             ArrayList<Double> remainderBacArrayList = new ArrayList<>();
             while (lastBac > 0.05) {
