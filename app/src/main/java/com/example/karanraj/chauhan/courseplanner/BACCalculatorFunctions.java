@@ -18,7 +18,7 @@ public class BACCalculatorFunctions {
     private static final String TAG = "askc";
     final static double multiconstant = 5.14;
 
-    public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int shotOfVodka, int wine, int liquor)
+    public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int beer, int shotOfVodka, int wine, int liquor)
 
     {
 
@@ -26,12 +26,12 @@ public class BACCalculatorFunctions {
         double baclevel=1;
         double total;                       //total is the total amount of alcohol consumed
 
-        double lightbeeramount = lightbeer * 0.48; //in ounces
+        double beeramount = beer * 0.60; //in ounces
         double vodkashotamount = shotOfVodka * 0.60;  //in ounces
         double wineamount = wine * 0.60; //inounces
-        double liquoramount = liquor * 0.50; //inounces
+        double liquoramount = liquor * 0.60; //inounces
 
-        total = lightbeeramount + vodkashotamount + wineamount + liquoramount;  //alcohol total
+        total = beeramount + vodkashotamount + wineamount + liquoramount;  //alcohol total
 
         int hour = 0;
         while (true){
@@ -48,7 +48,7 @@ public class BACCalculatorFunctions {
         return BAClevelsArray;          //returns the array list including all bac levels
     }
 
-    public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type )
+    public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type ) //bac calculator for each drink at any given time
 
     {
         double baclevel;
@@ -59,7 +59,7 @@ public class BACCalculatorFunctions {
         switch (type){
             case  "Regular Beer (5%, 12oz)":
                             total = amount * 0.60;
-                            break;
+                            break;                                                          //drinks switch case
             case  "Light Beer (4%, 12oz)":
                             total = amount *0.48;
                             break;
@@ -89,7 +89,7 @@ public class BACCalculatorFunctions {
                             break;
         }
 
-        baclevel = (total * multiconstant) / (weight * genderConstant);
+        baclevel = (total * multiconstant) / (weight * genderConstant);                         //bac value return
         return baclevel;
 
     }
