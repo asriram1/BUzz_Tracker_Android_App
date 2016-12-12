@@ -124,6 +124,7 @@ public class PacerActivity extends AppCompatActivity {
                 if (beverageIntakes.size()>0) {
                     beverageIntakes.remove(beverageIntakes.size() - 1);
                     mBeverageIntakesTable.removeViewAt(mBeverageIntakesTable.getChildCount()-1);
+                    Toast.makeText(PacerActivity.this, "Removed!", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(PacerActivity.this, "No beverages added yet", Toast.LENGTH_LONG).show();
                 }
