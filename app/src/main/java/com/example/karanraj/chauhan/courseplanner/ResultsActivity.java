@@ -31,6 +31,7 @@ import java.util.Comparator;
 import static android.R.attr.data;
 import static android.R.attr.focusable;
 import static android.R.attr.numberPickerStyle;
+import static android.R.attr.start;
 
 /**
  * Created by karanraj on 12/7/16.
@@ -38,6 +39,7 @@ import static android.R.attr.numberPickerStyle;
 
 public class ResultsActivity extends AppCompatActivity {
     private static final String TAG = "ResultsActivity";
+    DecimalFormat decimalFormat = new DecimalFormat("00");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +92,9 @@ public class ResultsActivity extends AppCompatActivity {
             int startTime = intakeTimes[0];
             int endTime = intakeTimes[numevents - 1];//Check casting
 
+            if (endTime == startTime) {
+                endTime = startTime+1;
+            }
             startTime = startTime/100;
             endTime = endTime/100 + 1;
             int[] timeArray = new int[(endTime - startTime)+1];
@@ -99,7 +104,7 @@ public class ResultsActivity extends AppCompatActivity {
 
             for (int t = startTime*100; t <= endTime*100; t = t+100) //iterate from first given time to last given time in array
             {
-                timeArray[counter] = t;
+                timeArray[counter] = t%2400;
                 if (counter != 0) {
                     BACArray[counter] = BACArray[counter - 1] - 0.015; // give the t-1 value to t DEREFERENCE ACCORDINGLY
                     if (BACArray[counter] < 0) {
@@ -118,7 +123,6 @@ public class ResultsActivity extends AppCompatActivity {
 
                 counter++;
             }
-
 
             TableLayout pacerResultsTableLayout = (TableLayout)findViewById(R.id.BAC_table);
             pacerResultsTableLayout.setStretchAllColumns(true);
@@ -149,8 +153,8 @@ public class ResultsActivity extends AppCompatActivity {
                 timeTextView.setGravity(Gravity.CENTER);
                 bacTextView.setGravity(Gravity.CENTER);
 
-                timeTextView.setText(""+timeArray[i]);
-                bacTextView.setText(String.valueOf(""+BACArray[i]));
+                timeTextView.setText((""+decimalFormat.format(timeArray[i]/100)+":00"));
+                bacTextView.setText(new DecimalFormat("0.000").format(BACArray[i]));
 
                 timeTextView.setTextSize(20);
                 bacTextView.setTextSize(20);
@@ -159,6 +163,57 @@ public class ResultsActivity extends AppCompatActivity {
                 tableRow.addView(bacTextView);
                 pacerResultsTableLayout.addView(tableRow);
             }
+
+            int lastTime = timeArray[timeArray.length-1];
+            double lastBac = BACArray[BACArray.length-1];
+            ArrayList<Double> remainderBacArrayList = new ArrayList<>();
+            while (lastBac > 0.05) {
+                lastBac -= 0.015;
+                remainderBacArrayList.add(lastBac);
+            }
+            for (double currentBac : remainderBacArrayList) {
+                TableRow tableRow = new TableRow(this);
+
+                tableRow.setGravity(Gravity.CENTER);
+                if (currentBac < 0.05) {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+                } else if (currentBac < 0.12) {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
+                } else {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.red));
+                }
+                tableRow.setLayoutParams(tableLayoutParams);
+
+                TextView timeTextView = new TextView(this);
+                TextView bacTextView = new TextView(this);
+                TextView separatorTextView = new TextView(this);
+                separatorTextView.setHeight(1);
+
+                timeTextView.setPadding(0,8,0,8);
+                bacTextView.setPadding(0,8,0,8);
+
+                timeTextView.setGravity(Gravity.CENTER);
+                bacTextView.setGravity(Gravity.CENTER);
+
+                timeTextView.setTextSize(20);
+                bacTextView.setTextSize(20);
+
+                timeTextView.setText(""+decimalFormat.format(lastTime)+":00");
+                bacTextView.setText(new DecimalFormat("0.000").format(currentBac));
+
+                tableRow.addView(timeTextView);
+                tableRow.addView(bacTextView);
+
+                pacerResultsTableLayout.addView(tableRow);
+
+                if (lastTime<23) {
+                    lastTime++;
+                } else {
+                    lastTime = 0;
+                }
+
+            }
+
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
 
@@ -174,12 +229,11 @@ public class ResultsActivity extends AppCompatActivity {
 
         }
     }
-    
+
     private void createResultTable(double[] bacValuesArray) {
         Calendar calendar = Calendar.getInstance();
         int hours = calendar.getTime().getHours();
         int minutes = calendar.getTime().getMinutes();
-        DecimalFormat decimalFormat = new DecimalFormat("00");
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.BAC_table);
         tableLayout.setStretchAllColumns(true);
@@ -189,7 +243,7 @@ public class ResultsActivity extends AppCompatActivity {
         TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
         // setting margins
         tableLayoutParams.setMargins(1,1,1,1);
-        
+
         for (double currentBac : bacValuesArray) {
             TableRow tableRow = new TableRow(this);
 
@@ -232,35 +286,5 @@ public class ResultsActivity extends AppCompatActivity {
             }
 
         }
-
-        // add sober now table row
-
-//        TableRow tableRow = new TableRow(this);
-//
-//        tableRow.setGravity(Gravity.CENTER);
-//        tableRow.setBackgroundColor(getResources().getColor(R.color.green));
-//        tableRow.setLayoutParams(tableLayoutParams);
-//
-//        TextView timeTextView = new TextView(this);
-//        TextView bacTextView = new TextView(this);
-//        TextView separatorTextView = new TextView(this);
-//        separatorTextView.setHeight(1);
-//
-//        timeTextView.setPadding(0,8,0,8);
-//        bacTextView.setPadding(0,8,0,8);
-//
-//        timeTextView.setGravity(Gravity.CENTER);
-//        bacTextView.setGravity(Gravity.CENTER);
-//
-//        timeTextView.setTextSize(20);
-//        bacTextView.setTextSize(20);
-//
-//        timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
-//        bacTextView.setText("Sober Now!");
-//
-//        tableRow.addView(timeTextView);
-//        tableRow.addView(bacTextView);
-//
-//        tableLayout.addView(tableRow);
     }
 }

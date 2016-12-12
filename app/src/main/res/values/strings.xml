@@ -13,4 +13,6 @@
     <string name="FK">Fuck Karan</string>
     <string name="weight">Enter your Weight</string>
     <string name="Gender">Select your gender:</string>
+    <string name="about_us_1">The BUzztracker group comprises of Karanraj Chauhan, Rijish Ganguly, Rahul Jain, Anand Sanmukhani and Anirudh Sriram. \n\nWe are a group of Sophomore and Junior students majoring in Computer Engineering and this app was the final project
+for our Introduction to Software Engineering class under the supervision of Professor Douglas Densmore.\n\nHope you enjoy using our App and \nhope you stay safe!</string>
 </resources>
