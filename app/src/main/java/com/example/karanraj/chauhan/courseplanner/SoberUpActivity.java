@@ -128,7 +128,7 @@ public class SoberUpActivity extends AppCompatActivity {
             Log.d(TAG, "onValueChange: User Weight is "+ userWeight);
         }
         if(liquorGlass +vodkaShots+wineGlass+beerBottles==0){
-            Toast.makeText(SoberUpActivity.this,"Please add some drinks", Toast.LENGTH_LONG).show();
+            Toast.makeText(SoberUpActivity.this,"Please add at least one beverage to proceed", Toast.LENGTH_LONG).show();
             return;
         }
         ArrayList<Double> BACArrayList_final = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,userWeight,beerBottles,vodkaShots,wineGlass,liquorGlass);
