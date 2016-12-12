@@ -1,5 +1,13 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import android.util.Log;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import static com.example.karanraj.chauhan.courseplanner.R.string.weight;
+
 /**
  * Created by rijish on 12/6/16.
  * Functions to be used by app for calculation of BAC at different time intervals
@@ -7,28 +15,41 @@ package com.example.karanraj.chauhan.courseplanner;
 
 public class BACCalculatorFunctions {
 
-
+    private static final String TAG = "askc";
     final static double multiconstant = 5.14;
 
-    public static double soberalcoholcalculator(double genderConstant, double weight, int lightbeer, int regbeer, int wine, int liquor)
+    public static ArrayList<Double> soberalcoholcalculator(double genderConstant, double weight, int beer, int shotOfVodka, int wine, int liquor)
 
     {
-        double baclevel;
-        double total;
 
-        double lightbeeramount = lightbeer * 0.48; //in ounces
-        double regbeeramount = regbeer * 0.60;  //in ounces
+        ArrayList<Double> BAClevelsArray = new ArrayList<>();       //Create an array list to add multiple BACs
+        double baclevel=1;
+        double total;                       //total is the total amount of alcohol consumed
+
+        double beeramount = beer * 0.60; //in ounces
+        double vodkashotamount = shotOfVodka * 0.60;  //in ounces
         double wineamount = wine * 0.60; //inounces
-        double liquoramount = liquor * 0.50; //inounces
+        double liquoramount = liquor * 0.60; //inounces
 
-        total = lightbeeramount + regbeeramount + wineamount + liquoramount;
+        total = beeramount + vodkashotamount + wineamount + liquoramount;  //alcohol total
 
-        baclevel = (total * multiconstant) / (weight * genderConstant);
-        return baclevel;
+        int hour = 0;
+        while (true){
 
+            baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.015*hour);   //using bac formula to calculate bac levels with different  h (time)
+            baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));    //changing the double to display only two digits after the decimal
+            BAClevelsArray.add(baclevel);           // add bac value to the array list
+
+            if(baclevel<=0.05){
+                break;                          //break condition
+            }
+            Log.d(TAG, "soberalcoholcalculator: "+ baclevel );
+            hour++;                                 // time iterator (hour)
+        }
+        return BAClevelsArray;          //returns the array list including all bac levels
     }
 
-    public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type )
+    public static double pacerAlcoholCalculator(double genderConstant, double weight, int amount, String type ) //bac calculator for each drink at any given time
 
     {
         double baclevel;
@@ -39,7 +60,7 @@ public class BACCalculatorFunctions {
         switch (type){
             case  "Regular Beer (5%, 12oz)":
                             total = amount * 0.60;
-                            break;
+                            break;                                                          //drinks switch case
             case  "Light Beer (4%, 12oz)":
                             total = amount *0.48;
                             break;
@@ -69,7 +90,7 @@ public class BACCalculatorFunctions {
                             break;
         }
 
-        baclevel = (total * multiconstant) / (weight * genderConstant);
+        baclevel = (total * multiconstant) / (weight * genderConstant);                         //bac value return
         return baclevel;
 
     }

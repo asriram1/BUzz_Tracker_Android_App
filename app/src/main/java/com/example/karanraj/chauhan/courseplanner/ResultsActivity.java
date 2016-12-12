@@ -1,21 +1,36 @@
 package com.example.karanraj.chauhan.courseplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
+
+import android.widget.LinearLayout;
+
+import android.widget.ImageButton;
+
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
 import static android.R.attr.data;
+import static android.R.attr.focusable;
+import static android.R.attr.numberPickerStyle;
 
 /**
  * Created by karanraj on 12/7/16.
@@ -26,17 +41,30 @@ public class ResultsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: started");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
         Bundle data = getIntent().getExtras();
-        String previousActivityTag = data.getString("TAG");
+        final String previousActivityTag = data.getString("TAG");
 
-        Log.d(TAG, "onCreate: tag is " + previousActivityTag);
+        // Text view that will navigate to the previous activity
+        TextView previousTextView = (TextView) findViewById(R.id.results_previous_text_view);
+        previousTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: previous clicked");
+                if (previousActivityTag.equals("PacerActivity")) {
+                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
+                } else if (previousActivityTag.equals("SoberUpActivity")) {
+                    startActivity(new Intent(ResultsActivity.this, SoberUpActivity.class));
+                }
+                Log.d(TAG, "onClick: starting activity");
+            }
+        });
+
+        Log.d(TAG, "onCreate: listener set!!");
 
         if (previousActivityTag.equals("PacerActivity")) {
-            Log.d(TAG, "onCreate: pacer");
             ArrayList<BeverageIntake> receivedBeverageIntakes = data.getParcelableArrayList("beverageIntakesArrayList");
 
             // Sort the array list according to intake times
@@ -56,70 +84,188 @@ public class ResultsActivity extends AppCompatActivity {
                 intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
             }
 
+
+
+
             // Calculate BAC level at regular intervals
-            int rowcheck = 0;
-            int numevents = receivedBeverageIntakes.size();
-            int startTime = intakeTimes[0];
-            int endTime = intakeTimes[numevents - 1];//Check casting
-            /// TODO: 12/9/16 should this be end-start+1 ? app crashes when end = start 
-            int[] timeArray = new int[endTime - startTime];
-            double[] BACArray = new double[endTime - startTime];
-            BACArray[0] = 0;
-            int counter = 0;
+//            int rowcheck = 0;
+//            int numevents = receivedBeverageIntakes.size();
+//            int startTime = intakeTimes[0];
+//            int endTime = intakeTimes[numevents - 1];//Check casting
+//
+//            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
+//            BACArray[0] = 0;
+//            int counter = 0;
+//
+//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
+//            {
+//                timeArray[counter] = t;
+//                if (counter != 0) {
+//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+//                    if (BACArray[counter] < 0) {
+//                        BACArray[counter] = 0;
+//                    }
+//
+//                }
+//
+//                for (int r = rowcheck; r < numevents; r++) {
+//                    if (intakeTimes[r] > t) {
+//                        break;
+//                    } else {
+//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+//                        rowcheck++;
+//                    }
+//                }
+//
+//                counter++;
+//            }
 
-            for (int t = startTime; t <= endTime; t++) //iterate from first given time to last given time in array
-            {
-                timeArray[counter] = t;
-                if (counter != 0) {
-                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-                    if (BACArray[counter] < 0) {
-                        BACArray[counter] = 0;
-                    }
 
+            int[] timeArrayTest = {1000,1030,1100,1130,1200,1230,1300};
+            double[] bacArrayTest = {2.20,2.01,1.02,1.75,1.25,1.00,0.5};
+
+
+            // TODO: 12/10/16 anirudhs code. add beautified table here
+
+            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
+            BAC.setStretchAllColumns(true);
+            BAC.bringToFront();
+            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            BAC.setWeightSum(2);
+
+            tableLayoutParams.setMargins(1,1,1,1);
+
+            for(int i = 0; i < timeArrayTest.length; i++) {
+
+                TableRow tableRow = new TableRow(this);
+                tableRow.setGravity(Gravity.CENTER);
+                if (bacArrayTest[i] < 0.05) {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+                } else if (bacArrayTest[i] < 0.12) {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
+                } else {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.red));
                 }
+                tableRow.setLayoutParams(tableLayoutParams);
 
-                for (int r = rowcheck; r < numevents; r++) {
-                    if (intakeTimes[r] > t) {
-                        break;
-                    } else {
-                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-                        rowcheck++;
-                    }
-                }
+                TextView c1 = new TextView(this);
+                TextView c2 = new TextView(this);
+                c2.setPadding(0,8,0,8);
+                c1.setPadding(0,8,0,8);
+                c1.setText(""+intakeTimes[i]);
+                c2.setText(String.valueOf(""+intakeBAC[i]));
+                c1.setTextSize(20);
+                c2.setTextSize(20);
 
-                counter++;
-            }
+                tableRow.addView(c1);
+                tableRow.addView(c2);
+                BAC.addView(tableRow);
 
-            // TODO: 12/9/16 add values calculated from last step into thte table
-            // Get results table and add rows as needed
-            TableLayout ll = (TableLayout) findViewById(R.id.bac_levels_table_layout);
-            for (int i = 0; i < receivedBeverageIntakes.size(); i++) {
-                TableRow row = new TableRow(this);
-                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-                row.setLayoutParams(lp);
 
-                TextView tv = new TextView(this);
-                TextView qty = new TextView(this);
-                qty.setText("10");
-
-                row.addView(qty);
-                row.addView(tv);
-                ll.addView(row, i);
             }
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
-            Log.d(TAG, "onCreate: sobering up now");
-            int beerBottlesNum = data.getInt("beerBottleNum");
-            int vodkaShotsNum = data.getInt("vodkaShotNum");
-            int liquorGlassNum = data.getInt("liquorGlassNum");
-            int wineGlassNum = data.getInt("wineGlassNum");
-            int userWeightInput = data.getInt("userWeightVal");
-            double userGenderConstant = data.getDouble("genderConstantVal");
 
-            Toast.makeText(ResultsActivity.this, "number of beer bottles" + data.getInt("beerBottleNum"), Toast.LENGTH_LONG).show();
+            double[] bacValuesArray = data.getDoubleArray("bacArray");
+
+            Log.d(TAG, "received arra ylist of size"+ bacValuesArray.length);
+
+            for (double d : bacValuesArray) {
+                Log.d(TAG, "onCreate: double is "+d);
+            }
+
+            createResultTable(bacValuesArray);
+
+        }
+    }
+    
+    private void createResultTable(double[] bacValuesArray) {
+        Calendar calendar = Calendar.getInstance();
+        int hours = calendar.getTime().getHours();
+        int minutes = calendar.getTime().getMinutes();
+        DecimalFormat decimalFormat = new DecimalFormat("00");
+
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.BAC_table);
+        tableLayout.setStretchAllColumns(true);
+        tableLayout.setWeightSum(2);
+
+        // width, height, weight
+        TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        // setting margins
+        tableLayoutParams.setMargins(1,1,1,1);
+        
+        for (double currentBac : bacValuesArray) {
+            TableRow tableRow = new TableRow(this);
+
+            tableRow.setGravity(Gravity.CENTER);
+            if (currentBac < 0.05) {
+                tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+            } else if (currentBac < 0.12) {
+                tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
+            } else {
+                tableRow.setBackgroundColor(getResources().getColor(R.color.red));
+            }
+            tableRow.setLayoutParams(tableLayoutParams);
+
+            TextView timeTextView = new TextView(this);
+            TextView bacTextView = new TextView(this);
+            TextView separatorTextView = new TextView(this);
+            separatorTextView.setHeight(1);
+
+            timeTextView.setPadding(0,8,0,8);
+            bacTextView.setPadding(0,8,0,8);
+
+            timeTextView.setGravity(Gravity.CENTER);
+            bacTextView.setGravity(Gravity.CENTER);
+
+            timeTextView.setTextSize(20);
+            bacTextView.setTextSize(20);
+
+            timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
+            bacTextView.setText(""+currentBac);
+
+            tableRow.addView(timeTextView);
+            tableRow.addView(bacTextView);
+
+            tableLayout.addView(tableRow);
+
+            if (hours<23) {
+                hours++;
+            } else {
+                hours = 0;
+            }
+
         }
 
-    Log.d(TAG,"onCreate: nothing obtained");
+        // add sober now table row
+
+//        TableRow tableRow = new TableRow(this);
+//
+//        tableRow.setGravity(Gravity.CENTER);
+//        tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+//        tableRow.setLayoutParams(tableLayoutParams);
+//
+//        TextView timeTextView = new TextView(this);
+//        TextView bacTextView = new TextView(this);
+//        TextView separatorTextView = new TextView(this);
+//        separatorTextView.setHeight(1);
+//
+//        timeTextView.setPadding(0,8,0,8);
+//        bacTextView.setPadding(0,8,0,8);
+//
+//        timeTextView.setGravity(Gravity.CENTER);
+//        bacTextView.setGravity(Gravity.CENTER);
+//
+//        timeTextView.setTextSize(20);
+//        bacTextView.setTextSize(20);
+//
+//        timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
+//        bacTextView.setText("Sober Now!");
+//
+//        tableRow.addView(timeTextView);
+//        tableRow.addView(bacTextView);
+//
+//        tableLayout.addView(tableRow);
     }
 }
-

@@ -116,6 +116,19 @@ public class PacerActivity extends AppCompatActivity {
 
         final float sourceTextSize = ((TextView) findViewById(R.id.label_quantity)).getTextSize();
 
+        Button deleteButton = (Button) findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (beverageIntakes.size()>0) {
+                    beverageIntakes.remove(beverageIntakes.size() - 1);
+                    mBeverageIntakesTable.removeViewAt(mBeverageIntakesTable.getChildCount()-1);
+                } else {
+                    Toast.makeText(PacerActivity.this, "No beverages added yet", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         // When add button is clicked, the current selections in Spinners are added to the appropriate AraryLists
         Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -172,12 +185,9 @@ public class PacerActivity extends AppCompatActivity {
 
                 TextView tv = new TextView(PacerActivity.this);
                 tv.setPadding(8,8,8,8);
-                tv.setText("Consumed" + current.getQuantity() + "x " + current.getName() + " at " + current.getTime());
-                // FIXME: 12/8/16 no display when appearance is set to medium
-//                tv.setTextSize(android.R.attr.textAppearanceMedium);
+                tv.setText(quantity + "x " + name + " at " + time);
                 tv.setTextSize(sourceTextSize / getResources().getDisplayMetrics().density);
                 tr.addView(tv);
-                // TODO: 12/8/16 fix scrolling
 
                 mBeverageIntakesTable.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
@@ -186,7 +196,7 @@ public class PacerActivity extends AppCompatActivity {
         });
 
         // Text view that will navigate to the previous activity
-        TextView previousTextView = (TextView) findViewById(R.id.previous_text_view);
+        TextView previousTextView = (TextView) findViewById(R.id.pacer_previous_text_view);
         previousTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -195,7 +205,7 @@ public class PacerActivity extends AppCompatActivity {
         });
 
         // Text view that will navigate to the next activity
-        TextView nextTextView = (TextView) findViewById(R.id.next_text_view);
+        TextView nextTextView = (TextView) findViewById(R.id.pacer_next_text_view);
         nextTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
