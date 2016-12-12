@@ -37,6 +37,7 @@
         android:layout_marginTop="@dimen/main_activity_button_margin"
         android:padding="24dp"
         android:text="@string/sober_up_button_text"
+        android:src="@drawable/ic_sober_up_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <Button
