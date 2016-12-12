@@ -84,64 +84,62 @@ public class ResultsActivity extends AppCompatActivity {
                 intakeBAC[i] = receivedBeverageIntakes.get(i).getBacAdded();
             }
 
-
-
-
             // Calculate BAC level at regular intervals
-//            int rowcheck = 0;
-//            int numevents = receivedBeverageIntakes.size();
-//            int startTime = intakeTimes[0];
-//            int endTime = intakeTimes[numevents - 1];//Check casting
-//
-//            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-//            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-//            BACArray[0] = 0;
-//            int counter = 0;
-//
-//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-//            {
-//                timeArray[counter] = t;
-//                if (counter != 0) {
-//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-//                    if (BACArray[counter] < 0) {
-//                        BACArray[counter] = 0;
-//                    }
-//
-//                }
-//
-//                for (int r = rowcheck; r < numevents; r++) {
-//                    if (intakeTimes[r] > t) {
-//                        break;
-//                    } else {
-//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-//                        rowcheck++;
-//                    }
-//                }
-//
-//                counter++;
-//            }
+            int rowcheck = 0;
+            int numevents = receivedBeverageIntakes.size();
+            int startTime = intakeTimes[0];
+            int endTime = intakeTimes[numevents - 1];//Check casting
 
+            startTime = startTime/100;
+            endTime = endTime/100;
+            int[] timeArray = new int[(endTime - startTime)+1];
+            double[] BACArray = new double[(endTime - startTime)+1];
+            BACArray[0] = 0;
+            int counter = 0;
 
-            int[] timeArrayTest = {1000,1030,1100,1130,1200,1230,1300};
-            double[] bacArrayTest = {2.20,2.01,1.02,1.75,1.25,1.00,0.5};
+            for (int t = startTime*100; t < endTime*100; t = t+100) //iterate from first given time to last given time in array
+            {
+                timeArray[counter] = t;
+                if (counter != 0) {
+                    BACArray[counter] = BACArray[counter - 1] - 0.015; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+                    if (BACArray[counter] < 0) {
+                        BACArray[counter] = 0;
+                    }
+
+                }
+
+                for (int r = rowcheck; r < numevents; r++) {
+                    if (intakeTimes[r] > t) {
+                        break;
+                    } else {
+                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+                        rowcheck++;
+                    }
+                }
+
+                counter++;
+            }
+//
+//            int[] timeArrayTest = {1000,1030,1100,1130,1200,1230,1300};
+//            double[] bacArrayTest = {2.20,2.01,1.02,1.75,1.25,1.00,0.5};
 
 
             // TODO: 12/10/16 anirudhs code. add beautified table here
 
-            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
-            BAC.setStretchAllColumns(true);
-            BAC.setWeightSum(2);
-//            BAC.bringToFront();
+            TableLayout pacerResultsTableLayout = (TableLayout)findViewById(R.id.BAC_table);
+            pacerResultsTableLayout.setStretchAllColumns(true);
+            pacerResultsTableLayout.setWeightSum(2);
+//            pacerResultsTableLayout.bringToFront();
             TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
             tableLayoutParams.setMargins(1,1,1,1);
 
-            for(int i = 0; i < timeArrayTest.length-1; i++) {
+            for(int i = 0; i < timeArray.length-1; i++) {
 
                 TableRow tableRow = new TableRow(this);
                 tableRow.setGravity(Gravity.CENTER);
-                if (bacArrayTest[i] < 0.05) {
+                if (BACArray[i] < 0.05) {
                     tableRow.setBackgroundColor(getResources().getColor(R.color.green));
-                } else if (bacArrayTest[i] < 0.12) {
+                } else if (BACArray[i] < 0.12) {
                     tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
                 } else {
                     tableRow.setBackgroundColor(getResources().getColor(R.color.red));
@@ -157,17 +155,15 @@ public class ResultsActivity extends AppCompatActivity {
                 timeTextView.setGravity(Gravity.CENTER);
                 bacTextView.setGravity(Gravity.CENTER);
 
-                timeTextView.setText(""+timeArrayTest[i]);
-                bacTextView.setText(String.valueOf(""+bacArrayTest[i]));
+                timeTextView.setText(""+timeArray[i]);
+                bacTextView.setText(String.valueOf(""+BACArray[i]));
 
                 timeTextView.setTextSize(20);
                 bacTextView.setTextSize(20);
 
                 tableRow.addView(timeTextView);
                 tableRow.addView(bacTextView);
-                BAC.addView(tableRow);
-
-
+                pacerResultsTableLayout.addView(tableRow);
             }
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
