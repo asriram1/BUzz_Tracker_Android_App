@@ -146,12 +146,13 @@ public class ResultsActivity extends AppCompatActivity {
                 c1.setPadding(0,8,0,8);
                 c1.setText(""+intakeTimes[i]);
                 c2.setText(String.valueOf(""+intakeBAC[i]));
+                c1.setTextSize(20);
+                c2.setTextSize(20);
 
                 tr.addView(c1);
                 tr.addView(c2);
                 BAC.addView(tr);
-                c1.setTextSize(20);
-                c2.setTextSize(20);
+
 
             }
 
@@ -240,7 +241,12 @@ public class ResultsActivity extends AppCompatActivity {
             TableRow tableRow = new TableRow(this);
 
             tableRow.setGravity(Gravity.CENTER);
-            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+            if (currentBac < 0.12) {
+                tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
+            } else {
+                tableRow.setBackgroundColor(getResources().getColor(R.color.red));
+            }
+//            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
             tableRow.setLayoutParams(tableLayoutParams);
 
             TextView timeTextView = new TextView(this);
@@ -273,10 +279,12 @@ public class ResultsActivity extends AppCompatActivity {
 
         }
 
+        // add sober now table row
+
         TableRow tableRow = new TableRow(this);
 
         tableRow.setGravity(Gravity.CENTER);
-        tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
+        tableRow.setBackgroundColor(getResources().getColor(R.color.green));
         tableRow.setLayoutParams(tableLayoutParams);
 
         TextView timeTextView = new TextView(this);
