@@ -258,13 +258,14 @@
 
         <ImageView
             android:paddingTop="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
             android:paddingBottom="8dp"
             android:layout_alignParentLeft="true"
             android:id="@+id/sober_previous_arrow_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
-            android:clickable="true"
             android:onClick="onPrevButtonClick"
             android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
 
@@ -285,6 +286,7 @@
             android:layout_alignParentRight="true"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:id="@+id/sober_next_arrow_image_view"
             android:clickable="true"
             android:onClick="goButtonPressed"

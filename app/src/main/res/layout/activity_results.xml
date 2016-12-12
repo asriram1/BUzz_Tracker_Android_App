@@ -16,6 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:scaleType="fitCenter"
@@ -42,9 +44,9 @@
 
     <ScrollView
         android:id="@+id/results_scroll_view"
-        android:layout_above="@id/results_navigation_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/results_navigation_layout">
 
         <TableLayout
             android:id="@+id/BAC_table"
@@ -53,17 +55,16 @@
             android:gravity="center"
             android:padding="16dp">
 
-            <TableRow
-                android:background="#CFD8DC">
+            <TableRow android:background="#CFD8DC">
 
                 <TextView
-                    android:backgroundTint="#CFD8DC"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
+                    android:backgroundTint="#CFD8DC"
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="Time"
@@ -71,13 +72,13 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:backgroundTint="#CFD8DC"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
+                    android:backgroundTint="#CFD8DC"
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="BAC Level"

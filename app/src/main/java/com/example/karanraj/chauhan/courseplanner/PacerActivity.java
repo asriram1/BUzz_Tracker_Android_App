@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -204,9 +205,41 @@ public class PacerActivity extends AppCompatActivity {
             }
         });
 
+        // Image view that will navigate to the previous activity
+        ImageView previousImageView = (ImageView) findViewById(R.id.pacer_previous_arrow_image_view);
+        previousImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PacerActivity.this, MainActivity.class));
+            }
+        });
+
+
         // Text view that will navigate to the next activity
         TextView nextTextView = (TextView) findViewById(R.id.pacer_next_text_view);
         nextTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Next activity will not be started until all the required user input is received
+                if (beverageIntakes.size() == 0) {
+                    Toast.makeText(PacerActivity.this, "Please add at least one beverage to proceed",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Add the array list of BeverageIntake objects and current activity identifier (TAG) and
+                // start the next activity
+                Intent intentToResultsActivity = new Intent(PacerActivity.this, ResultsActivity.class);
+                intentToResultsActivity.putParcelableArrayListExtra("beverageIntakesArrayList", beverageIntakes);
+                intentToResultsActivity.putExtra("TAG", TAG);
+                startActivity(intentToResultsActivity);
+            }
+        });
+
+        // Text view that will navigate to the next activity
+        ImageView nextImageView = (ImageView) findViewById(R.id.pacer_next_arrow_image_view);
+        nextImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

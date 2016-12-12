@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBDEFB">
+    android:background="#BBDEFB"
+    android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
         android:text="@string/about_us_1"
         android:textSize="25dp"
-        android:textStyle="bold"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"/>
+        android:textStyle="bold" />
+
     <RelativeLayout
         android:id="@+id/navigation_layout_aboutus"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
         android:padding="8dp">
 
         <ImageView
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:layout_alignParentLeft="true"
             android:id="@+id/sober_previous_arrow_image_view_aboutus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
+            android:layout_alignParentLeft="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:onClick="onPrevButtonClick_aboutus"
-            android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp" />
 
         <TextView
-            android:textColor="#FFFFFF"
-            android:background="?attr/selectableItemBackgroundBorderless"
             android:id="@+id/sober_previous_text_view_aboutus"
-            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/sober_previous_arrow_image_view_aboutus"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/sober_previous_arrow_image_view_aboutus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
             android:onClick="onPrevButtonClick_aboutus"
             android:padding="8dp"
-            android:text="PREV" />
-
-
+            android:text="PREV"
+            android:textColor="#FFFFFF" />
 
 
     </RelativeLayout>
