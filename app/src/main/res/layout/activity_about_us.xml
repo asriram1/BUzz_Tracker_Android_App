@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#BBDEFB">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_us_1"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"/>
+    <RelativeLayout
+        android:id="@+id/navigation_layout_aboutus"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
-</LinearLayout>
+        <ImageView
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/sober_previous_arrow_image_view_aboutus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:onClick="onPrevButtonClick_aboutus"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
+
+        <TextView
+            android:textColor="#FFFFFF"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/sober_previous_text_view_aboutus"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/sober_previous_arrow_image_view_aboutus"
+            android:layout_centerVertical="true"
+            android:onClick="onPrevButtonClick_aboutus"
+            android:padding="8dp"
+            android:text="PREV" />
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
