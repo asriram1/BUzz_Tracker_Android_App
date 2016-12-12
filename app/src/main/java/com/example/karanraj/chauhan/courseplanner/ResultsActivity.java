@@ -3,24 +3,16 @@ package com.example.karanraj.chauhan.courseplanner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 
-import android.widget.LinearLayout;
-
-import android.widget.ImageButton;
-
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -28,10 +20,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static android.R.attr.data;
-import static android.R.attr.focusable;
-import static android.R.attr.numberPickerStyle;
-import static android.R.attr.start;
 
 /**
  * Created by karanraj on 12/7/16.
@@ -52,6 +40,21 @@ public class ResultsActivity extends AppCompatActivity {
         // Text view that will navigate to the previous activity
         TextView previousTextView = (TextView) findViewById(R.id.results_previous_text_view);
         previousTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: previous clicked");
+                if (previousActivityTag.equals("PacerActivity")) {
+                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
+                } else if (previousActivityTag.equals("SoberUpActivity")) {
+                    startActivity(new Intent(ResultsActivity.this, SoberUpActivity.class));
+                }
+                Log.d(TAG, "onClick: starting activity");
+            }
+        });
+
+        // Image view that will navigate to the previous activity
+        ImageView previousImageView = (ImageView) findViewById(R.id.results_previous_arrow_image_view);
+        previousImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: previous clicked");
