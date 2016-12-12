@@ -35,7 +35,7 @@ public class ResourcesActivity extends AppCompatActivity {
 
     }
 
-    public void onPrevButtonClick_aboutus(View view){
+    public void onPrevButtonClick_resources(View view){
         Intent intentToMainActivity = new Intent(ResourcesActivity.this, MainActivity.class);
         startActivity(intentToMainActivity);
 
