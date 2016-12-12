@@ -88,38 +88,40 @@ public class ResultsActivity extends AppCompatActivity {
 
 
             // Calculate BAC level at regular intervals
-//            int rowcheck = 0;
-//            int numevents = receivedBeverageIntakes.size();
-//            int startTime = intakeTimes[0];
-//            int endTime = intakeTimes[numevents - 1];//Check casting
-//
-//            int[] timeArray = new int[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-//            double[] BACArray = new double[(int)(Math.ceil((endTime - startTime)/100)*2)+1];
-//            BACArray[0] = 0;
-//            int counter = 0;
-//
-//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-//            {
-//                timeArray[counter] = t;
-//                if (counter != 0) {
-//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-//                    if (BACArray[counter] < 0) {
-//                        BACArray[counter] = 0;
-//                    }
-//
-//                }
-//
-//                for (int r = rowcheck; r < numevents; r++) {
-//                    if (intakeTimes[r] > t) {
-//                        break;
-//                    } else {
-//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-//                        rowcheck++;
-//                    }
-//                }
-//
-//                counter++;
-//            }
+            int rowcheck = 0;
+            int numevents = receivedBeverageIntakes.size();
+            int startTime = intakeTimes[0];
+            int endTime = intakeTimes[numevents - 1];//Check casting
+
+            startTime = startTime/100;
+            endTime = endTime/100;
+            int[] timeArray = new int[(int)((endTime - startTime)+1)];
+            double[] BACArray = new double[(int)((endTime - startTime)+1)];
+            BACArray[0] = 0;
+            int counter = 0;
+
+            for (int t = startTime*100; t < endTime*100; t = t+100) //iterate from first given time to last given time in array
+            {
+                timeArray[counter] = t;
+                if (counter != 0) {
+                    BACArray[counter] = BACArray[counter - 1] - 0.015; // give the t-1 value to t DEREFERENCE ACCORDINGLY
+                    if (BACArray[counter] < 0) {
+                        BACArray[counter] = 0;
+                    }
+
+                }
+
+                for (int r = rowcheck; r < numevents; r++) {
+                    if (intakeTimes[r] > t) {
+                        break;
+                    } else {
+                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
+                        rowcheck++;
+                    }
+                }
+
+                counter++;
+            }
 
 
 
@@ -144,8 +146,8 @@ public class ResultsActivity extends AppCompatActivity {
                 TextView c2 = new TextView(this);
                 c2.setPadding(0,8,0,8);
                 c1.setPadding(0,8,0,8);
-                c1.setText(""+intakeTimes[i]);
-                c2.setText(String.valueOf(""+intakeBAC[i]));
+                c1.setText(""+timeArray[i]);
+                c2.setText(String.valueOf(""+BACArray[i]));
                 c1.setTextSize(20);
                 c2.setTextSize(20);
 
@@ -155,43 +157,6 @@ public class ResultsActivity extends AppCompatActivity {
 
 
             }
-
-
-//            // FIXME: 12/9/16 array out of bounds error for loop
-//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-//            {
-//                timeArray[counter] = t;
-//                if (counter != 0) {
-//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-//                    if (BACArray[counter] < 0) {
-//                        BACArray[counter] = 0;
-//                    }
-//
-//                }
-//
-//                for (int r = rowcheck; r < numevents; r++) {
-//                    if (intakeTimes[r] > t) {
-//                        break;
-//                    } else {
-//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-//                        rowcheck++;
-//                    }
-//                }
-//
-//                counter++;
-//            }
-//
-//            for (int i = 0; i < BACArray.length; i++) {
-//                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
-//            }
-
-
-//            previousTextView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
-//                }
-//            });
 
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
