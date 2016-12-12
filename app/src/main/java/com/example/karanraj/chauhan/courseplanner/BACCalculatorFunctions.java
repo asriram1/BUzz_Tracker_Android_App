@@ -37,7 +37,7 @@ public class BACCalculatorFunctions {
         while (true){
 
             baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.015*hour);   //using bac formula to calculate bac levels with different  h (time)
-            baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));    //changing the double to display only two digits after the decimal
+            baclevel =Double.parseDouble(new DecimalFormat("##.###").format(baclevel));    //changing the double to display only two digits after the decimal
             BAClevelsArray.add(baclevel);           // add bac value to the array list
 
             if(baclevel<=0.05){

@@ -18,5 +18,9 @@ public class AboutUsActivity extends AppCompatActivity {
 
 
     }
+    public void onPrevButtonClick_aboutus(View view){
+        Intent intentToMainActivity = new Intent(AboutUsActivity.this, MainActivity.class);
+        startActivity(intentToMainActivity);
 
+    }
 }
