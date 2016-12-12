@@ -49,5 +49,18 @@
         android:layout_below="@+id/phone"
         android:layout_marginTop="24dp"
         android:text="24 Hr Helpline: (800) 222-1222" />
+    <TextView
+        android:id="@+id/alcoholhelplinelink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ambulance"
+        android:paddingTop="24dp"
+        android:layout_marginLeft="58dp"
+        android:text="Read more about alocohol poisoning and preventitive measures at: \n\ http://drugabuse.com/alcohol-poisoning-you-can-save-a-life-in-less-than-10-steps/ "
+        />
+
+
+
+
 
 </RelativeLayout>
