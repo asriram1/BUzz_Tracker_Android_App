@@ -156,6 +156,7 @@ public class ResultsActivity extends AppCompatActivity {
                 timeTextView.setGravity(Gravity.CENTER);
                 bacTextView.setGravity(Gravity.CENTER);
 
+//                Log.d(TAG, "onCreate:timearray[i] "+timeArray[i]+" "+decimalFormat.format(timeArray[i]/100));
                 timeTextView.setText((""+decimalFormat.format(timeArray[i]/100)+":00"));
                 bacTextView.setText(new DecimalFormat("0.000").format(BACArray[i]));
 
