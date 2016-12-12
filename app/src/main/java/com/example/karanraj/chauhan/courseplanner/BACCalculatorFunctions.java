@@ -36,7 +36,7 @@ public class BACCalculatorFunctions {
         int hour = 0;
         while (true){
 
-            baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.15*hour);   //using bac formula to calculate bac levels with different  h (time)
+            baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.015*hour);   //using bac formula to calculate bac levels with different  h (time)
             baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));    //changing the double to display only two digits after the decimal
             if(baclevel<=0.08){
                 break;                          //break condition
