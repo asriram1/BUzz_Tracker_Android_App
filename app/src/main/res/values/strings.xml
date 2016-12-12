@@ -4,9 +4,9 @@
     <string name="pacer_button_text">PACER</string>
     <string name="resources_button_text">Resources</string>
     <string name="about_us_button_text">About Us</string>
-    <string name="disclaimer_text_view_text">DISCLAIMER: orem ipsum dolor sit amet, venenatis tortor diam elit ligula, wisi ullamcorper, libero nibh ut cursus maecenas, pharetra nulla velit.</string>
+    <string name="disclaimer_text">DISCLAIMER: This app gives only an approximate estimation of BAC of user. Please be careful when you drink.</string>
 
-    <string name="instructions_text_view">Select Sober Up! to estimate time from now to sobering up. Select Pacer to pace your drinking</string>
+    <string name="instructions_text_view">Select Sober Up! to estimate time from now to sober up. Select Pacer to pace your drinking</string>
     <string name="page_name_1">Sober Up!</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>

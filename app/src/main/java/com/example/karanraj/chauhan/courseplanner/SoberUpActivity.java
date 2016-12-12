@@ -128,7 +128,7 @@ public class SoberUpActivity extends AppCompatActivity {
             Log.d(TAG, "onValueChange: User Weight is "+ userWeight);
         }
         if(liquorGlass +vodkaShots+wineGlass+beerBottles==0){
-            Toast.makeText(SoberUpActivity.this,"Please add some drinks", Toast.LENGTH_LONG).show();
+            Toast.makeText(SoberUpActivity.this,"Please add at least one beverage to proceed", Toast.LENGTH_LONG).show();
             return;
         }
         ArrayList<Double> BACArrayList_final = BACCalculatorFunctions.soberalcoholcalculator(genderConstant,userWeight,beerBottles,vodkaShots,wineGlass,liquorGlass);
@@ -162,18 +162,18 @@ public class SoberUpActivity extends AppCompatActivity {
     public void onBeerButtonClick(View view){
 
 
-        Toast.makeText(SoberUpActivity.this,"Beer ", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"12 fl oz - a standard beer bottle", Toast.LENGTH_LONG).show();
 
 
     }
     public void onWineButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Wine XXXXXXXXXX", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"5 fl oz of Table Wine", Toast.LENGTH_LONG).show();
     }
     public void onWhiskeyButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Whiskey XXXXXXXXXX", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"1.5 fl oz of distilled liquor (Whiskey,Rum...)", Toast.LENGTH_LONG).show();
     }
     public void onVodkaButtonClick(View view){
-        Toast.makeText(SoberUpActivity.this,"Vodka XXXXXXXXXX", Toast.LENGTH_LONG).show();
+        Toast.makeText(SoberUpActivity.this,"One shot of any 80 proof drink (Vodka, Tequila....)", Toast.LENGTH_LONG).show();
     }
     public void onRadioButtonClicked_sober(View view) {
         // Is the button now checked?

@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/disclaimer_text_view_text"
+        android:text="@string/disclaimer_text"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
         android:textStyle="italic"/>
 

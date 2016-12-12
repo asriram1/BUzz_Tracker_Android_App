@@ -163,7 +163,7 @@ public class PacerActivity extends AppCompatActivity {
 
                 // If the weight is 0, i.e., user did not input weight, then prompt the user for weight
                 if (mUserWeight == 0) {
-                    Toast.makeText(PacerActivity.this, "Please indicate your weight in lbs", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PacerActivity.this, "Please enter your weight", Toast.LENGTH_LONG).show();
                     return;
                 }
 
