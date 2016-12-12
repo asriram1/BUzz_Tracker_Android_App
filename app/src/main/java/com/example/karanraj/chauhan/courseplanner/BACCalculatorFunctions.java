@@ -38,7 +38,7 @@ public class BACCalculatorFunctions {
 
             baclevel = ((total * multiconstant) / (weight * genderConstant) - 0.015*hour);   //using bac formula to calculate bac levels with different  h (time)
             baclevel =Double.parseDouble(new DecimalFormat("##.##").format(baclevel));    //changing the double to display only two digits after the decimal
-            if(baclevel<=0.08){
+            if(baclevel<=0.05){
                 break;                          //break condition
             }
             Log.d(TAG, "soberalcoholcalculator: "+ baclevel );
