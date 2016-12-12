@@ -53,9 +53,11 @@
             android:gravity="center"
             android:padding="16dp">
 
-            <TableRow>
+            <TableRow
+                android:background="#CFD8DC">
 
                 <TextView
+                    android:backgroundTint="#CFD8DC"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
@@ -69,6 +71,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:backgroundTint="#CFD8DC"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="1"
