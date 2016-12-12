@@ -122,6 +122,9 @@ public class ResultsActivity extends AppCompatActivity {
 //            }
 
 
+            int[] timeArrayTest = {1000,1030,1100,1130,1200,1230,1300};
+            double[] bacArrayTest = {2.20,2.01,1.02,1.75,1.25,1.00,0.5};
+
 
             // TODO: 12/10/16 anirudhs code. add beautified table here
 
@@ -133,12 +136,18 @@ public class ResultsActivity extends AppCompatActivity {
 
             tableLayoutParams.setMargins(1,1,1,1);
 
-            for(int i = 0; i < receivedBeverageIntakes.size(); i++) {
+            for(int i = 0; i < timeArrayTest.length; i++) {
 
-                TableRow tr = new TableRow(this);
-                tr.setGravity(Gravity.CENTER);
-                tr.setBackgroundColor(getResources().getColor(R.color.grey));
-                tr.setLayoutParams(tableLayoutParams);
+                TableRow tableRow = new TableRow(this);
+                tableRow.setGravity(Gravity.CENTER);
+                if (bacArrayTest[i] < 0.05) {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+                } else if (bacArrayTest[i] < 0.12) {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
+                } else {
+                    tableRow.setBackgroundColor(getResources().getColor(R.color.red));
+                }
+                tableRow.setLayoutParams(tableLayoutParams);
 
                 TextView c1 = new TextView(this);
                 TextView c2 = new TextView(this);
@@ -149,58 +158,14 @@ public class ResultsActivity extends AppCompatActivity {
                 c1.setTextSize(20);
                 c2.setTextSize(20);
 
-                tr.addView(c1);
-                tr.addView(c2);
-                BAC.addView(tr);
+                tableRow.addView(c1);
+                tableRow.addView(c2);
+                BAC.addView(tableRow);
 
 
             }
 
-
-//            // FIXME: 12/9/16 array out of bounds error for loop
-//            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
-//            {
-//                timeArray[counter] = t;
-//                if (counter != 0) {
-//                    BACArray[counter] = BACArray[counter - 1] - 0.15; // give the t-1 value to t DEREFERENCE ACCORDINGLY
-//                    if (BACArray[counter] < 0) {
-//                        BACArray[counter] = 0;
-//                    }
-//
-//                }
-//
-//                for (int r = rowcheck; r < numevents; r++) {
-//                    if (intakeTimes[r] > t) {
-//                        break;
-//                    } else {
-//                        BACArray[counter] = BACArray[counter] + intakeBAC[r];//calculate and add BAC to appropriate index
-//                        rowcheck++;
-//                    }
-//                }
-//
-//                counter++;
-//            }
-//
-//            for (int i = 0; i < BACArray.length; i++) {
-//                Log.d(TAG, "bac is "+BACArray[i]+" at time "+timeArray[i]);
-//            }
-
-
-//            previousTextView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
-//                }
-//            });
-
-
         } else if(previousActivityTag.equals("SoberUpActivity")) {
-//            int beerBottlesNum = data.getInt("beerBottleNum");
-//            int vodkaShotsNum = data.getInt("vodkaShotNum");
-//            int liquorGlassNum = data.getInt("liquorGlassNum");
-//            int wineGlassNum = data.getInt("wineGlassNum");
-//            int userWeightInput = data.getInt("userWeightVal");
-//            double userGenderConstant = data.getDouble("genderConstantVal");
 
             double[] bacValuesArray = data.getDoubleArray("bacArray");
 
@@ -209,13 +174,6 @@ public class ResultsActivity extends AppCompatActivity {
             for (double d : bacValuesArray) {
                 Log.d(TAG, "onCreate: double is "+d);
             }
-            
-//            ArrayList<Double> bacValuesArrayList = new ArrayList<>();
-//            bacValuesArrayList.add(1.2);
-//            bacValuesArrayList.add(1.05);
-//            bacValuesArrayList.add(0.9);
-//            bacValuesArrayList.add(0.75);
-//            bacValuesArrayList.add(0.6);
 
             createResultTable(bacValuesArray);
 
@@ -241,12 +199,13 @@ public class ResultsActivity extends AppCompatActivity {
             TableRow tableRow = new TableRow(this);
 
             tableRow.setGravity(Gravity.CENTER);
-            if (currentBac < 0.12) {
+            if (currentBac < 0.05) {
+                tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+            } else if (currentBac < 0.12) {
                 tableRow.setBackgroundColor(getResources().getColor(R.color.yellow));
             } else {
                 tableRow.setBackgroundColor(getResources().getColor(R.color.red));
             }
-//            tableRow.setBackgroundColor(getResources().getColor(R.color.grey));
             tableRow.setLayoutParams(tableLayoutParams);
 
             TextView timeTextView = new TextView(this);
@@ -281,32 +240,32 @@ public class ResultsActivity extends AppCompatActivity {
 
         // add sober now table row
 
-        TableRow tableRow = new TableRow(this);
-
-        tableRow.setGravity(Gravity.CENTER);
-        tableRow.setBackgroundColor(getResources().getColor(R.color.green));
-        tableRow.setLayoutParams(tableLayoutParams);
-
-        TextView timeTextView = new TextView(this);
-        TextView bacTextView = new TextView(this);
-        TextView separatorTextView = new TextView(this);
-        separatorTextView.setHeight(1);
-
-        timeTextView.setPadding(0,8,0,8);
-        bacTextView.setPadding(0,8,0,8);
-
-        timeTextView.setGravity(Gravity.CENTER);
-        bacTextView.setGravity(Gravity.CENTER);
-
-        timeTextView.setTextSize(20);
-        bacTextView.setTextSize(20);
-
-        timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
-        bacTextView.setText("Sober Now!");
-
-        tableRow.addView(timeTextView);
-        tableRow.addView(bacTextView);
-
-        tableLayout.addView(tableRow);
+//        TableRow tableRow = new TableRow(this);
+//
+//        tableRow.setGravity(Gravity.CENTER);
+//        tableRow.setBackgroundColor(getResources().getColor(R.color.green));
+//        tableRow.setLayoutParams(tableLayoutParams);
+//
+//        TextView timeTextView = new TextView(this);
+//        TextView bacTextView = new TextView(this);
+//        TextView separatorTextView = new TextView(this);
+//        separatorTextView.setHeight(1);
+//
+//        timeTextView.setPadding(0,8,0,8);
+//        bacTextView.setPadding(0,8,0,8);
+//
+//        timeTextView.setGravity(Gravity.CENTER);
+//        bacTextView.setGravity(Gravity.CENTER);
+//
+//        timeTextView.setTextSize(20);
+//        bacTextView.setTextSize(20);
+//
+//        timeTextView.setText(""+decimalFormat.format(hours)+":"+decimalFormat.format(minutes));
+//        bacTextView.setText("Sober Now!");
+//
+//        tableRow.addView(timeTextView);
+//        tableRow.addView(bacTextView);
+//
+//        tableLayout.addView(tableRow);
     }
 }
