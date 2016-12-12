@@ -229,7 +229,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         }
     }
-    
+
     private void createResultTable(double[] bacValuesArray) {
         Calendar calendar = Calendar.getInstance();
         int hours = calendar.getTime().getHours();
@@ -243,7 +243,7 @@ public class ResultsActivity extends AppCompatActivity {
         TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
         // setting margins
         tableLayoutParams.setMargins(1,1,1,1);
-        
+
         for (double currentBac : bacValuesArray) {
             TableRow tableRow = new TableRow(this);
 
