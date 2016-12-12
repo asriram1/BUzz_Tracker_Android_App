@@ -130,13 +130,12 @@ public class ResultsActivity extends AppCompatActivity {
 
             TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
             BAC.setStretchAllColumns(true);
-            BAC.bringToFront();
-            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
             BAC.setWeightSum(2);
-
+//            BAC.bringToFront();
+            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
             tableLayoutParams.setMargins(1,1,1,1);
 
-            for(int i = 0; i < timeArrayTest.length; i++) {
+            for(int i = 0; i < timeArrayTest.length-1; i++) {
 
                 TableRow tableRow = new TableRow(this);
                 tableRow.setGravity(Gravity.CENTER);
@@ -149,17 +148,23 @@ public class ResultsActivity extends AppCompatActivity {
                 }
                 tableRow.setLayoutParams(tableLayoutParams);
 
-                TextView c1 = new TextView(this);
-                TextView c2 = new TextView(this);
-                c2.setPadding(0,8,0,8);
-                c1.setPadding(0,8,0,8);
-                c1.setText(""+intakeTimes[i]);
-                c2.setText(String.valueOf(""+intakeBAC[i]));
-                c1.setTextSize(20);
-                c2.setTextSize(20);
+                TextView timeTextView = new TextView(this);
+                TextView bacTextView = new TextView(this);
 
-                tableRow.addView(c1);
-                tableRow.addView(c2);
+                timeTextView.setPadding(0,8,0,8);
+                bacTextView.setPadding(0,8,0,8);
+
+                timeTextView.setGravity(Gravity.CENTER);
+                bacTextView.setGravity(Gravity.CENTER);
+
+                timeTextView.setText(""+timeArrayTest[i]);
+                bacTextView.setText(String.valueOf(""+bacArrayTest[i]));
+
+                timeTextView.setTextSize(20);
+                bacTextView.setTextSize(20);
+
+                tableRow.addView(timeTextView);
+                tableRow.addView(bacTextView);
                 BAC.addView(tableRow);
 
 
