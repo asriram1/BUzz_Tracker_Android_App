@@ -85,6 +85,8 @@ public class ResultsActivity extends AppCompatActivity {
             }
 
 
+
+
             // Calculate BAC level at regular intervals
 //            int rowcheck = 0;
 //            int numevents = receivedBeverageIntakes.size();
@@ -123,19 +125,36 @@ public class ResultsActivity extends AppCompatActivity {
 
             // TODO: 12/10/16 anirudhs code. add beautified table here
 
-//            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
-//            BAC.setStretchAllColumns(true);
-//            BAC.bringToFront();
-//            for(int i = 0; i < numevents; i++){
-//                TableRow tr =  new TableRow(this);
-//                TextView c1 = new TextView(this);
-//                c1.setText(timeArray[i]);
-//                TextView c2 = new TextView(this);
-//                c2.setText(String.valueOf(BACArray[i]));
-//                tr.addView(c1);
-//                tr.addView(c2);
-//                BAC.addView(tr);
-//            }
+            TableLayout BAC = (TableLayout)findViewById(R.id.BAC_table);
+            BAC.setStretchAllColumns(true);
+            BAC.bringToFront();
+            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            BAC.setWeightSum(2);
+
+            tableLayoutParams.setMargins(1,1,1,1);
+
+            for(int i = 0; i < receivedBeverageIntakes.size(); i++) {
+
+                TableRow tr = new TableRow(this);
+                tr.setGravity(Gravity.CENTER);
+                tr.setBackgroundColor(getResources().getColor(R.color.grey));
+                tr.setLayoutParams(tableLayoutParams);
+
+                TextView c1 = new TextView(this);
+                TextView c2 = new TextView(this);
+                c2.setPadding(0,8,0,8);
+                c1.setPadding(0,8,0,8);
+                c1.setText(""+intakeTimes[i]);
+                c2.setText(String.valueOf(""+intakeBAC[i]));
+
+                tr.addView(c1);
+                tr.addView(c2);
+                BAC.addView(tr);
+                c1.setTextSize(20);
+                c2.setTextSize(20);
+
+            }
+
 
 //            // FIXME: 12/9/16 array out of bounds error for loop
 //            for (int t = startTime; t < endTime; t++) //iterate from first given time to last given time in array
@@ -166,13 +185,13 @@ public class ResultsActivity extends AppCompatActivity {
 //            }
 
 
-
 //            previousTextView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {
 //                    startActivity(new Intent(ResultsActivity.this, PacerActivity.class));
 //                }
 //            });
+
 
         } else if(previousActivityTag.equals("SoberUpActivity")) {
 //            int beerBottlesNum = data.getInt("beerBottleNum");
